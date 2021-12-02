@@ -13,7 +13,7 @@ import theme from "./theme.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={"/react-map-components-catalogue"}>
       <ScrollToTop />
 
       <StyledEngineProvider injectFirst>
