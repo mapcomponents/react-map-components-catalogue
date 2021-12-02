@@ -2,8 +2,8 @@ import React, { useContext, useMemo } from "react";
 
 import DemoContext from "./../DemoContext";
 
-import { Drawer, Grid, IconButton } from "@material-ui/core";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { Drawer, Grid, IconButton } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import ComponentListItemSmall from "./../ComponentListItemSmall";
 
@@ -47,7 +47,7 @@ function CartDrawer(props) {
                     demoContext.setCartItems([...tmpCartItems]);
                   }
                 }}
-              >
+                size="large">
                 <HighlightOffIcon />
               </IconButton>
             </Grid>

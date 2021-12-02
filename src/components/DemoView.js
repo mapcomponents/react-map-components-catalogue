@@ -3,8 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
 
-import IconButton from "@material-ui/core/IconButton";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import IconButton from "@mui/material/IconButton";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function DemoView(props) {
   const { story_id } = useParams();
@@ -95,7 +95,7 @@ function DemoView(props) {
             }, 480);
           }}
           aria-label="delete"
-        >
+          size="large">
           <HighlightOffIcon style={{ fontSize: "3em" }}></HighlightOffIcon>
         </IconButton>
       </div>

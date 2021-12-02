@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
 
-import { Grid, Button, Paper, Chip } from "@material-ui/core";
-//import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-//import ExtensionIcon from '@material-ui/icons/Extension';
-//import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
+import { Grid, Button, Paper, Chip } from "@mui/material";
+//import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+//import ExtensionIcon from '@mui/icons-material/Extension';
+//import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ComponentListItemSmall from './ComponentListItemSmall';
 
 function StoryDetailView(props) {

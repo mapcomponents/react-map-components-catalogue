@@ -1,21 +1,19 @@
-import {
-  createMuiTheme,
-} from "@material-ui/core/styles";
+import { createTheme, adaptV4Theme } from "@mui/material/styles";
 
-const theme = createMuiTheme({
+const theme = createTheme(adaptV4Theme({
   palette: {
     common: { black: "rgba(16, 16, 16, 1)", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
-      light: "#7986cb",
-      main: "#1c272d",
+      light: "#fdffc2",
+      main: "#e4e8eb",
       dark: "#080808",
       contrastText: "#fafafa",
     },
     secondary: {
-      light: "#b11e40",
-      main: "#b11e40",
-      dark: "rgba(162, 23, 30, 1)",
+      light: "#84dbff",
+      main: "#009ee0",
+      dark: "#006691",
       lighterDarkBackground: "#323645",
       greyText: "#b1b1b8",
       contrastText: "#fafafa",
@@ -37,6 +35,6 @@ const theme = createMuiTheme({
       disabled: "#fafafa",
     },
   },
-});
+}));
 
 export default theme;

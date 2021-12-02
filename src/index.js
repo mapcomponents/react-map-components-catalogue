@@ -8,14 +8,21 @@ import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import DemoContextProvider from "./components/DemoContextProvider";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import theme from "./theme.js";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ScrollToTop />
-      <DemoContextProvider>
-        <App />
-      </DemoContextProvider>
+
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <DemoContextProvider>
+            <App />
+          </DemoContextProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
