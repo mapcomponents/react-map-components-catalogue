@@ -146,6 +146,7 @@ function App() {
         </Grid>
         */}
       <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
+
         <Switch>
           <Route path="/component-detail/:component_id">
             <Container>
