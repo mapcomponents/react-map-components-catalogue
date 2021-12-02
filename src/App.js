@@ -88,7 +88,6 @@ function App() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                flexGrow: 1,
               }}
             >
               <ToggleButtonGroup
@@ -146,7 +145,7 @@ function App() {
           </Grid>
         </Grid>
         */}
-      <div className="content" style={{ paddingTop: "80px" }}>
+      <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
         <Switch>
           <Route path="/component-detail/:component_id">
             <Container>
