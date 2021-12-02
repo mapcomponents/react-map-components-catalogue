@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.secondary.lighterDarkBackground,
     marginTop: "100px",
+    maxWidth: "100%",
   },
   link: {
     textDecoration: "none",
     color: theme.palette.secondary.greyText,
     "&:hover": {
-      color: theme.palette.secondary.contrastText + ' !important',
+      color: theme.palette.secondary.contrastText + " !important",
     },
     "&:visited": {
       color: theme.palette.secondary.greyText,
@@ -32,15 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     fill: theme.palette.secondary.greyText,
-    width:'230px',
-    opacity:.6
+    width: "230px",
+    opacity: 0.6,
   },
 }));
 function Footer() {
   const classes = useStyles(theme);
 
   return (
-    <Container className={classes.footer} maxWidth="xl">
+    <Container className={classes.footer}>
       <Grid container spacing={6}>
         <Grid
           item

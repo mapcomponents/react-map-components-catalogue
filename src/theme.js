@@ -1,6 +1,6 @@
-import { createTheme, adaptV4Theme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
     common: { black: "rgba(16, 16, 16, 1)", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
@@ -35,6 +35,6 @@ const theme = createTheme(adaptV4Theme({
       disabled: "#fafafa",
     },
   },
-}));
+});
 
 export default theme;
