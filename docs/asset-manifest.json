@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3a5dc663.chunk.css",
+    "main.js": "/static/js/main.0ff9eccd.chunk.js",
+    "main.js.map": "/static/js/main.0ff9eccd.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2d87b438.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2d87b438.js.map",
+    "static/js/2.80cb87d8.chunk.js": "/static/js/2.80cb87d8.chunk.js",
+    "static/js/2.80cb87d8.chunk.js.map": "/static/js/2.80cb87d8.chunk.js.map",
+    "static/js/3.abef1d8d.chunk.js": "/static/js/3.abef1d8d.chunk.js",
+    "static/js/3.abef1d8d.chunk.js.map": "/static/js/3.abef1d8d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.3a5dc663.chunk.css.map": "/static/css/main.3a5dc663.chunk.css.map",
+    "static/js/2.80cb87d8.chunk.js.LICENSE.txt": "/static/js/2.80cb87d8.chunk.js.LICENSE.txt",
+    "static/media/mapcomponents_logo.4a25c8d3.png": "/static/media/mapcomponents_logo.4a25c8d3.png",
+    "static/media/wglogo.dc914bdb.svg": "/static/media/wglogo.dc914bdb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2d87b438.js",
+    "static/js/2.80cb87d8.chunk.js",
+    "static/css/main.3a5dc663.chunk.css",
+    "static/js/main.0ff9eccd.chunk.js"
+  ]
+}
