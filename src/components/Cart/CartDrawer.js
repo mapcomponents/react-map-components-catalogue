@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 
 import DemoContext from "./../DemoContext";
 
@@ -47,13 +47,13 @@ function CartDrawer(props) {
                     demoContext.setCartItems([...tmpCartItems]);
                   }
                 }}
-                size="large">
+                size="large"
+              >
                 <HighlightOffIcon />
               </IconButton>
             </Grid>
           </Grid>
         ))}
-
       </div>
     </Drawer>
   );
