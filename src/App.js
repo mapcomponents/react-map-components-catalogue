@@ -146,27 +146,26 @@ function App() {
         </Grid>
         */}
       <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
-
         <Switch>
-          <Route path="/component-detail/:component_id">
+          <Route path={"/component-detail/:component_id"}>
             <Container>
               <Spacer></Spacer>
               <StoryDetailView></StoryDetailView>
             </Container>
           </Route>
-          <Route path="/demo/:story_id">
+          <Route path={"/demo/:story_id"}>
             <Container>
               <Spacer></Spacer>
               <DemoView></DemoView>
             </Container>
           </Route>
-          <Route path="/list-components">
+          <Route path={"/list-components"}>
             <Container>
               <Spacer></Spacer>
               <StoryTeaserList type="component"></StoryTeaserList>
             </Container>
           </Route>
-          <Route path="/">
+          <Route path={"/"}>
             <Container>
               <Spacer></Spacer>
               <StoryTeaserList type="application"></StoryTeaserList>
