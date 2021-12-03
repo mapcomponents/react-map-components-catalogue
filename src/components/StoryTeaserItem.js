@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { useHistory, Link } from "react-router-dom";
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { Grid, Paper } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,12 +11,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StoryTeaserItem(props) {
+  const history = useHistory();
   const classes = useStyles();
+  const basepath = useRef("/");
   const meta = props.meta || {};
 
   useEffect(() => {
+    basepath.current = history.createHref({ pathname: "/" });
     console.log(props);
-  },[]);
+  }, []);
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -28,9 +31,11 @@ function StoryTeaserItem(props) {
           <h4 style={{ marginTop: "0" }}>{props.compData.title}</h4>
           <img
             className={classes.teaserItemImage}
-            src={props.compData.thumbnail || "/placeholder.png"}
+            src={
+              props.compData.thumbnail || basepath.current + "placeholder.png"
+            }
             onError={(ev) => {
-              ev.target.src = "/placeholder.png";
+              ev.target.src = basepath.current + "placeholder.png";
             }}
             alt=""
           />
