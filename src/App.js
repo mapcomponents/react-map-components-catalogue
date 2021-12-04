@@ -76,14 +76,15 @@ function App() {
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
           <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item md={2} xs={12}>
               <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
               </Link>
             </Grid>
             <Grid
               item
-              xs={8}
+              md={8}
+              xs={12}
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -116,7 +117,8 @@ function App() {
             </Grid>
             <Grid
               item
-              xs={2}
+              md={2}
+              xs={12}
               style={{
                 display: "flex",
                 justifyContent: "flex-end",

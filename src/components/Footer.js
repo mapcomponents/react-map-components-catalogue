@@ -45,12 +45,13 @@ function Footer() {
       <Grid container spacing={6}>
         <Grid
           item
-          xs={4}
+          md={4}
+          xs={12}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
           <Wglogo className={classes.logo} />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={4} xs={12}>
           <List component="nav" style={{ display: "flex" }}>
             <ListItem>
               <Link to="/" className={classes.link}>
@@ -69,7 +70,7 @@ function Footer() {
             </ListItem>
           </List>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={4} xs={12}>
           <List component="nav" aria-label="Kontakt">
             <ListItem className={classes.link}>
               <ListItemIcon>

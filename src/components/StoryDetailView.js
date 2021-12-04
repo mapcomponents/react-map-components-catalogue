@@ -93,7 +93,8 @@ function StoryDetailView(props) {
       <Grid container spacing={4}>
         <Grid
           item
-          xs={8}
+          md={8}
+          xs={12}
           style={{
             marginBottom: "80px",
             paddingBottom: "120px",
@@ -128,7 +129,7 @@ function StoryDetailView(props) {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4} style={{ paddingTop: 0 }} key="sidebar">
+        <Grid item md={4} xs={12} style={{ paddingTop: 0 }} key="sidebar">
           <Grid container spacing={2}>
             <Grid item xs={12} key="add_to_cart">
               <Button
