@@ -19,7 +19,7 @@ const hostname_ = window.location.hostname;
 
 const storybookUrls = [
   "https://mapcomponents.github.io/react-map-components-maplibre", // MapLibre
-  "http://" + hostname_ + ":5180", // MapLibre
+  "https://mapcomponents.github.io/react-map-components-maplibre-lab", // MapLibre-Lab
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
 
