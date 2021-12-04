@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/react-map-components-catalogue/static/css/main.3a5dc663.chunk.css",
-    "main.js": "/react-map-components-catalogue/static/js/main.7b1a517b.chunk.js",
-    "main.js.map": "/react-map-components-catalogue/static/js/main.7b1a517b.chunk.js.map",
-    "runtime-main.js": "/react-map-components-catalogue/static/js/runtime-main.d3a1833b.js",
-    "runtime-main.js.map": "/react-map-components-catalogue/static/js/runtime-main.d3a1833b.js.map",
-    "static/js/2.0584c116.chunk.js": "/react-map-components-catalogue/static/js/2.0584c116.chunk.js",
-    "static/js/2.0584c116.chunk.js.map": "/react-map-components-catalogue/static/js/2.0584c116.chunk.js.map",
-    "static/js/3.f991084c.chunk.js": "/react-map-components-catalogue/static/js/3.f991084c.chunk.js",
-    "static/js/3.f991084c.chunk.js.map": "/react-map-components-catalogue/static/js/3.f991084c.chunk.js.map",
-    "index.html": "/react-map-components-catalogue/index.html",
-    "static/css/main.3a5dc663.chunk.css.map": "/react-map-components-catalogue/static/css/main.3a5dc663.chunk.css.map",
-    "static/js/2.0584c116.chunk.js.LICENSE.txt": "/react-map-components-catalogue/static/js/2.0584c116.chunk.js.LICENSE.txt",
-    "static/media/mapcomponents_logo.4a25c8d3.png": "/react-map-components-catalogue/static/media/mapcomponents_logo.4a25c8d3.png",
-    "static/media/wglogo.dc914bdb.svg": "/react-map-components-catalogue/static/media/wglogo.dc914bdb.svg"
+    "main.css": "/static/css/main.3a5dc663.chunk.css",
+    "main.js": "/static/js/main.7d009e19.chunk.js",
+    "main.js.map": "/static/js/main.7d009e19.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.66708820.js",
+    "runtime-main.js.map": "/static/js/runtime-main.66708820.js.map",
+    "static/js/2.592b953e.chunk.js": "/static/js/2.592b953e.chunk.js",
+    "static/js/2.592b953e.chunk.js.map": "/static/js/2.592b953e.chunk.js.map",
+    "static/js/3.9c9e885f.chunk.js": "/static/js/3.9c9e885f.chunk.js",
+    "static/js/3.9c9e885f.chunk.js.map": "/static/js/3.9c9e885f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.3a5dc663.chunk.css.map": "/static/css/main.3a5dc663.chunk.css.map",
+    "static/js/2.592b953e.chunk.js.LICENSE.txt": "/static/js/2.592b953e.chunk.js.LICENSE.txt",
+    "static/media/mapcomponents_logo.4a25c8d3.png": "/static/media/mapcomponents_logo.4a25c8d3.png",
+    "static/media/wglogo.dc914bdb.svg": "/static/media/wglogo.dc914bdb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d3a1833b.js",
-    "static/js/2.0584c116.chunk.js",
+    "static/js/runtime-main.66708820.js",
+    "static/js/2.592b953e.chunk.js",
     "static/css/main.3a5dc663.chunk.css",
-    "static/js/main.7b1a517b.chunk.js"
+    "static/js/main.7d009e19.chunk.js"
   ]
 }
