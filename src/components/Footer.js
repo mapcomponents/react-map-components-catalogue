@@ -52,7 +52,7 @@ function Footer() {
           <Wglogo className={classes.logo} />
         </Grid>
         <Grid item md={4} xs={12}>
-          <List component="nav" style={{ display: "flex" }}>
+          <List component="nav" style={{ display: "flex", flexDirection: "column" }}>
             <ListItem>
               <Link to="/" className={classes.link}>
                 Impressum
@@ -82,7 +82,7 @@ function Footer() {
               <ListItemIcon>
                 <EmailIcon className={classes.link} />
               </ListItemIcon>
-              <ListItemText primary="infowheregroup.com" />
+              <ListItemText style={{wordBreak:"break-word"}} primary="infowheregroup.com" />
             </ListItem>
           </List>
         </Grid>
