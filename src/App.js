@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import logo from "./assets/mapcomponents_logo.png";
-import HamburgerMenu from "./components/HamburgerMenu";
+import en_flag from "./assets/union_jack.png";
+import de_flag from "./assets/german_flag.png";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 
@@ -15,6 +18,7 @@ import {
   AppBar,
   Toolbar,
   Box,
+  IconButton,
 } from "@mui/material";
 
 import Footer from "./components/Footer";
@@ -27,6 +31,32 @@ import DemoView from "./components/DemoView";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import "./App.css";
+import { useTranslation, Trans } from "react-i18next";
+
+const languages = {
+  en: { nativeName: "English" },
+  de: { nativeName: "Deutsch" },
+};
+
+const LanguageSelection = () => {
+  const { t, i18n } = useTranslation();
+  let resolvedLanguage = i18n.resolvedLanguage;
+
+  let buttons = Object.keys(languages).map((key) => (
+    <ToggleButton value={key} onClick={() => i18n.changeLanguage(key)}>
+      {key.toUpperCase()}
+    </ToggleButton>
+  ));
+  return (
+    <ToggleButtonGroup
+      children={buttons}
+      exclusive
+      size="small"
+      aria-label="text button group"
+      value={resolvedLanguage}
+    ></ToggleButtonGroup>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +96,7 @@ const Spacer = () => {
 function App() {
   const classes = useStyles(theme);
   const location = useLocation();
+  const { t, i18n } = useTranslation();
 
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
@@ -79,14 +110,11 @@ function App() {
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
           <Grid container spacing={2}>
-            <Grid item md={2} xs={8}>
+            <Grid item md={2} xs={12}>
               <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
               </Link>
             </Grid>
-            {mediaIsMobile && (
-              <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
-            )}
             <Grid
               item
               md={8}
@@ -95,7 +123,6 @@ function App() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingBottom: mediaIsMobile ? "15px" : 0,
               }}
             >
               <ToggleButtonGroup
@@ -105,37 +132,54 @@ function App() {
                 value={location.pathname}
               >
                 <ToggleButton
+                  to="/list-components"
+                  className={classes.menuButton}
+                  component={Link}
+                  value={"/list-components"}
+                >
+                  Components
+                </ToggleButton>
+                <ToggleButton
                   to="/"
                   className={classes.menuButton}
                   component={Link}
                   value={"/"}
                 >
-                  Components
-                </ToggleButton>
-                <ToggleButton
-                  to="/list-apps"
-                  className={classes.menuButton}
-                  component={Link}
-                  value={"/list-apps"}
-                >
-                  Applications
+                  {t("sampleApplications")}
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>
-            {!mediaIsMobile && (
-              <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
-            )}
+            <Grid
+              item
+              md={2}
+              xs={12}
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                fontSize: "0.8em",
+              }}
+            >
+              <IconButton
+                onClick={() => setCartDrawerOpen(true)}
+                style={{}}
+                size="large"
+              >
+                <FormatListBulletedIcon />
+              </IconButton>
+              <LanguageSelection></LanguageSelection>
+            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
       {/*
-        <Grid container>
-          <Grid item className={classes.fullTeaser}>
-            Teaser full-width
+          <Grid container>
+            <Grid item className={classes.fullTeaser}>
+              Teaser full-width
+            </Grid>
           </Grid>
-        </Grid>
-        */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
+          */}
+      <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
         <Switch>
           <Route path={"/component-detail/:component_id"}>
             <Container>
@@ -149,16 +193,16 @@ function App() {
               <DemoView></DemoView>
             </Container>
           </Route>
-          <Route path={"/list-apps"}>
+          <Route path={"/list-components"}>
             <Container>
               <Spacer></Spacer>
-              <StoryTeaserList type="application"></StoryTeaserList>
+              <StoryTeaserList type="component"></StoryTeaserList>
             </Container>
           </Route>
           <Route path={"/"}>
             <Container>
               <Spacer></Spacer>
-              <StoryTeaserList type="component"></StoryTeaserList>
+              <StoryTeaserList type="application"></StoryTeaserList>
             </Container>
           </Route>
         </Switch>

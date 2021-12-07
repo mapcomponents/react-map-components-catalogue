@@ -23,11 +23,13 @@ let storybookUrls = [
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
 
+/**
 if (window.location.host.indexOf("mapcomponents.org") === -1) {
   storybookUrls = [
     "http://" + window.location.hostname + ":6006", // MapLibre
   ];
 }
+ */
 
 const DemoContextProvider = ({ children }) => {
   const [componentData, setComponentData] = useState({});
