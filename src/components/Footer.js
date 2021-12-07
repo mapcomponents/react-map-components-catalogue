@@ -15,6 +15,9 @@ import EmailIcon from "@mui/icons-material/Email";
 
 import { ReactComponent as Wglogo } from "../wglogo.svg";
 
+import { useTranslation, Trans } from 'react-i18next';
+
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.secondary.lighterDarkBackground,
@@ -39,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Footer() {
   const classes = useStyles(theme);
+  const { t } = useTranslation();
 
   return (
     <Container className={classes.footer}>
@@ -55,17 +59,17 @@ function Footer() {
           <List component="nav" style={{ display: "flex", flexDirection: "column" }}>
             <ListItem>
               <Link to="/" className={classes.link}>
-                Impressum
+              {t('imprint')}
               </Link>
             </ListItem>
             <ListItem>
               <Link to="/" className={classes.link}>
-                Datenschutz
+                {t('dataProtection')}
               </Link>
             </ListItem>
             <ListItem>
               <Link to="/" className={classes.link}>
-                Cookie Einstellungen
+              {t('cookieSettings')}
               </Link>
             </ListItem>
           </List>

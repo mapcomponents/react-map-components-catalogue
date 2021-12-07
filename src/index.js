@@ -11,6 +11,8 @@ import DemoContextProvider from "./components/DemoContextProvider";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import theme from "./theme.js";
 
+import './i18n/i18n';
+
 ReactDOM.render(
   <React.StrictMode>
     <Router basename={"/"}>
