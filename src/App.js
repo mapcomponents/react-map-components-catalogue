@@ -98,20 +98,20 @@ function App() {
                 value={location.pathname}
               >
                 <ToggleButton
-                  to="/list-components"
-                  className={classes.menuButton}
-                  component={Link}
-                  value={"/list-components"}
-                >
-                  Map Components
-                </ToggleButton>
-                <ToggleButton
                   to="/"
                   className={classes.menuButton}
                   component={Link}
                   value={"/"}
                 >
-                  Beispielanwendungen
+                  Components
+                </ToggleButton>
+                <ToggleButton
+                  to="/list-apps"
+                  className={classes.menuButton}
+                  component={Link}
+                  value={"/list-apps"}
+                >
+                  Applications
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>
@@ -161,16 +161,16 @@ function App() {
               <DemoView></DemoView>
             </Container>
           </Route>
-          <Route path={"/list-components"}>
+          <Route path={"/list-apps"}>
             <Container>
               <Spacer></Spacer>
-              <StoryTeaserList type="component"></StoryTeaserList>
+              <StoryTeaserList type="application"></StoryTeaserList>
             </Container>
           </Route>
           <Route path={"/"}>
             <Container>
               <Spacer></Spacer>
-              <StoryTeaserList type="application"></StoryTeaserList>
+              <StoryTeaserList type="component"></StoryTeaserList>
             </Container>
           </Route>
         </Switch>
