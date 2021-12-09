@@ -13,6 +13,8 @@ import ListItemText from "@mui/material/ListItemText";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { ReactComponent as Wglogo } from "../wglogo.svg";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Footer() {
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles(theme);
 
   return (
@@ -47,12 +50,35 @@ function Footer() {
           item
           md={4}
           xs={12}
-          style={{ display: "flex", justifyContent: "flex-end" }}
+          style={{
+            display: "flex",
+            justifyContent: mediaIsMobile ? "flex-start" : "flex-end",
+          }}
         >
-          <Wglogo className={classes.logo} />
+          <Wglogo
+            className={classes.logo}
+            style={{
+              marginLeft: "16px",
+              marginTop: mediaIsMobile ? "20px" : "0",
+            }}
+          />
         </Grid>
-        <Grid item md={4} xs={12}>
-          <List component="nav" style={{ display: "flex" }}>
+        <Grid
+          item
+          md={4}
+          xs={12}
+          style={{
+            ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
+          }}
+        >
+          <List
+            component="nav"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              ...(mediaIsMobile ? {} : { marginTop: "14px" }),
+            }}
+          >
             <ListItem>
               <Link to="/" className={classes.link}>
                 Impressum
@@ -70,7 +96,14 @@ function Footer() {
             </ListItem>
           </List>
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid
+          item
+          md={4}
+          xs={12}
+          style={{
+            ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
+          }}
+        >
           <List component="nav" aria-label="Kontakt">
             <ListItem className={classes.link}>
               <ListItemIcon>
@@ -82,7 +115,7 @@ function Footer() {
               <ListItemIcon>
                 <EmailIcon className={classes.link} />
               </ListItemIcon>
-              <ListItemText primary="infowheregroup.com" />
+              <ListItemText primary="info@wheregroup.com" />
             </ListItem>
           </List>
         </Grid>
