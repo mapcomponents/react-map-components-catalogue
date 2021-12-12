@@ -80,20 +80,28 @@ function Footer() {
             }}
           >
             <ListItem>
-              <Link to="/" className={classes.link}>
-                Impressum
-              </Link>
+              <a
+                href="https://wheregroup.com/en/legalnotice/"
+                className={classes.link}
+              >
+                Legal notice
+              </a>
             </ListItem>
             <ListItem>
-              <Link to="/" className={classes.link}>
-                Datenschutz
-              </Link>
+              <a
+                href="https://wheregroup.com/en/privacypolicy/"
+                className={classes.link}
+              >
+                Privacy policy
+              </a>
             </ListItem>
+            {/**
             <ListItem>
               <Link to="/" className={classes.link}>
-                Cookie Einstellungen
+                Cookie settings
               </Link>
             </ListItem>
+             */}
           </List>
         </Grid>
         <Grid
