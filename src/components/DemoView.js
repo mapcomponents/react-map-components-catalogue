@@ -64,20 +64,19 @@ function DemoView(props) {
         backgroundColor: "#000",
       }}
     >
-    <div
-      className={fadein ? "" : "demoOverlayBlackscreen-fadein"}
-      style={{
-        position: "fixed",
-        zIndex: 10000000,
-        top: 0,
-        right: 0,
-        left: 0,
-        height: "100vh",
-        backgroundColor: "#000",
-        display:(fadein?"none":"block")
-      }}
-    >
-    </div>
+      <div
+        className={fadein ? "" : "demoOverlayBlackscreen-fadein"}
+        style={{
+          position: "fixed",
+          zIndex: 10000000,
+          top: 0,
+          right: 0,
+          left: 0,
+          height: "100vh",
+          backgroundColor: "#000",
+          display: fadein ? "none" : "block",
+        }}
+      ></div>
       <div
         className="closeDemo"
         style={{
@@ -95,7 +94,8 @@ function DemoView(props) {
             }, 480);
           }}
           aria-label="delete"
-          size="large">
+          size="large"
+        >
           <HighlightOffIcon style={{ fontSize: "3em" }}></HighlightOffIcon>
         </IconButton>
       </div>
@@ -104,6 +104,7 @@ function DemoView(props) {
           title="component-demo-viewer"
           src={demoUrl}
           frameBorder="0"
+          allow="geolocation 'self' https://www.mapcomponents.org"
           style={{
             position: "fixed",
             zIndex: 1010,
