@@ -173,10 +173,7 @@ function App() {
           </Grid>
         </Grid>
         */}
-      <div
-        className="content"
-        style={{ flexGrow: 1, paddingTop: "20px", backgroundColor: "#e9e9e9" }}
-      >
+      <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
         <Switch>
           <Route path={"/component-detail/:component_id"}>
             <Container>
