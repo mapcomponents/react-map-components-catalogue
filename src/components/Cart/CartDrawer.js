@@ -38,12 +38,23 @@ function CartDrawer(props) {
               style={{ fontSize: "2em" }}
             ></ArrowForwardIosIcon>
           </IconButton>
-          <h3>Bookmarks</h3>
+          <h3
+            onClick={() => {
+              props.setOpen(false);
+            }}
+          >
+            Bookmarks
+          </h3>
         </div>
         {demoContext.cartItems.map((el) => (
           <Grid container>
             <Grid item xs={10} key="item">
-              <ComponentListItemSmall component_id={el} />
+              <ComponentListItemSmall
+                component_id={el}
+                onClick={() => {
+                  props.setOpen(false);
+                }}
+              />
             </Grid>
             <Grid
               item

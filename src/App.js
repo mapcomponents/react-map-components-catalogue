@@ -26,6 +26,8 @@ import CartDrawer from "./components/Cart/CartDrawer";
 import StoryDetailView from "./components/StoryDetailView";
 import DemoView from "./components/DemoView";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     padding: "10px 0",
+    backgroundColor: "#f1f1f1",
   },
   fullTeaser: {
     height: "100vh",
@@ -66,6 +69,8 @@ function App() {
   const classes = useStyles(theme);
   const location = useLocation();
 
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
+
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
 
   return (
@@ -76,11 +81,32 @@ function App() {
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
           <Grid container spacing={2}>
-            <Grid item md={2} xs={12}>
+            <Grid item md={2} xs={8}>
               <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
               </Link>
             </Grid>
+            {mediaIsMobile && (
+              <Grid
+                item
+                md={2}
+                xs={4}
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  fontSize: "0.8em",
+                }}
+              >
+                <IconButton
+                  onClick={() => setCartDrawerOpen(true)}
+                  style={{}}
+                  size="large"
+                >
+                  <FormatListBulletedIcon />
+                </IconButton>
+              </Grid>
+            )}
             <Grid
               item
               md={8}
@@ -89,6 +115,7 @@ function App() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                paddingBottom: mediaIsMobile ? "15px" : 0,
               }}
             >
               <ToggleButtonGroup
@@ -115,28 +142,27 @@ function App() {
                 </ToggleButton>
               </ToggleButtonGroup>
             </Grid>
-            <Grid
-              item
-              md={2}
-              xs={12}
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                fontSize: "0.8em",
-              }}
-            >
-              <IconButton
-                onClick={() => setCartDrawerOpen(true)}
-                style={{}}
-                size="large"
+            {!mediaIsMobile && (
+              <Grid
+                item
+                md={2}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  fontSize: "0.8em",
+                }}
               >
-                <FormatListBulletedIcon />
-              </IconButton>
-              <IconButton style={{ marginLeft: "10px" }} size="large">
-                <SettingsIcon />
-              </IconButton>
-            </Grid>
+                <IconButton
+                  onClick={() => setCartDrawerOpen(true)}
+                  style={{}}
+                  size="large"
+                >
+                  <FormatListBulletedIcon />
+                </IconButton>
+              </Grid>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>
@@ -147,7 +173,10 @@ function App() {
           </Grid>
         </Grid>
         */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
+      <div
+        className="content"
+        style={{ flexGrow: 1, paddingTop: "20px", backgroundColor: "#e9e9e9" }}
+      >
         <Switch>
           <Route path={"/component-detail/:component_id"}>
             <Container>

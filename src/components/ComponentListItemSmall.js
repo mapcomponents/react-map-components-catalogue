@@ -49,14 +49,19 @@ function ComponentListItemSmall(props) {
 
   return (
     <Link
-      to={"/component-detail/" + storybookData.id}
+      to={"/component-detail/" + component_id}
       style={{ color: "black", textDecoration: "none", marginTop: "10px" }}
     >
-      <Grid container style={{ marginTop: "0px" }} spacing={2}>
+      <Grid
+        container
+        style={{ marginTop: "0px" }}
+        spacing={2}
+        onClick={props.onClick}
+      >
         <Grid item xs={4}>
           <img
             className={classes.teaserItemImage}
-            src={storybookData.thumbnail || "/placeholder.png"}
+            src={componentData.thumbnail || "/placeholder.png"}
             onError={(ev) => {
               ev.target.src = "/placeholder.png";
             }}
