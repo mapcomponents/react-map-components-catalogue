@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import theme from "../theme.js";
 
 import { Container, Grid } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -115,7 +115,10 @@ function Footer() {
               <ListItemIcon>
                 <EmailIcon className={classes.link} />
               </ListItemIcon>
-              <ListItemText primary="info@wheregroup.com" />
+              <ListItemText
+                style={{ wordBreak: "break-word" }}
+                primary="info@wheregroup.com"
+              />
             </ListItem>
           </List>
         </Grid>
