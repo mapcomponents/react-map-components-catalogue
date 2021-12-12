@@ -104,7 +104,7 @@ function DemoView(props) {
           title="component-demo-viewer"
           src={demoUrl}
           frameBorder="0"
-          allow="geolocation 'self' https://www.mapcomponents.org"
+          allow="geolocation"
           style={{
             position: "fixed",
             zIndex: 1010,
