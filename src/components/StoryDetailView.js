@@ -142,7 +142,7 @@ function StoryDetailView(props) {
                   ]);
                 }}
               >
-                Zur Merkliste hinzufügen
+                Add to bookmarks
               </Button>
             </Grid>
             <Grid item xs={12} key="demo_link">
