@@ -23,7 +23,7 @@ let storybookUrls = [
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
 
-if (window.location.host.indexOf("mapcomponents.org") !== -1) {
+if (window.location.host.indexOf("mapcomponents.org") === -1) {
   storybookUrls = [
     "http://" + window.location.host + ":6006", // MapLibre
   ];
