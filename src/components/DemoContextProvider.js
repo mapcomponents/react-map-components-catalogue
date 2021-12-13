@@ -25,7 +25,7 @@ let storybookUrls = [
 
 if (window.location.host.indexOf("mapcomponents.org") === -1) {
   storybookUrls = [
-    "http://" + window.location.host + ":6006", // MapLibre
+    "http://" + window.location.hostname + ":6006", // MapLibre
   ];
 }
 
