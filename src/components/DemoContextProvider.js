@@ -17,11 +17,17 @@ function storiesJsonElToComponentId(el) {
 
 const hostname_ = window.location.hostname;
 
-const storybookUrls = [
+let storybookUrls = [
   "https://mapcomponents.github.io/react-map-components-maplibre", // MapLibre
   "https://mapcomponents.github.io/react-map-components-maplibre-lab", // MapLibre-Lab
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
+
+if (window.location.host.indexOf("mapcomponents.org") !== -1) {
+  storybookUrls = [
+    "http://" + window.location.host + ":6006", // MapLibre
+  ];
+}
 
 const DemoContextProvider = ({ children }) => {
   const [componentData, setComponentData] = useState({});
