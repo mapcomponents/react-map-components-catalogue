@@ -42,6 +42,7 @@ function CartDrawer(props) {
             onClick={() => {
               props.setOpen(false);
             }}
+            style={{ cursor: "pointer" }}
           >
             Bookmarks
           </h3>

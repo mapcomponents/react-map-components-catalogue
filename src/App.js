@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "./assets/mapcomponents_logo.png";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import SettingsIcon from "@mui/icons-material/Settings";
+import HamburgerMenu from "./components/HamburgerMenu";
 
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 
@@ -11,7 +10,6 @@ import theme from "./theme.js";
 import {
   ToggleButton,
   ToggleButtonGroup,
-  IconButton,
   Container,
   Grid,
   AppBar,
@@ -87,25 +85,7 @@ function App() {
               </Link>
             </Grid>
             {mediaIsMobile && (
-              <Grid
-                item
-                md={2}
-                xs={4}
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  fontSize: "0.8em",
-                }}
-              >
-                <IconButton
-                  onClick={() => setCartDrawerOpen(true)}
-                  style={{}}
-                  size="large"
-                >
-                  <FormatListBulletedIcon />
-                </IconButton>
-              </Grid>
+              <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
             )}
             <Grid
               item
@@ -143,25 +123,7 @@ function App() {
               </ToggleButtonGroup>
             </Grid>
             {!mediaIsMobile && (
-              <Grid
-                item
-                md={2}
-                xs={12}
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  fontSize: "0.8em",
-                }}
-              >
-                <IconButton
-                  onClick={() => setCartDrawerOpen(true)}
-                  style={{}}
-                  size="large"
-                >
-                  <FormatListBulletedIcon />
-                </IconButton>
-              </Grid>
+              <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
             )}
           </Grid>
         </Toolbar>
