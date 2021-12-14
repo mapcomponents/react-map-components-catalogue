@@ -48,7 +48,7 @@ function CartDrawer(props) {
           </h3>
         </div>
         {demoContext.cartItems.map((el) => (
-          <Grid container>
+          <Grid container key={"cli_" + el.id}>
             <Grid item xs={10} key="item">
               <ComponentListItemSmall
                 component_id={el}

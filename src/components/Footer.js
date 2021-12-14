@@ -59,7 +59,7 @@ function Footer() {
             className={classes.logo}
             style={{
               marginLeft: "16px",
-              marginTop: mediaIsMobile ? "20px" : "0",
+              marginTop: mediaIsMobile ? "50px" : "0",
             }}
           />
         </Grid>

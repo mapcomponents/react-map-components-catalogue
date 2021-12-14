@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Grid, Button, Paper, Chip } from "@mui/material";
 //import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 //import ExtensionIcon from '@mui/icons-material/Extension';
@@ -18,6 +19,7 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 import ComponentListItemSmall from "./ComponentListItemSmall";
 
 function StoryDetailView(props) {
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const history = useHistory();
   const basepath = useRef("/");
   const { component_id } = useParams();
@@ -35,6 +37,7 @@ function StoryDetailView(props) {
     if (!url || !componentData || (componentData && !componentData.name))
       return;
 
+    /*
     fetch(url + "/catalogue/" + componentData.name + ".de.html")
       .then((res) => {
         if (!res.ok) {
@@ -47,6 +50,7 @@ function StoryDetailView(props) {
       .then((text) => {
         setDescription(text);
       });
+      */
   }, [componentData, url]);
 
   useEffect(() => {
@@ -96,9 +100,13 @@ function StoryDetailView(props) {
           md={8}
           xs={12}
           style={{
-            marginBottom: "80px",
-            paddingBottom: "120px",
-            minHeight: "500px",
+            ...(mediaIsMobile
+              ? {}
+              : {
+                  marginBottom: "80px",
+                  paddingBottom: "120px",
+                  minHeight: "500px",
+                }),
           }}
           key="content"
         >
@@ -124,12 +132,18 @@ function StoryDetailView(props) {
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>
               <div
                 className="content"
-                dangerouslySetInnerHTML={{ __html: description }}
+                //dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item md={4} xs={12} style={{ paddingTop: 0 }} key="sidebar">
+        <Grid
+          item
+          md={4}
+          xs={12}
+          style={{ paddingTop: mediaIsMobile ? 0 : "89px" }}
+          key="sidebar"
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} key="add_to_cart">
               <Button
@@ -155,6 +169,7 @@ function StoryDetailView(props) {
                     component={Link}
                     variant="contained"
                     to={"/demo/" + story.id}
+                    key={story.id}
                   >
                     {story.name === "Example Config" ? "demo" : story.name}
                   </Button>
