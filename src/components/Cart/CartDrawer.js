@@ -9,9 +9,12 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ComponentListItemSmall from "./../ComponentListItemSmall";
 
+import { useTranslation } from "react-i18next";
+
 function CartDrawer(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const demoContext = useContext(DemoContext);
+  const { t } = useTranslation();
 
   return (
     <Drawer
@@ -26,27 +29,7 @@ function CartDrawer(props) {
           padding: "20px",
         }}
       >
-        <div style={{ display: "flex" }}>
-          <IconButton
-            onClick={() => {
-              props.setOpen(false);
-            }}
-            aria-label="close"
-            size="small"
-          >
-            <ArrowForwardIosIcon
-              style={{ fontSize: "2em" }}
-            ></ArrowForwardIosIcon>
-          </IconButton>
-          <h3
-            onClick={() => {
-              props.setOpen(false);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            Bookmarks
-          </h3>
-        </div>
+        <h3>{t("bookmark")}</h3>
         {demoContext.cartItems.map((el) => (
           <Grid container key={"cli_" + el.id}>
             <Grid item xs={10} key="item">

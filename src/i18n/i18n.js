@@ -1,6 +1,6 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
   // detect user language
@@ -24,9 +24,16 @@ i18n
           sampleApplications: "APPLICATIONS",
 
           // footer
-          imprint: "imprint",
-          dataProtection: "data protection",
-          cookieSettings: "cookie settings",
+          imprint: "Imprint",
+          dataProtection: "Data protection",
+          cookieSettings: "Cookie settings",
+
+          // detail view
+          noDescription: "No description available.",
+          addToBookmarks: "Add to bookmarks",
+
+          // cart drawer
+          bookmark: "Bookmarks",
         },
       },
       de: {
@@ -38,6 +45,13 @@ i18n
           imprint: "Impressum",
           dataProtection: "Datenschutz",
           cookieSettings: "Cookie Einstellungen",
+
+          // detail view
+          noDescription: "Keine Beschreibung gefunden.",
+          addToBookmarks: "Zur Merkliste hinzufügen",
+
+          // cart drawer
+          bookmark: "Merkliste",
         },
       },
     },
