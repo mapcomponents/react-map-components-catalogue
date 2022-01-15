@@ -7,8 +7,11 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import ComponentListItemSmall from "./../ComponentListItemSmall";
 
+import { useTranslation } from 'react-i18next';
+
 function CartDrawer(props) {
   const demoContext = useContext(DemoContext);
+  const { t } = useTranslation();
 
   return (
     <Drawer
@@ -22,7 +25,7 @@ function CartDrawer(props) {
           padding: "20px",
         }}
       >
-        <h3>Merkliste</h3>
+        <h3>{t('bookmark')}</h3>
         {demoContext.cartItems.map((el) => (
           <Grid container>
             <Grid item xs={10} key="item">

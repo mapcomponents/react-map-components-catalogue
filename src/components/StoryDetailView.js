@@ -17,6 +17,8 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ComponentListItemSmall from "./ComponentListItemSmall";
 
+import { useTranslation } from 'react-i18next';
+
 function StoryDetailView(props) {
   const history = useHistory();
   const basepath = useRef("/");
@@ -31,6 +33,8 @@ function StoryDetailView(props) {
 
   const [description, setDescription] = useState("");
 
+  const { t, i18n } = useTranslation();
+
   const fetchDescription = useCallback(() => {
     if (!url || !componentData || (componentData && !componentData.name))
       return;
@@ -40,7 +44,7 @@ function StoryDetailView(props) {
         if (!res.ok) {
           //throw new Error('No Description found');
 
-          return "Keine Beschreibung gefunden.";
+          return t('noDescription')
         }
         return res.text();
       })
@@ -142,7 +146,7 @@ function StoryDetailView(props) {
                   ]);
                 }}
               >
-                Zur Merkliste hinzufügen
+                {t('addToBookmarks')}
               </Button>
             </Grid>
             <Grid item xs={12} key="demo_link">

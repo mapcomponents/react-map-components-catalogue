@@ -24,9 +24,16 @@ i18n
           sampleApplications: 'SAMPLE APPLICATIONS',
         
           // footer
-          imprint: 'imprint',
-          dataProtection: 'data protection',   
-          cookieSettings: 'cookie settings',
+          imprint: 'Imprint',
+          dataProtection: 'Data protection',   
+          cookieSettings: 'Cookie settings',
+
+          // detail view
+          noDescription: 'No description available.',
+          addToBookmarks: 'Add to bookmarks',
+
+          // cart drawer
+          bookmark: 'Bookmarks'
         } 
       },
       de: {
@@ -37,7 +44,14 @@ i18n
           //footer
           imprint: 'Impressum',
           dataProtection: 'Datenschutz',
-          cookieSettings: 'Cookie Einstellungen'
+          cookieSettings: 'Cookie Einstellungen',
+
+          // detail view
+          noDescription: 'Keine Beschreibung gefunden.',
+          addToBookmarks: 'Zur Merkliste hinzufügen',
+
+          // cart drawer
+          bookmark: 'Merkliste'
         }
       }
     }
