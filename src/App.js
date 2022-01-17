@@ -29,10 +29,32 @@ import DemoView from "./components/DemoView";
 import "./App.css";
 import { useTranslation, Trans } from 'react-i18next';
 
-const lngs = {
+const languages = {
   en: { nativeName: 'English' },
   de: { nativeName: 'Deutsch' }
 };
+
+const LanguageSelection = () => {
+  const { t, i18n } = useTranslation();
+  let resolvedLanguage = i18n.resolvedLanguage;
+
+  let buttons = Object.keys(languages).map(key =>
+    <ToggleButton
+      value={key}
+      onClick={() => i18n.changeLanguage(key)}
+    >{key.toUpperCase()}</ToggleButton>
+  );
+
+  return <ToggleButtonGroup
+          children={buttons}
+          exclusive
+          size="small"
+          variant="text"
+          aria-label="text button group"
+          value={resolvedLanguage}
+        ></ToggleButtonGroup>;
+};
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -143,8 +165,7 @@ function App() {
                 <IconButton style={{ marginLeft: "10px" }} size="large">
                   <SettingsIcon />
                 </IconButton>
-                <img src={en_flag} alt="language_en" style={{marginLeft: "10px", border: i18n.resolvedLanguage === 'en' ? '2px solid grey' : '2px solid transparent'}} onClick={() => i18n.changeLanguage('en')}/>
-                <img src={de_flag} alt="language_de" style={{marginLeft: "2px", border: i18n.resolvedLanguage === 'de' ? '2px solid grey' : '2px solid transparent'}} onClick={() => i18n.changeLanguage('de')}/>
+                <LanguageSelection></LanguageSelection>
               </Grid>
             </Grid>
           </Toolbar>
