@@ -39,7 +39,7 @@ function StoryDetailView(props) {
     if (!url || !componentData || (componentData && !componentData.name))
       return;
 
-    fetch(url + "/catalogue/" + componentData.name + ".de.html")
+    fetch(url + "/catalogue/" + componentData.name + "." + i18n.resolvedLanguage + ".html")
       .then((res) => {
         if (!res.ok) {
           //throw new Error('No Description found');
