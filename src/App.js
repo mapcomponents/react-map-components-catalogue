@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import logo from "./assets/mapcomponents_logo.png";
-import en_flag from "./assets/union_jack.png";
-import de_flag from "./assets/german_flag.png";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 
