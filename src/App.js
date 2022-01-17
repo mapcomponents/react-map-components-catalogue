@@ -32,6 +32,7 @@ import "./App.css";
 import { useTranslation, Trans } from "react-i18next";
 
 const languages = {
+<<<<<<< HEAD
   en: { nativeName: "English" },
   de: { nativeName: "Deutsch" },
 };
@@ -54,7 +55,33 @@ const LanguageSelection = () => {
       value={resolvedLanguage}
     ></ToggleButtonGroup>
   );
+=======
+  en: { nativeName: 'English' },
+  de: { nativeName: 'Deutsch' }
+>>>>>>> 121fffe... Add language selection via ToggleButtonGroup
 };
+
+const LanguageSelection = () => {
+  const { t, i18n } = useTranslation();
+  let resolvedLanguage = i18n.resolvedLanguage;
+
+  let buttons = Object.keys(languages).map(key =>
+    <ToggleButton
+      value={key}
+      onClick={() => i18n.changeLanguage(key)}
+    >{key.toUpperCase()}</ToggleButton>
+  );
+
+  return <ToggleButtonGroup
+          children={buttons}
+          exclusive
+          size="small"
+          variant="text"
+          aria-label="text button group"
+          value={resolvedLanguage}
+        ></ToggleButtonGroup>;
+};
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -143,9 +170,13 @@ function App() {
                   component={Link}
                   value={"/"}
                 >
-                  {t("sampleApplications")}
-                </ToggleButton>
-              </ToggleButtonGroup>
+                  <FormatListBulletedIcon />
+                </IconButton>
+                <IconButton style={{ marginLeft: "10px" }} size="large">
+                  <SettingsIcon />
+                </IconButton>
+                <LanguageSelection></LanguageSelection>
+              </Grid>
             </Grid>
             <Grid
               item
