@@ -53,8 +53,12 @@ function StoryDetailView(props) {
       .then((text) => {
         setDescription(text);
       });
+<<<<<<< HEAD
       */
   }, [componentData, url]);
+=======
+  }, [componentData, url, i18n.resolvedLanguage]);
+>>>>>>> 727cbcf... Add translation
 
   useEffect(() => {
     basepath.current = history.createHref({ pathname: "/" });
@@ -93,7 +97,7 @@ function StoryDetailView(props) {
 
   useEffect(() => {
     fetchDescription();
-  }, [componentData, fetchDescription]);
+  }, [fetchDescription]);
 
   return (
     <>
@@ -192,7 +196,7 @@ function StoryDetailView(props) {
             </Grid>
             {componentData.components && (
               <Grid item xs={12} key="component_list">
-                <h3>Verwendete Components</h3>
+                <h3>{t('usedComponents')}</h3>
                 {componentData.components.map((el) => (
                   <ComponentListItemSmall component_id={el} />
                 ))}
