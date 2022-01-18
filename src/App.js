@@ -49,7 +49,6 @@ const LanguageSelection = () => {
           children={buttons}
           exclusive
           size="small"
-          variant="text"
           aria-label="text button group"
           value={resolvedLanguage}
         ></ToggleButtonGroup>;
