@@ -68,6 +68,7 @@ const LanguageSelection = () => {
   let buttons = Object.keys(languages).map(key =>
     <ToggleButton
       value={key}
+      key={key}
       onClick={() => i18n.changeLanguage(key)}
     >{key.toUpperCase()}</ToggleButton>
   );
