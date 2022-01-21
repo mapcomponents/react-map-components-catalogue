@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DemoContext from "./DemoContext";
 import makeStyles from '@mui/styles/makeStyles';
 import { Grid } from "@mui/material";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   teaserItemImage: {
@@ -20,6 +21,8 @@ function ComponentListItemSmall(props) {
 
   const [componentData, setComponentData] = useState({});
   const [storybookData, setStorybookData] = useState({});
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     let sbData = demoContext.storybookDataRef.current;
@@ -70,7 +73,7 @@ function ComponentListItemSmall(props) {
         </Grid>
         <Grid item xs={8}>
           <h4 style={{ marginTop: "3px", marginBottom: "5px" }}>
-            {componentData.title}
+            {i18n.resolvedLanguage !== 'en' ? componentData.i18n[i18n.resolvedLanguage].title : componentData.title}
           </h4>
         </Grid>
       </Grid>
