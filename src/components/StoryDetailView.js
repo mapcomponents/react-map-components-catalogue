@@ -32,6 +32,7 @@ function StoryDetailView(props) {
   const [demos, setDemos] = useState([]);
 
   const [description, setDescription] = useState("");
+  const [componentTitle, setComponentTitle] = useState("");
 
   const { t, i18n } = useTranslation();
 
@@ -39,11 +40,12 @@ function StoryDetailView(props) {
     if (!url || !componentData || (componentData && !componentData.name))
       return;
 
-    fetch(url + "/catalogue/" + componentData.name + "." + i18n.resolvedLanguage + ".html")
+    let currentLanguage = i18n.resolvedLanguage;
+    let componentTitle = currentLanguage !== 'en' ? componentData.i18n[currentLanguage].title : componentData.title;
+    setComponentTitle(componentTitle);
+    fetch(url + "/catalogue/" + componentData.name + "." + currentLanguage + ".html")
       .then((res) => {
         if (!res.ok) {
-          //throw new Error('No Description found');
-
           return t('noDescription')
         }
         return res.text();
@@ -51,7 +53,7 @@ function StoryDetailView(props) {
       .then((text) => {
         setDescription(text);
       });
-  }, [componentData, url, i18n.resolvedLanguage]);
+  }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
 
   useEffect(() => {
     basepath.current = history.createHref({ pathname: "/" });
@@ -59,8 +61,6 @@ function StoryDetailView(props) {
 
   useEffect(() => {
     let compData = demoContext.componentDataRef.current;
-    console.log(component_id);
-    console.log(demoContext.componentDataRef.current);
 
     (async () => {
       for (var url in compData) {
@@ -70,7 +70,6 @@ function StoryDetailView(props) {
           break;
         }
       }
-      console.log(componentData);
     })();
   }, [component_id, demoContext.componentData, demoContext]);
 
@@ -108,7 +107,7 @@ function StoryDetailView(props) {
         >
           <Grid container spacing={0}>
             <Grid key="title" item xs={12}>
-              <h1 style={{ marginTop: 0 }}>{componentData.title}</h1>
+              <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
             </Grid>
             <Grid key="thumbnail" item xs={12}>
               <Paper elevation={1} style={{ maxHeight: "600px" }}>
