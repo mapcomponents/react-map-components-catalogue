@@ -1,11 +1,5 @@
-import React, {
-  useRef,
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState, useContext, useEffect, useCallback } from "react";
+import { useResolvedPath, Link } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
@@ -22,8 +16,7 @@ import { useTranslation } from "react-i18next";
 
 function StoryDetailView(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
-  const history = useHistory();
-  const basepath = useRef("/");
+  const basepath = useResolvedPath("/");
   const { component_id } = useParams();
   const demoContext = useContext(DemoContext);
 
@@ -62,9 +55,7 @@ function StoryDetailView(props) {
       });
   }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
 
-  useEffect(() => {
-    basepath.current = history.createHref({ pathname: "/" });
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     let compData = demoContext.componentDataRef.current;
@@ -123,12 +114,9 @@ function StoryDetailView(props) {
             <Grid key="thumbnail" item xs={12}>
               <Paper elevation={1} style={{ maxHeight: "600px" }}>
                 <img
-                  src={
-                    componentData.thumbnail ||
-                    basepath.current + "placeholder.png"
-                  }
+                  src={componentData.thumbnail || basepath + "placeholder.png"}
                   onError={(ev) => {
-                    ev.target.src = basepath.current + "placeholder.png";
+                    ev.target.src = basepath + "placeholder.png";
                   }}
                   style={{ width: "100%" }}
                   alt=""

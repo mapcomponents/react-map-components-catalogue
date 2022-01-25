@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useContext, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
 
@@ -8,7 +8,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function DemoView(props) {
   const { story_id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [demoViewerOpen, setDemoViewerOpen] = useState(false);
   const demoContext = useContext(DemoContext);
@@ -16,32 +16,34 @@ function DemoView(props) {
   const [demoUrl, setDemoUrl] = useState("");
   const [fadein, setFadein] = useState(false);
 
+  const init = useCallback(
+    (story_id) => {
+      if (demoUrl) return;
+      if (!demoContext.storybookData || !story_id) return;
 
-  const init = useCallback((story_id) => {
-    if (demoUrl) return;
-    if (!demoContext.storybookData || !story_id) return;
+      setFadein(true);
 
-    setFadein(true);
+      let sbData = demoContext.storybookDataRef.current;
 
-    let sbData = demoContext.storybookDataRef.current;
+      console.log(story_id);
+      for (var url in sbData) {
+        for (var story_key in sbData[url].stories) {
+          if (story_key === story_id) {
+            setDemoUrl(url + "/iframe.html?id=" + story_id + "&viewMode=story");
+            console.log(
+              url + "/iframe.html?id=" + story_id + "&viewMode=story"
+            );
 
-    console.log(story_id)
-    for (var url in sbData) {
-      for (var story_key in sbData[url].stories) {
-        if (story_key === story_id) {
-          setDemoUrl(
-            url + "/iframe.html?id=" + story_id + "&viewMode=story"
-          );
-          console.log(url + "/iframe.html?id=" + story_id + "&viewMode=story");
-
-          setTimeout(() => {
-            setDemoViewerOpen(true);
-          },500);
-          break;
+            setTimeout(() => {
+              setDemoViewerOpen(true);
+            }, 500);
+            break;
+          }
         }
       }
-    }
-  }, [demoUrl, demoContext]);
+    },
+    [demoUrl, demoContext]
+  );
 
   useEffect(() => {
     init(story_id);
@@ -90,7 +92,7 @@ function DemoView(props) {
           onClick={() => {
             setFadein(false);
             setTimeout(() => {
-              history.goBack();
+              navigate(-1);
             }, 480);
           }}
           aria-label="delete"

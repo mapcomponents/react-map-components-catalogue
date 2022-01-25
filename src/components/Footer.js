@@ -48,7 +48,7 @@ function Footer() {
 
   return (
     <Paper
-      elevation="5"
+      elevation={5}
       sx={{
         marginTop: "100px",
       }}

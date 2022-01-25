@@ -4,7 +4,13 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HamburgerMenu from "./components/HamburgerMenu";
 
-import { Switch, Route, Link, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
 import makeStyles from "@mui/styles/makeStyles";
 import theme from "./theme.js";
@@ -17,7 +23,6 @@ import {
   AppBar,
   Toolbar,
   Box,
-  IconButton,
 } from "@mui/material";
 
 import Footer from "./components/Footer";
@@ -183,32 +188,44 @@ function App() {
           </Grid>
           */}
       <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
-        <Switch>
-          <Route path={"/component-detail/:component_id"}>
-            <Container>
-              <Spacer></Spacer>
-              <StoryDetailView></StoryDetailView>
-            </Container>
-          </Route>
-          <Route path={"/demo/:story_id"}>
-            <Container>
-              <Spacer></Spacer>
-              <DemoView></DemoView>
-            </Container>
-          </Route>
-          <Route path={"/"}>
-            <Container>
-              <Spacer></Spacer>
-              <StoryTeaserList type="component"></StoryTeaserList>
-            </Container>
-          </Route>
-          <Route path={"/list-apps"}>
-            <Container>
-              <Spacer></Spacer>
-              <StoryTeaserList type="application"></StoryTeaserList>
-            </Container>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path={"/component-detail/:component_id"}
+            element={
+              <Container>
+                <Spacer></Spacer>
+                <StoryDetailView></StoryDetailView>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/demo/:story_id"}
+            element={
+              <Container>
+                <Spacer></Spacer>
+                <DemoView></DemoView>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/"}
+            element={
+              <Container>
+                <Spacer></Spacer>
+                <StoryTeaserList type="component"></StoryTeaserList>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/list-apps"}
+            element={
+              <Container>
+                <Spacer></Spacer>
+                <StoryTeaserList type="application"></StoryTeaserList>
+              </Container>
+            }
+          ></Route>
+        </Routes>
       </div>
       <Footer></Footer>
       <CartDrawer

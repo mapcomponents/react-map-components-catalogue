@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useResolvedPath } from "react-router-dom";
 
 import makeStyles from "@mui/styles/makeStyles";
 import { Grid, Paper } from "@mui/material";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   teaserItemImage: {
@@ -12,14 +12,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StoryTeaserItem(props) {
-  const history = useHistory();
   const classes = useStyles();
-  const basepath = useRef("/");
+  const basepath = useResolvedPath("/");
   const meta = props.meta || {};
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    basepath.current = history.createHref({ pathname: "/" });
     console.log(props);
   }, []);
 
@@ -30,14 +28,16 @@ function StoryTeaserItem(props) {
         style={{ textDecoration: "none" }}
       >
         <Paper style={{ padding: "15px" }}>
-          <h4 style={{ marginTop: "0" }}>{i18n.resolvedLanguage !== 'en' ? props.compData.i18n[i18n.resolvedLanguage].title : props.compData.title}</h4>
+          <h4 style={{ marginTop: "0" }}>
+            {i18n.resolvedLanguage !== "en"
+              ? props.compData.i18n[i18n.resolvedLanguage].title
+              : props.compData.title}
+          </h4>
           <img
             className={classes.teaserItemImage}
-            src={
-              props.compData.thumbnail || basepath.current + "placeholder.png"
-            }
+            src={props.compData.thumbnail || basepath + "placeholder.png"}
             onError={(ev) => {
-              ev.target.src = basepath.current + "placeholder.png";
+              ev.target.src = basepath + "placeholder.png";
             }}
             alt=""
           />
