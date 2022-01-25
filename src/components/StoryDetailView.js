@@ -18,6 +18,8 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ComponentListItemSmall from "./ComponentListItemSmall";
 
+import { useTranslation } from "react-i18next";
+
 function StoryDetailView(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const history = useHistory();
@@ -32,26 +34,33 @@ function StoryDetailView(props) {
   const [demos, setDemos] = useState([]);
 
   const [description, setDescription] = useState("");
+  const [componentTitle, setComponentTitle] = useState("");
+
+  const { t, i18n } = useTranslation();
 
   const fetchDescription = useCallback(() => {
     if (!url || !componentData || (componentData && !componentData.name))
       return;
 
-    /*
-    fetch(url + "/catalogue/" + componentData.name + ".de.html")
+    let currentLanguage = i18n.resolvedLanguage;
+    let componentTitle =
+      currentLanguage !== "en"
+        ? componentData.i18n[currentLanguage].title
+        : componentData.title;
+    setComponentTitle(componentTitle);
+    fetch(
+      url + "/catalogue/" + componentData.name + "." + currentLanguage + ".html"
+    )
       .then((res) => {
         if (!res.ok) {
-          //throw new Error('No Description found');
-
-          return "Keine Beschreibung gefunden.";
+          return t("noDescription");
         }
         return res.text();
       })
       .then((text) => {
         setDescription(text);
       });
-      */
-  }, [componentData, url]);
+  }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
 
   useEffect(() => {
     basepath.current = history.createHref({ pathname: "/" });
@@ -59,8 +68,6 @@ function StoryDetailView(props) {
 
   useEffect(() => {
     let compData = demoContext.componentDataRef.current;
-    console.log(component_id);
-    console.log(demoContext.componentDataRef.current);
 
     (async () => {
       for (var url in compData) {
@@ -70,7 +77,6 @@ function StoryDetailView(props) {
           break;
         }
       }
-      console.log(componentData);
     })();
   }, [component_id, demoContext.componentData, demoContext]);
 
@@ -90,7 +96,7 @@ function StoryDetailView(props) {
 
   useEffect(() => {
     fetchDescription();
-  }, [componentData, fetchDescription]);
+  }, [fetchDescription]);
 
   return (
     <>
@@ -112,7 +118,7 @@ function StoryDetailView(props) {
         >
           <Grid container spacing={0}>
             <Grid key="title" item xs={12}>
-              <h1 style={{ marginTop: 0 }}>{componentData.title}</h1>
+              <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
             </Grid>
             <Grid key="thumbnail" item xs={12}>
               <Paper elevation={1} style={{ maxHeight: "600px" }}>
@@ -156,7 +162,7 @@ function StoryDetailView(props) {
                   ]);
                 }}
               >
-                Add to bookmarks
+                {t("addToBookmarks")}
               </Button>
             </Grid>
             <Grid item xs={12} key="demo_link">
@@ -189,7 +195,7 @@ function StoryDetailView(props) {
             </Grid>
             {componentData.components && (
               <Grid item xs={12} key="component_list">
-                <h3>Verwendete Components</h3>
+                <h3>{t("usedComponents")}</h3>
                 {componentData.components.map((el) => (
                   <ComponentListItemSmall component_id={el} />
                 ))}

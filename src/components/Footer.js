@@ -18,6 +18,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { ReactComponent as Wglogo } from "../wglogo.svg";
 
+import { useTranslation, Trans } from "react-i18next";
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     //backgroundColor: theme.palette.secondary.lighterDarkBackground,
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 function Footer() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles(theme);
+  const { t } = useTranslation();
 
   return (
     <Paper
@@ -91,7 +94,7 @@ function Footer() {
                   href="https://wheregroup.com/en/legalnotice/"
                   className={classes.link}
                 >
-                  Legal notice
+                  {t("imprint")}
                 </a>
               </ListItem>
               <ListItem>
@@ -99,7 +102,7 @@ function Footer() {
                   href="https://wheregroup.com/en/privacypolicy/"
                   className={classes.link}
                 >
-                  Privacy policy
+                  {t("dataProtection")}
                 </a>
               </ListItem>
               {/**

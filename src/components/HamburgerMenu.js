@@ -6,25 +6,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const HamburgerMenu = (props) => {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   return (
-    <Grid
-      item
-      md={2}
-      xs={mediaIsMobile ? 4 : 12}
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center",
-        fontSize: "0.8em",
-      }}
+    <IconButton
+      onClick={() => props.setCartDrawerOpen(true)}
+      style={{}}
+      size="large"
     >
-      <IconButton
-        onClick={() => props.setCartDrawerOpen(true)}
-        style={{}}
-        size="large"
-      >
-        <FormatListBulletedIcon />
-      </IconButton>
-    </Grid>
+      <FormatListBulletedIcon />
+    </IconButton>
   );
 };
 
