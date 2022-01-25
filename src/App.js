@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "./assets/mapcomponents_logo.png";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
+import HamburgerMenu from "./components/HamburgerMenu";
 
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 
@@ -32,7 +33,6 @@ import "./App.css";
 import { useTranslation, Trans } from "react-i18next";
 
 const languages = {
-<<<<<<< HEAD
   en: { nativeName: "English" },
   de: { nativeName: "Deutsch" },
 };
@@ -42,10 +42,15 @@ const LanguageSelection = () => {
   let resolvedLanguage = i18n.resolvedLanguage;
 
   let buttons = Object.keys(languages).map((key) => (
-    <ToggleButton value={key} onClick={() => i18n.changeLanguage(key)}>
+    <ToggleButton
+      value={key}
+      key={key}
+      onClick={() => i18n.changeLanguage(key)}
+    >
       {key.toUpperCase()}
     </ToggleButton>
   ));
+
   return (
     <ToggleButtonGroup
       children={buttons}
@@ -55,33 +60,7 @@ const LanguageSelection = () => {
       value={resolvedLanguage}
     ></ToggleButtonGroup>
   );
-=======
-  en: { nativeName: 'English' },
-  de: { nativeName: 'Deutsch' }
->>>>>>> 121fffe... Add language selection via ToggleButtonGroup
 };
-
-const LanguageSelection = () => {
-  const { t, i18n } = useTranslation();
-  let resolvedLanguage = i18n.resolvedLanguage;
-
-  let buttons = Object.keys(languages).map(key =>
-    <ToggleButton
-      value={key}
-      key={key}
-      onClick={() => i18n.changeLanguage(key)}
-    >{key.toUpperCase()}</ToggleButton>
-  );
-
-  return <ToggleButtonGroup
-          children={buttons}
-          exclusive
-          size="small"
-          aria-label="text button group"
-          value={resolvedLanguage}
-        ></ToggleButtonGroup>;
-};
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -127,6 +106,23 @@ function App() {
 
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
 
+  const HeaderMenuRight = () => (
+    <Grid
+      item
+      md={2}
+      xs={mediaIsMobile ? 4 : 12}
+      style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        fontSize: "0.8em",
+      }}
+    >
+      <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
+      <LanguageSelection></LanguageSelection>
+    </Grid>
+  );
+
   return (
     <Box
       bgcolor="background.default"
@@ -135,11 +131,12 @@ function App() {
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
           <Grid container spacing={2}>
-            <Grid item md={2} xs={12}>
+            <Grid item md={2} xs={8}>
               <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
               </Link>
             </Grid>
+            {mediaIsMobile && <HeaderMenuRight />}
             <Grid
               item
               md={8}
@@ -157,47 +154,24 @@ function App() {
                 value={location.pathname}
               >
                 <ToggleButton
-                  to="/list-components"
-                  className={classes.menuButton}
-                  component={Link}
-                  value={"/list-components"}
-                >
-                  Components
-                </ToggleButton>
-                <ToggleButton
                   to="/"
                   className={classes.menuButton}
                   component={Link}
                   value={"/"}
                 >
-                  <FormatListBulletedIcon />
-                </IconButton>
-                <IconButton style={{ marginLeft: "10px" }} size="large">
-                  <SettingsIcon />
-                </IconButton>
-                <LanguageSelection></LanguageSelection>
-              </Grid>
+                  Components
+                </ToggleButton>
+                <ToggleButton
+                  to="/list-apps"
+                  className={classes.menuButton}
+                  component={Link}
+                  value={"/list-apps"}
+                >
+                  {t("sampleApplications")}
+                </ToggleButton>
+              </ToggleButtonGroup>
             </Grid>
-            <Grid
-              item
-              md={2}
-              xs={12}
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                fontSize: "0.8em",
-              }}
-            >
-              <IconButton
-                onClick={() => setCartDrawerOpen(true)}
-                style={{}}
-                size="large"
-              >
-                <FormatListBulletedIcon />
-              </IconButton>
-              <LanguageSelection></LanguageSelection>
-            </Grid>
+            {!mediaIsMobile && <HeaderMenuRight />}
           </Grid>
         </Toolbar>
       </AppBar>
@@ -208,7 +182,7 @@ function App() {
             </Grid>
           </Grid>
           */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "80px" }}>
+      <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
         <Switch>
           <Route path={"/component-detail/:component_id"}>
             <Container>
@@ -222,13 +196,13 @@ function App() {
               <DemoView></DemoView>
             </Container>
           </Route>
-          <Route path={"/list-components"}>
+          <Route path={"/"}>
             <Container>
               <Spacer></Spacer>
               <StoryTeaserList type="component"></StoryTeaserList>
             </Container>
           </Route>
-          <Route path={"/"}>
+          <Route path={"/list-apps"}>
             <Container>
               <Spacer></Spacer>
               <StoryTeaserList type="application"></StoryTeaserList>
