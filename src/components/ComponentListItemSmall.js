@@ -73,7 +73,10 @@ function ComponentListItemSmall(props) {
         </Grid>
         <Grid item xs={8}>
           <h4 style={{ marginTop: "3px", marginBottom: "5px" }}>
-            {i18n.resolvedLanguage !== 'en' ? componentData.i18n[i18n.resolvedLanguage].title : componentData.title}
+            {componentData.i18n?.[i18n.resolvedLanguage]?.title &&
+            i18n.resolvedLanguage !== "en"
+              ? componentData.i18n[i18n.resolvedLanguage].title
+              : componentData.title}
           </h4>
         </Grid>
       </Grid>
