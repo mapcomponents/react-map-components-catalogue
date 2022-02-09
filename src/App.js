@@ -58,6 +58,7 @@ const LanguageSelection = () => {
 
   return (
     <ToggleButtonGroup
+      color="primary"
       children={buttons}
       exclusive
       size="small"
@@ -73,13 +74,14 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     fontWeight: "bold",
+    color: "#ffffff",
     "&:hover": {
       //backgroundColor: "#a51b3b",
     },
   },
   header: {
     padding: "10px 0",
-    backgroundColor: "#f1f1f1",
+    backgroundColor: '#1c1e21' //"#f1f1f1",
   },
   fullTeaser: {
     height: "100vh",
@@ -130,7 +132,7 @@ function App() {
 
   return (
     <Box
-      bgcolor="background.default"
+      bgcolor="#1c1e21"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <AppBar position="static" className={classes.header}>
