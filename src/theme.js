@@ -6,9 +6,9 @@ const theme = createTheme({
     common: { black: "rgba(16, 16, 16, 1)", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
-      light: "#009ee0", //"#fdffc2",
+      //light: "#009ee0", //"#fdffc2",
       main: "#009ee0", //"#e4e8eb",
-      dark: "#009ee0",
+      //dark: "#009ee0",
       contrastText: "rgba(16, 16, 16, 1)",
     },
     secondary: {

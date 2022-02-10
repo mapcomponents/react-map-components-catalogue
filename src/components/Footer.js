@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import theme from "../theme.js";
 
+import { useTheme } from '@mui/styles';
+
 import { Container, Grid } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import Paper from "@mui/material/Paper";
@@ -13,6 +15,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
+import { Divider } from '@mui/material';
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -27,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
+    color: "#ffffff",
     /**color: theme.palette.secondary.greyText,
     "&:hover": {
       color: theme.palette.secondary.contrastText + " !important",
@@ -41,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     //opacity: 0.6,
   },
 }));
+
 function Footer() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles(theme);
@@ -51,8 +56,15 @@ function Footer() {
       elevation={5}
       sx={{
         marginTop: "100px",
+        backgroundColor: '#1c1e21',
+        color: "#ffffff"
       }}
     >
+      <div
+        style={{
+          height: "10px",
+          backgroundColor: theme.palette.primary.main
+        }}></div>
       <Container className={classes.footer}>
         <Grid container spacing={6}>
           <Grid
@@ -61,13 +73,13 @@ function Footer() {
             xs={12}
             style={{
               display: "flex",
-              justifyContent: mediaIsMobile ? "flex-start" : "flex-end",
+              justifyContent: "flex-start"
             }}
           >
             <Wglogo
               className={classes.logo}
               style={{
-                marginLeft: "16px",
+                marginLeft: "64px",
                 marginTop: mediaIsMobile ? "50px" : "0",
                 height: "85px",
               }}
@@ -81,47 +93,7 @@ function Footer() {
               ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
             }}
           >
-            <List
-              component="nav"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                ...(mediaIsMobile ? {} : { marginTop: "14px" }),
-              }}
-            >
-              <ListItem>
-                <a
-                  href="https://wheregroup.com/en/legalnotice/"
-                  className={classes.link}
-                >
-                  {t("imprint")}
-                </a>
-              </ListItem>
-              <ListItem>
-                <a
-                  href="https://wheregroup.com/en/privacypolicy/"
-                  className={classes.link}
-                >
-                  {t("dataProtection")}
-                </a>
-              </ListItem>
-              {/**
-            <ListItem>
-              <Link to="/" className={classes.link}>
-                Cookie settings
-              </Link>
-            </ListItem>
-             */}
-            </List>
-          </Grid>
-          <Grid
-            item
-            md={4}
-            xs={12}
-            style={{
-              ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
-            }}
-          >
+            {/*
             <List component="nav" aria-label="Kontakt">
               <ListItem className={classes.link}>
                 <ListItemIcon>
@@ -139,7 +111,56 @@ function Footer() {
                 />
               </ListItem>
             </List>
+            */}
           </Grid>
+          <Grid
+            item
+            md={4}
+            xs={12}
+            style={{
+              ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
+            }}
+          >
+            <List
+              component="nav"
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginRight: "64px",
+                flexDirection: "row",
+                ...(mediaIsMobile ? {} : { marginTop: "14px" }),
+              }}
+            >
+              <ListItem style={{
+                width: "initial"
+              }}>
+                <a
+                  href="https://wheregroup.com/en/legalnotice/"
+                  className={classes.link}
+                >
+                  {t("imprint")}
+                </a>
+              </ListItem>
+              <ListItem style={{
+                width: "initial"
+              }}>
+                <a
+                  href="https://wheregroup.com/en/privacypolicy/"
+                  className={classes.link}
+                >
+                  {t("dataProtection")}
+                </a>
+              </ListItem>
+              {/**
+            <ListItem>
+              <Link to="/" className={classes.link}>
+                Cookie settings
+              </Link>
+            </ListItem>
+             */}
+            </List>
+          </Grid>
+          
         </Grid>
       </Container>
     </Paper>
