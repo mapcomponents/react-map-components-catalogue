@@ -91,7 +91,7 @@ function StoryDetailView(props) {
 
   return (
     <>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} style={{color: "white"}}>
         <Grid
           item
           md={8}
@@ -161,7 +161,7 @@ function StoryDetailView(props) {
                   <Button
                     style={{ width: "100%", marginBottom: "15px" }}
                     component={Link}
-                    variant="contained"
+                    variant="outlined"
                     to={"/demo/" + story.id}
                     key={story.id}
                   >
@@ -174,7 +174,7 @@ function StoryDetailView(props) {
                 componentData.tags.map((el, idx) => (
                   <Chip
                     size="small"
-                    color="primary"
+                    color="secondary"
                     label={el}
                     style={{ margin: "5px 5px 0 0" }}
                     key={idx}

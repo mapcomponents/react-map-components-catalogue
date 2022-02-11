@@ -11,22 +11,34 @@ import ComponentListItemSmall from "./../ComponentListItemSmall";
 
 import { useTranslation } from "react-i18next";
 
+import makeStyles from "@mui/styles/makeStyles";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    background: theme.palette.background.main,
+  },
+}));
+
 function CartDrawer(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const demoContext = useContext(DemoContext);
   const { t } = useTranslation();
+
+  const classes = useStyles();
 
   return (
     <Drawer
       anchor="right"
       open={props.open}
       onClose={() => props.setOpen(!props.open)}
+      classes={{ paper: classes.paper }}
     >
       <div
         style={{
           width: "400px",
           maxWidth: "80vw",
           padding: "20px",
+          color: "white"
         }}
       >
         <h3>{t("bookmark")}</h3>

@@ -74,14 +74,14 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     fontWeight: "bold",
-    color: "#ffffff",
+    color: "white",
     "&:hover": {
       //backgroundColor: "#a51b3b",
     },
   },
   header: {
     padding: "10px 0",
-    backgroundColor: '#1c1e21' //"#f1f1f1",
+    backgroundColor: theme.palette.background.main //'#1c1e21' //"#f1f1f1",
   },
   fullTeaser: {
     height: "100vh",
@@ -132,7 +132,7 @@ function App() {
 
   return (
     <Box
-      bgcolor="#1c1e21"
+      bgcolor={theme.palette.background.main}
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
       <AppBar position="static" className={classes.header}>
@@ -156,7 +156,7 @@ function App() {
             >
               <ToggleButtonGroup
                 variant="contained"
-                color="secondary"
+                color="primary"
                 aria-label="contained primary button group"
                 value={location.pathname}
               >
@@ -189,7 +189,7 @@ function App() {
             </Grid>
           </Grid>
           */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
+      <div className="content" style={{ flexGrow: 1, paddingTop: "20px", fontFamily: 'Chakra Petch, sans-serif' }}>
         <Routes>
           <Route
             path={"/component-detail/:component_id"}

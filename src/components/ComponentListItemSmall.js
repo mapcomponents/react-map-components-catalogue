@@ -53,7 +53,7 @@ function ComponentListItemSmall(props) {
   return (
     <Link
       to={"/component-detail/" + component_id}
-      style={{ color: "black", textDecoration: "none", marginTop: "10px" }}
+      style={{ color: "white", textDecoration: "none", marginTop: "10px" }}
     >
       <Grid
         container

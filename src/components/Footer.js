@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "#ffffff",
+    color: "white",
     /**color: theme.palette.secondary.greyText,
     "&:hover": {
       color: theme.palette.secondary.contrastText + " !important",
@@ -56,8 +56,8 @@ function Footer() {
       elevation={5}
       sx={{
         marginTop: "100px",
-        backgroundColor: '#1c1e21',
-        color: "#ffffff"
+        backgroundColor: theme.palette.background.main,
+        color: "white"
       }}
     >
       <div
@@ -69,26 +69,27 @@ function Footer() {
         <Grid container spacing={6}>
           <Grid
             item
-            md={4}
+            md={6}
             xs={12}
             style={{
               display: "flex",
-              justifyContent: "flex-start"
+              justifyContent: mediaIsMobile ? "center" : "flex-start",
             }}
           >
             <Wglogo
               className={classes.logo}
               style={{
-                marginLeft: "64px",
+                marginLeft: mediaIsMobile ? "0px" : "64px",
                 marginTop: mediaIsMobile ? "50px" : "0",
                 height: "85px",
               }}
             />
           </Grid>
+          {/*
           <Grid
             item
             md={4}
-            xs={12}
+       
             style={{
               ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
             }}
@@ -111,12 +112,12 @@ function Footer() {
                 />
               </ListItem>
             </List>
-            */}
           </Grid>
+                      */}
           <Grid
             item
-            md={4}
-            xs={12}
+            md={6}
+            xs={12}          
             style={{
               ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
             }}
@@ -125,8 +126,8 @@ function Footer() {
               component="nav"
               style={{
                 display: "flex",
-                justifyContent: "flex-end",
-                marginRight: "64px",
+                justifyContent: mediaIsMobile ? "center" : "flex-end",
+                marginRight: mediaIsMobile ? "0px" : "64px",
                 flexDirection: "row",
                 ...(mediaIsMobile ? {} : { marginTop: "14px" }),
               }}
