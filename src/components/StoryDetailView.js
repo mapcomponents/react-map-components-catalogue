@@ -3,6 +3,8 @@ import { useResolvedPath, Link } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
+import theme from "../theme.js";
+
 import DemoContext from "./DemoContext";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,6 +13,8 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 //import ExtensionIcon from '@mui/icons-material/Extension';
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ComponentListItemSmall from "./ComponentListItemSmall";
+import StarIcon from '@mui/icons-material/Star';
+import Divider from '@mui/material/Divider';
 
 import { useTranslation } from "react-i18next";
 
@@ -28,6 +32,8 @@ function StoryDetailView(props) {
 
   const [description, setDescription] = useState("");
   const [componentTitle, setComponentTitle] = useState("");
+
+  const [bookmarkSet, setBookmarkSet] = useState(false)
 
   const { t, i18n } = useTranslation();
 
@@ -89,6 +95,11 @@ function StoryDetailView(props) {
     fetchDescription();
   }, [fetchDescription]);
 
+  //Set state of the bookmark icon. Called when demoContext.cartItems changed
+  useEffect(() => {
+    setBookmarkSet(demoContext.cartItems.includes(componentData.name))
+  }, [demoContext.cartItems, componentData.name])
+
   return (
     <>
       <Grid container spacing={4} style={{color: "white"}}>
@@ -135,22 +146,29 @@ function StoryDetailView(props) {
           item
           md={4}
           xs={12}
-          style={{ paddingTop: mediaIsMobile ? 0 : "89px" }}
+          style={{ paddingTop: mediaIsMobile ? 0 : "20px" }}
           key="sidebar"
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} key="add_to_cart">
+            <Grid item xs={12} key="add_to_cart" style={{
+              display: "flex",
+              justifyContent: "flex-end"
+            }}>
               <Button
-                variant="contained"
+                variant={bookmarkSet ? "contained" : "outlined"}
                 color="primary"
                 onClick={() => {
-                  demoContext.setCartItems([
-                    ...demoContext.cartItems,
-                    componentData.name,
-                  ]);
+                  //add to cart but only if element not existing already
+                  if(!demoContext.cartItems.includes(componentData.name)){
+                    demoContext.setCartItems([
+                      ...demoContext.cartItems,
+                      componentData.name,
+                    ]);
+                  }
                 }}
               >
-                {t("addToBookmarks")}
+                <StarIcon></StarIcon>
+                {/* {t("addToBookmarks")} */}
               </Button>
             </Grid>
             <Grid item xs={12} key="demo_link">
@@ -192,6 +210,14 @@ function StoryDetailView(props) {
           </Grid>
         </Grid>
       </Grid>
+        <div style={{
+          color: "white",
+          minHeight: "200px"
+          }}>
+        <h3>Beschreibung</h3>
+        <Divider variant="fullWidth" color={theme.palette.background.primary}></Divider>
+        <p>{description}</p>
+      </div>
     </>
   );
 }
