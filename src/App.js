@@ -151,7 +151,7 @@ function App() {
               xs={12}
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "center", 
                 alignItems: "center",
               }}
             >
