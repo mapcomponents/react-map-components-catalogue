@@ -125,15 +125,16 @@ function App() {
         fontSize: "0.8em",
       }}
     >
+      <LanguageSelection ></LanguageSelection>
+      <div id="separator" style={{width: "30px"}}></div>
       <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
-      <LanguageSelection></LanguageSelection>
     </Grid>
   );
 
   return (
     <Box
       bgcolor={theme.palette.background.main}
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column", color: "white" }}
     >
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">

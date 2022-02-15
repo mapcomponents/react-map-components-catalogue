@@ -18,7 +18,7 @@ function StoryTeaserItem(props) {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    console.log(props);
+    //console.log(props);
   }, []);
 
   return (

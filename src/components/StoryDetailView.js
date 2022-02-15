@@ -123,7 +123,7 @@ function StoryDetailView(props) {
               <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
             </Grid>
             <Grid key="thumbnail" item xs={12}>
-              <Paper elevation={1} style={{ maxHeight: "600px" }}>
+              <Paper elevation={1} className="cutCorners" style={{ maxHeight: "600px" }}>
                 <img
                   src={componentData.thumbnail || basepath + "placeholder.png"}
                   onError={(ev) => {
@@ -215,7 +215,7 @@ function StoryDetailView(props) {
           minHeight: "200px"
           }}>
         <h3>Beschreibung</h3>
-        <Divider variant="fullWidth" color={theme.palette.background.primary}></Divider>
+        <Divider variant="fullWidth" sx={{bgcolor: theme.palette.secondary.main}}></Divider>
         <p>{description}</p>
       </div>
     </>
