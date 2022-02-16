@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ComponentListItemSmall from "./../ComponentListItemSmall";
+import CloseIcon from '@mui/icons-material/Close';
 
 import { useTranslation } from "react-i18next";
 
@@ -41,6 +42,16 @@ function CartDrawer(props) {
           color: "white"
         }}
       >
+
+      <IconButton
+          onClick={(ev) => {
+            props.setOpen(!props.open)
+          }}
+          size="large"
+          style={{display: "flex", float: "right"}}
+        >
+          <CloseIcon />
+      </IconButton>
         <h3>{t("bookmark")}</h3>
         {demoContext.cartItems.map((el) => (
           <Grid container key={"cli_" + el.id}>

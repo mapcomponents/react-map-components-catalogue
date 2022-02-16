@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 function Footer() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles(theme);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <Paper
@@ -128,6 +128,7 @@ function Footer() {
                 display: "flex",
                 justifyContent: mediaIsMobile ? "center" : "flex-end",
                 marginRight: mediaIsMobile ? "0px" : "64px",
+                marginBottom: "20px",
                 flexDirection: "row",
                 ...(mediaIsMobile ? {} : { marginTop: "14px" }),
               }}
@@ -136,7 +137,9 @@ function Footer() {
                 width: "initial"
               }}>
                 <a
-                  href="https://wheregroup.com/en/legalnotice/"
+                  href={i18n.resolvedLanguage !== "en"
+                  ? "https://wheregroup.com/impressum/"
+                  : "https://wheregroup.com/en/legalnotice/"}
                   className={classes.link}
                 >
                   {t("imprint")}
@@ -146,7 +149,9 @@ function Footer() {
                 width: "initial"
               }}>
                 <a
-                  href="https://wheregroup.com/en/privacypolicy/"
+                  href={i18n.resolvedLanguage !== "en"
+                  ? "https://wheregroup.com/datenschutz/"
+                  : "https://wheregroup.com/en/privacypolicy/"}
                   className={classes.link}
                 >
                   {t("dataProtection")}

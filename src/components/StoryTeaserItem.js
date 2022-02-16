@@ -32,17 +32,15 @@ function StoryTeaserItem(props) {
         to={"/component-detail/" + props.kind}
         style={{ textDecoration: "none" }}
       >
-        <Paper style={{ padding: "0px" }} className="cutCorners">
 
           <img
-            className={classes.teaserItemImage}
+            className={`${classes.teaserItemImage} cutCorners`}
             src={props.compData.thumbnail || basepath + "placeholder.png"}
             onError={(ev) => {
               ev.target.src = basepath + "placeholder.png";
             }}
             alt=""
           />
-        </Paper>
       </Link>
     </Grid>
   );

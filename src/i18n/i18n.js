@@ -32,6 +32,7 @@ i18n
           noDescription: "No description available.",
           addToBookmarks: "Add to bookmarks",
           usedComponents: "Used Components",
+          description: "Description",
 
           // cart drawer
           bookmark: "Bookmarks",
@@ -51,6 +52,7 @@ i18n
           noDescription: "Keine Beschreibung gefunden.",
           addToBookmarks: "Zur Merkliste hinzufügen",
           usedComponents: "Verwendete Components",
+          description: "Beschreibung",
 
           // cart drawer
           bookmark: "Merkliste",
