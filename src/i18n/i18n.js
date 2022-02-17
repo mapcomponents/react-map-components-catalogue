@@ -36,6 +36,10 @@ i18n
 
           // cart drawer
           bookmark: "Bookmarks",
+
+          // teaser list
+          search: "Search",
+          intro: "A MapComponent is a react component that accepts at least 1 attribute \"mapId\" (there are some exceptions) and is expected to retrieve a maplibre-gl instance from mapContext.",
         },
       },
       de: {
@@ -56,6 +60,10 @@ i18n
 
           // cart drawer
           bookmark: "Merkliste",
+
+           // teaser list
+           search: "Suche",
+           intro: "Ein MapComponent ist ein React Component, das mindestens ein Attribut \"mapId\" akzeptiert (mit ein paar Ausnahmen) und erwartet eine maplibre-gl-Instanz vom mapContext.",
         },
       },
     },

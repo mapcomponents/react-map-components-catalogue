@@ -10,9 +10,13 @@ import { useTranslation } from "react-i18next";
 
 import StoryTeaserItem from "./StoryTeaserItem";
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import FilterDropdown from "./FilterDropdown";
+import { fontSize } from "@mui/system";
 
 function StoryTeaserList(props) {
   const demoContext = useContext(DemoContext);
@@ -25,16 +29,39 @@ function StoryTeaserList(props) {
 
   return (
     <>
-    <TextField InputProps={{
+
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "20px"
+    }}>
+    <p style={{
+      width: "50%",
+      fontSize: "15pt",
+      fontFamily: 'Bai Jamjuree, sans-serif'
+    }}>{t("intro")}</p>
+    </div>
+
+    <Grid container spacing={4}>
+      <Grid xs={6} key="filter" item>
+      <FilterDropdown></FilterDropdown>
+      </Grid>
+      <Grid xs={6} key="search" item>
+      <TextField InputProps={{
           startAdornment: (
             <SearchIcon color="primary" />
           ),
-        }}InputLabelProps={{style: {color: 'white'} }} variant="filled" onChange={(e) => setFilter(e.target.value)} color="primary" sx={{ 
-          input: { color: 'white', padding: "10px" }, 
-          display: "flex", 
-          alignItems: "flex-end" 
+        }}InputLabelProps={{style: {color: 'white', }}} placeholder={t("search")} variant="outlined" 
+        onChange={(e) => setFilter(e.target.value)} size="small" color="primary" sx={{ 
+          input: { color: 'white', paddingLeft: "10px"}, 
+          display: "flex",
+          alignItems: "flex-end",
           }}>
     </TextField>
+      </Grid>
+    </Grid>
+        
     <Divider variant="fullWidth" sx={{
       bgcolor: theme.palette.secondary.main,
       marginBottom: "40px",

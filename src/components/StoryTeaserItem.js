@@ -23,11 +23,14 @@ function StoryTeaserItem(props) {
 
   return (
     <Grid item xs={12} sm={6} md={3}>
-        <h3 style={{ marginTop: "0", color: "white" }}>
+      <div style={{ height: "4em", display: "flex", alignContent: "center", flexDirection: "column", alignContent: "center"}}>
+      <h3 className="twoLinesOfText" style={{ color: "white", marginTop: "auto", marginBottom: "auto" }}>
           {i18n.resolvedLanguage !== "en"
               ? props.compData.i18n[i18n.resolvedLanguage].title
               : props.compData.title}
         </h3>
+      </div>
+        
       <Link
         to={"/component-detail/" + props.kind}
         style={{ textDecoration: "none" }}

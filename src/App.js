@@ -214,7 +214,6 @@ function App() {
             path={"/"}
             element={
               <Container>
-                <Spacer></Spacer>
                 <StoryTeaserList type="component"></StoryTeaserList>
               </Container>
             }
