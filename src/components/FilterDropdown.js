@@ -29,7 +29,7 @@ const FilterDropdown = (props) => {
         label="FILTER"
         color="primary"
         variant="outlined"
-        InputLabelProps={{style: {color: 'white',}}} 
+        /*InputLabelProps={{style: {color: 'white',}}}   */
         style={{
           color: "white",
         }}

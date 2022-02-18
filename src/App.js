@@ -30,6 +30,7 @@ import Footer from "./components/Footer";
 import StoryTeaserList from "./components/StoryTeaserList";
 import CartDrawer from "./components/Cart/CartDrawer";
 import StoryDetailView from "./components/StoryDetailView";
+import LinkMaterial from '@mui/material/Link';
 import DemoView from "./components/DemoView";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -46,7 +47,16 @@ const LanguageSelection = () => {
   const { t, i18n } = useTranslation();
   let resolvedLanguage = i18n.resolvedLanguage;
 
-  let buttons = Object.keys(languages).map((key) => (
+  let buttons = Object.keys(languages).map((key, index) => (
+  <>
+  <span style={{whiteSpace: "pre", color: "white"}}>{index != 0 ? " | " : ""}</span>
+    
+    <LinkMaterial style={{color: key == resolvedLanguage ? "primary" : "white"}} href="#" onClick={() => i18n.changeLanguage(key)} underline="hover" key={key}>
+    {key.toUpperCase()}
+  </LinkMaterial>
+  </>
+
+/*
     <ToggleButton
       value={key}
       key={key}
@@ -54,9 +64,13 @@ const LanguageSelection = () => {
     >
       {key.toUpperCase()}
     </ToggleButton>
+*/
   ));
 
   return (
+    buttons
+
+    /*
     <ToggleButtonGroup
       color="primary"
       children={buttons}
@@ -65,6 +79,7 @@ const LanguageSelection = () => {
       aria-label="text button group"
       value={resolvedLanguage}
     ></ToggleButtonGroup>
+    */
   );
 };
 
@@ -178,6 +193,8 @@ function App() {
                   {t("sampleApplications")}
                 </ToggleButton>
               </ToggleButtonGroup>
+
+
             </Grid>
             {!mediaIsMobile && <HeaderMenuRight />}
           </Grid>
@@ -222,7 +239,6 @@ function App() {
             path={"/list-apps"}
             element={
               <Container>
-                <Spacer></Spacer>
                 <StoryTeaserList type="application"></StoryTeaserList>
               </Container>
             }

@@ -134,6 +134,18 @@ function StoryDetailView(props) {
                 />
               </Paper>
             </Grid>
+            <Grid item xs={12} key="tags">
+              {componentData.tags &&
+                componentData.tags.map((el, idx) => (
+                  <Chip
+                    size="small"
+                    color="secondary"
+                    label={el}
+                    style={{ margin: "20px 5px 0 0" }}
+                    key={idx}
+                  />
+                ))}
+            </Grid>
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>
               <div
                 className="content"
@@ -178,7 +190,7 @@ function StoryDetailView(props) {
                 componentData.stories &&
                 componentData.stories.map((story) => (
                   <Button
-                    style={{ width: "100%", marginBottom: "15px", marginTop: "15px" }}
+                    style={{ width: "100%", marginBottom: "15px", marginTop: "15px", color:"white" }}
                     component={Link}
                     variant="outlined"
                     to={"/demo/" + story.id}
@@ -186,18 +198,6 @@ function StoryDetailView(props) {
                   >
                     {story.name === "Example Config" ? "demo" : story.name}
                   </Button>
-                ))}
-            </Grid>
-            <Grid item xs={12} key="tags">
-              {componentData.tags &&
-                componentData.tags.map((el, idx) => (
-                  <Chip
-                    size="small"
-                    color="secondary"
-                    label={el}
-                    style={{ margin: "5px 5px 0 0" }}
-                    key={idx}
-                  />
                 ))}
             </Grid>
             {componentData.components && (
