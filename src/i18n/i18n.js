@@ -21,7 +21,7 @@ i18n
       en: {
         translation: {
           // toolbar
-          sampleApplications: "APPLICATIONS",
+          sampleApplications: "Sample Applications",
 
           // footer
           imprint: "Imprint",
@@ -45,7 +45,7 @@ i18n
       de: {
         translation: {
           // toolbar
-          sampleApplications: "ANWENDUNGEN",
+          sampleApplications: "Beispielanwendungen",
 
           //footer
           imprint: "Impressum",

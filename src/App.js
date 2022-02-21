@@ -3,6 +3,8 @@ import logo from "./assets/mapcomponents_logo.png";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HamburgerMenu from "./components/HamburgerMenu";
+import HamburgerMenuMobile from "./components/HamburgerMenuMobile";
+import LanguageSelection from "./components/LanguageSelection";
 
 import {
   BrowserRouter,
@@ -29,6 +31,7 @@ import Footer from "./components/Footer";
 
 import StoryTeaserList from "./components/StoryTeaserList";
 import CartDrawer from "./components/Cart/CartDrawer";
+import MenuDrawer from "./components/MenuDrawer";
 import StoryDetailView from "./components/StoryDetailView";
 import LinkMaterial from '@mui/material/Link';
 import DemoView from "./components/DemoView";
@@ -37,51 +40,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import "./App.css";
 import { useTranslation, Trans } from "react-i18next";
-
-const languages = {
-  en: { nativeName: "English" },
-  de: { nativeName: "Deutsch" },
-};
-
-const LanguageSelection = () => {
-  const { t, i18n } = useTranslation();
-  let resolvedLanguage = i18n.resolvedLanguage;
-
-  let buttons = Object.keys(languages).map((key, index) => (
-  <>
-  <span style={{whiteSpace: "pre", color: "white"}}>{index != 0 ? " | " : ""}</span>
-    
-    <LinkMaterial style={{color: key == resolvedLanguage ? "primary" : "white"}} href="#" onClick={() => i18n.changeLanguage(key)} underline="hover" key={key}>
-    {key.toUpperCase()}
-  </LinkMaterial>
-  </>
-
-/*
-    <ToggleButton
-      value={key}
-      key={key}
-      onClick={() => i18n.changeLanguage(key)}
-    >
-      {key.toUpperCase()}
-    </ToggleButton>
-*/
-  ));
-
-  return (
-    buttons
-
-    /*
-    <ToggleButtonGroup
-      color="primary"
-      children={buttons}
-      exclusive
-      size="small"
-      aria-label="text button group"
-      value={resolvedLanguage}
-    ></ToggleButtonGroup>
-    */
-  );
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Spacer = () => {
   const classes = useStyles();
 
@@ -127,6 +86,7 @@ function App() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
   const HeaderMenuRight = () => (
     <Grid
@@ -140,9 +100,10 @@ function App() {
         fontSize: "0.8em",
       }}
     >
-      <LanguageSelection ></LanguageSelection>
+      {!mediaIsMobile && <LanguageSelection ></LanguageSelection>}
       <div id="separator" style={{width: "30px"}}></div>
-      <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
+
+      {mediaIsMobile ? <HamburgerMenuMobile setMenuDrawerOpen={setMenuDrawerOpen}></HamburgerMenuMobile> : <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen}/>}
     </Grid>
   );
 
@@ -153,11 +114,11 @@ function App() {
     >
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
-          <Grid container spacing={2}>
-            <Grid item md={2} xs={8}>
-              <Link to="/">
+          <Grid container>
+            <Grid item md={2} xs={8} style={{display: "flex", alignItems: "center", }}>
+            <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
-              </Link>
+             </Link>
             </Grid>
             {mediaIsMobile && <HeaderMenuRight />}
             <Grid
@@ -170,7 +131,7 @@ function App() {
                 alignItems: "center",
               }}
             >
-              <ToggleButtonGroup
+              {!mediaIsMobile && <ToggleButtonGroup
                 variant="contained"
                 color="primary"
                 aria-label="contained primary button group"
@@ -182,7 +143,7 @@ function App() {
                   component={Link}
                   value={"/"}
                 >
-                  Components
+                  MapComponents
                 </ToggleButton>
                 <ToggleButton
                   to="/list-apps"
@@ -192,7 +153,7 @@ function App() {
                 >
                   {t("sampleApplications")}
                 </ToggleButton>
-              </ToggleButtonGroup>
+              </ToggleButtonGroup> }
 
 
             </Grid>
@@ -250,6 +211,10 @@ function App() {
         open={cartDrawerOpen}
         setOpen={setCartDrawerOpen}
       ></CartDrawer>
+        <MenuDrawer
+        open={menuDrawerOpen}
+        setOpen={setMenuDrawerOpen}
+      ></MenuDrawer>
     </Box>
   );
 }

@@ -15,6 +15,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import { Divider } from '@mui/material';
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -63,27 +65,57 @@ function Footer() {
       <div
         style={{
           height: "10px",
+          marginBottom: "20px",
           backgroundColor: theme.palette.primary.main
         }}></div>
+
+
       <Container className={classes.footer}>
-        <Grid container spacing={6}>
+
+      <div style={{
+        display: "flex",
+        justifyContent: mediaIsMobile ? "center" : "flex-start",
+        }}>
+      <a href="https://github.com/WhereGroup" style={{
+        marginLeft: mediaIsMobile ? "0px" : "64px",
+      }}
+      target="_blank" >
+        <GitHubIcon style={{ 
+        color: theme.palette.primary.light,
+        }}></GitHubIcon>
+      </a>
+
+      <a href="http://twitter.com/wheregroup_com" style={{
+        marginLeft: "10px",
+      }}
+      target="_blank" >
+        <TwitterIcon style={{ 
+        color: theme.palette.primary.light,
+        }}></TwitterIcon>
+      </a>
+      </div>
+
+        <Grid container>
           <Grid
             item
             md={6}
             xs={12}
             style={{
               display: "flex",
+              marginTop: "10px",
               justifyContent: mediaIsMobile ? "center" : "flex-start",
             }}
           >
+      
             <Wglogo
               className={classes.logo}
               style={{
                 marginLeft: mediaIsMobile ? "0px" : "64px",
-                marginTop: mediaIsMobile ? "50px" : "0",
+                marginTop: mediaIsMobile ? "40px" : "0",
                 height: "85px",
               }}
             />
+      
           </Grid>
           {/*
           <Grid
