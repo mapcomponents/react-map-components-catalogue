@@ -15,6 +15,7 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 import ComponentListItemSmall from "./ComponentListItemSmall";
 import StarIcon from '@mui/icons-material/Star';
 import Divider from '@mui/material/Divider';
+import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
 
@@ -137,13 +138,7 @@ function StoryDetailView(props) {
             <Grid item xs={12} key="tags">
               {componentData.tags &&
                 componentData.tags.map((el, idx) => (
-                  <Chip
-                    size="small"
-                    color="secondary"
-                    label={el}
-                    style={{ margin: "20px 5px 0 0" }}
-                    key={idx}
-                  />
+                  <Tag el={el} key={idx}></Tag>
                 ))}
             </Grid>
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>

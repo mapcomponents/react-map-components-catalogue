@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import DemoContext from "./DemoContext";
 
-import { Link } from "react-router-dom";
+import { Link,  useLocation } from "react-router-dom";
 
 import { Drawer, Grid, IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -31,8 +31,13 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   listitem: {
-    fontSize: "18pt",
+    fontSize: "17pt",
     justifyContent: "center",
+  },
+  listitemSelected: {
+    fontSize: "17pt",
+    justifyContent: "center",
+    color: theme.palette.primary.main
   }
 }));
 
@@ -40,8 +45,10 @@ function MenuDrawer(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const demoContext = useContext(DemoContext);
   const { t } = useTranslation();
+  const location = useLocation();
 
   const classes = useStyles();
+
 
   return (
     <Drawer
@@ -55,7 +62,8 @@ function MenuDrawer(props) {
           width: "400px",
           maxWidth: "80vw",
           padding: "20px",
-          color: "white"
+          color: "white",
+          fontFamily: 'Chakra Petch, sans-serif'
         }}
       >
 
@@ -73,17 +81,17 @@ function MenuDrawer(props) {
 
       <List>
           <ListItem disablePadding>
-            <ListItemButton className={classes.listitem} component={Link} to="/" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton className={location.pathname != '/' ? classes.listitem : classes.listitemSelected} component={Link} to="/" onClick={() => {props.setOpen(!props.open)}}>
               MapComponents
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton className={classes.listitem} component={Link} to="/list-apps" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton className={location.pathname != '/list-apps' ? classes.listitem : classes.listitemSelected} component={Link} to="/list-apps" onClick={() => {props.setOpen(!props.open)}}>
               {t("sampleApplications")}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton className={classes.listitem} component={Link} to="/bookmarks" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton className={location.pathname != '/bookmarks' ? classes.listitem : classes.listitemSelected} component={Link} to="/bookmarks" onClick={() => {props.setOpen(!props.open)}}>
               {t("bookmark")}
             </ListItemButton>
           </ListItem>

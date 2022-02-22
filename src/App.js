@@ -31,6 +31,7 @@ import Footer from "./components/Footer";
 
 import StoryTeaserList from "./components/StoryTeaserList";
 import CartDrawer from "./components/Cart/CartDrawer";
+import Cart from "./components/Cart/Cart";
 import MenuDrawer from "./components/MenuDrawer";
 import StoryDetailView from "./components/StoryDetailView";
 import LinkMaterial from '@mui/material/Link';
@@ -201,6 +202,16 @@ function App() {
             element={
               <Container>
                 <StoryTeaserList type="application"></StoryTeaserList>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/bookmarks"}
+            element={
+              <Container>
+                <Cart         
+                  open={cartDrawerOpen}
+                  setOpen={setCartDrawerOpen}/>
               </Container>
             }
           ></Route>

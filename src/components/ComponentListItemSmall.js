@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
+import theme from "../theme.js";
+
 import DemoContext from "./DemoContext";
 import makeStyles from '@mui/styles/makeStyles';
 import { Grid } from "@mui/material";
@@ -61,9 +63,9 @@ function ComponentListItemSmall(props) {
         spacing={2}
         onClick={props.onClick}
       >
-        <Grid item xs={4}>
+        <Grid item xs={4} >
           <img
-            className={classes.teaserItemImage}
+            className={`${classes.teaserItemImage} cutCorners`}
             src={componentData.thumbnail || "/placeholder.png"}
             onError={(ev) => {
               ev.target.src = "/placeholder.png";
@@ -72,7 +74,7 @@ function ComponentListItemSmall(props) {
           />
         </Grid>
         <Grid item xs={8}>
-          <h4 style={{ marginTop: "3px", marginBottom: "5px" }}>
+          <h4 style={{ marginTop: "3px", marginBottom: "5px", color: theme.palette.primary.main }}>
             {componentData.i18n?.[i18n.resolvedLanguage]?.title &&
             i18n.resolvedLanguage !== "en"
               ? componentData.i18n[i18n.resolvedLanguage].title

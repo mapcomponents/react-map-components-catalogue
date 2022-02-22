@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import theme from "../theme.js";
 
 import { useTranslation } from "react-i18next";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import StoryTeaserItem from "./StoryTeaserItem";
 import Divider from '@mui/material/Divider';
@@ -22,6 +23,7 @@ function StoryTeaserList(props) {
   const demoContext = useContext(DemoContext);
   const [filter, setFilter] = useState("");
   const { t, i18n } = useTranslation();
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
   useEffect(() => {
     //console.log(demoContext);
@@ -29,17 +31,19 @@ function StoryTeaserList(props) {
 
   return (
     <>
-
+    <h1 style={{
+      color: theme.palette.primary.main,
+      textAlign: "center"
+    }}>{t("introHeading")}</h1>
     <div style={{
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      margin: "20px"
+      margin: "20px",
     }}>
     <p style={{
-      width: "50%",
+      width: "75%",
       fontSize: "15pt",
-      fontFamily: 'Bai Jamjuree, sans-serif'
     }}>{t("intro")}</p>
     </div>
 
@@ -69,7 +73,7 @@ function StoryTeaserList(props) {
       }}>
     </Divider>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={4} style={mediaIsMobile ? {paddingLeft: "30px", paddingRight: "30px"} : {}}>
         {demoContext.storybookUrls.map(
           (url) => {
             return demoContext.componentData[url] &&

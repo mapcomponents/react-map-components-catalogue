@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Chakra+Petch:wght@300;400;600&display=swap');
-/*@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Chakra+Petch:wght@300;600&display=swap');*/
+
 
 .App {
   text-align: center;
@@ -30,6 +29,11 @@
 .cutCorners {
   -webkit-clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
   clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
+}
+
+.cutCornersTag {
+  -webkit-clip-path: polygon(0 10px, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0, 10px 0);
+  clip-path: polygon(0 10px, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0, 10px 0);
 }
 
 .twoLinesOfText {
