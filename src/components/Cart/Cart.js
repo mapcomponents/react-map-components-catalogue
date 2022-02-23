@@ -19,7 +19,7 @@ function Cart(props) {
   return(
       <>
       <h1>{t("bookmark")}</h1>
-      {demoContext.cartItems.length == 0 && <h3 style={{textAlign: "center", margin: "50px"}}>{t("empty")}</h3>}
+      {demoContext.cartItems.length == 0 && <h3 style={{textAlign: "center", margin: "200px 50px 200px 50px"}}>{t("empty")}</h3>}
       {demoContext.cartItems.map((el) => (
         <Grid container key={"cli_" + el.id}>
           <Grid item xs={10} key="item">

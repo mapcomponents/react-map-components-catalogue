@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./assets/mapcomponents_logo.png";
+import logo from "./assets/WG-MapComponents-Logo_rgb-weisse-schrift.png";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HamburgerMenu from "./components/HamburgerMenu";

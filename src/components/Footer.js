@@ -21,7 +21,7 @@ import { Divider } from '@mui/material';
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { ReactComponent as Wglogo } from "../wglogo.svg";
+import { ReactComponent as Wglogo } from "../assets/wheregroup-logo-white.svg";
 
 import { useTranslation, Trans } from "react-i18next";
 
@@ -95,7 +95,9 @@ function Footer() {
       </a>
       </div>
 
-        <Grid container>
+        <Grid container style={{
+          marginTop: "50px",
+        }}>
           <Grid
             item
             md={6}
@@ -107,7 +109,7 @@ function Footer() {
             }}
           >
       
-            <Wglogo
+      <Wglogo
               className={classes.logo}
               style={{
                 marginLeft: mediaIsMobile ? "0px" : "64px",
@@ -162,7 +164,7 @@ function Footer() {
                 marginRight: mediaIsMobile ? "0px" : "64px",
                 marginBottom: "20px",
                 flexDirection: "row",
-                ...(mediaIsMobile ? {} : { marginTop: "14px" }),
+                ...(mediaIsMobile ? {} : { marginTop: "20px" }),
               }}
             >
               <ListItem style={{

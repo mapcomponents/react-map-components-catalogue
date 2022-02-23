@@ -62,7 +62,7 @@ function StoryDetailView(props) {
       });
   }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   useEffect(() => {
     let compData = demoContext.componentDataRef.current;
@@ -103,7 +103,32 @@ function StoryDetailView(props) {
 
   return (
     <>
-      <Grid container spacing={4} style={{color: "white"}}>
+      <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
+
+      <div style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        marginBottom: "20px"
+      }}>
+        <Button
+          variant={bookmarkSet ? "contained" : "outlined"}
+          color="primary"
+          onClick={() => {
+            //add to cart but only if element not existing already
+            if (!demoContext.cartItems.includes(componentData.name)) {
+              demoContext.setCartItems([
+                ...demoContext.cartItems,
+                componentData.name,
+              ]);
+            }
+          }}
+        >
+          <StarIcon></StarIcon>
+          {/* {t("addToBookmarks")} */}
+        </Button>
+      </div>
+
+      <Grid container spacing={4} style={{ color: "white" }}>
         <Grid
           item
           md={8}
@@ -112,17 +137,14 @@ function StoryDetailView(props) {
             ...(mediaIsMobile
               ? {}
               : {
-                  marginBottom: "80px",
-                  paddingBottom: "120px",
-                  minHeight: "500px",
-                }),
+                marginBottom: "80px",
+                paddingBottom: "20px",
+                minHeight: "500px",
+              }),
           }}
           key="content"
         >
           <Grid container spacing={0}>
-            <Grid key="title" item xs={12}>
-              <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
-            </Grid>
             <Grid key="thumbnail" item xs={12}>
               <Paper elevation={1} className="cutCorners" style={{ maxHeight: "600px" }}>
                 <img
@@ -144,11 +166,12 @@ function StoryDetailView(props) {
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>
               <div
                 className="content"
-                //dangerouslySetInnerHTML={{ __html: description }}
+              //dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </Grid>
           </Grid>
         </Grid>
+
         <Grid
           item
           md={4}
@@ -156,36 +179,17 @@ function StoryDetailView(props) {
           style={{ paddingTop: mediaIsMobile ? 0 : "20px" }}
           key="sidebar"
         >
+
           <Grid container spacing={2}>
-            <Grid item xs={12} key="add_to_cart" style={{
-              display: "flex",
-              justifyContent: "flex-end"
-            }}>
-              <Button
-                variant={bookmarkSet ? "contained" : "outlined"}
-                color="primary"
-                onClick={() => {
-                  //add to cart but only if element not existing already
-                  if(!demoContext.cartItems.includes(componentData.name)){
-                    demoContext.setCartItems([
-                      ...demoContext.cartItems,
-                      componentData.name,
-                    ]);
-                  }
-                }}
-              >
-                <StarIcon></StarIcon>
-                {/* {t("addToBookmarks")} */}
-              </Button>
-            </Grid>
+
             <Grid item xs={12} key="demo_link">
               <h3>Demos</h3>
-              <Divider variant="fullWidth" sx={{bgcolor: theme.palette.secondary.main}}></Divider>
+              <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
               {componentData &&
                 componentData.stories &&
                 componentData.stories.map((story) => (
                   <Button
-                    style={{ width: "100%", marginBottom: "15px", marginTop: "15px", color:"white" }}
+                    style={{ width: "100%", marginBottom: "15px", marginTop: "15px", color: "white" }}
                     component={Link}
                     variant="outlined"
                     to={"/demo/" + story.id}
@@ -198,7 +202,7 @@ function StoryDetailView(props) {
             {componentData.components && (
               <Grid item xs={12} key="component_list">
                 <h3>{t("usedComponents")}</h3>
-                <Divider variant="fullWidth" sx={{bgcolor: theme.palette.secondary.main}}></Divider>
+                <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
                 {componentData.components.map((el) => (
                   <ComponentListItemSmall component_id={el} />
                 ))}
@@ -207,13 +211,13 @@ function StoryDetailView(props) {
           </Grid>
         </Grid>
       </Grid>
-        <div style={{
-          color: "white",
-          minHeight: "200px",
-          marginTop: mediaIsMobile ? "80px" : "0px"
-          }}>
+      <div style={{
+        color: "white",
+        minHeight: "200px",
+        marginTop: mediaIsMobile ? "80px" : "0px"
+      }}>
         <h3>{t("description")}</h3>
-        <Divider variant="fullWidth" sx={{bgcolor: theme.palette.secondary.main}}></Divider>
+        <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
         <p>{description}</p>
       </div>
     </>

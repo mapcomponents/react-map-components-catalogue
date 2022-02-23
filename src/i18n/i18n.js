@@ -36,7 +36,7 @@ i18n
 
           // cart drawer
           bookmark: "Bookmarks",
-          empty: "Empty",
+          empty: "EMPTY",
 
           // teaser list
           search: "Search",
@@ -62,12 +62,12 @@ i18n
 
           // cart drawer
           bookmark: "Merkliste",
-          empty: "Leer",
+          empty: "LEER",
 
            // teaser list
            search: "Suche",
            introHeading: "Was ist MapComponents?",
-           intro: "Ein MapComponent ist ein React Component, das mindestens ein Attribut \"mapId\" akzeptiert (mit ein paar Ausnahmen) und erwartet eine maplibre-gl-Instanz vom mapContext.",
+           intro: "Ein MapComponent ist ein React Component, das mindestens ein Attribut \"mapId\" akzeptiert (mit ein paar Ausnahmen) und eine maplibre-gl-Instanz von mapContext abruft.",
         },
       },
     },
