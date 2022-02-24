@@ -169,7 +169,7 @@ function App() {
             </Grid>
           </Grid>
           */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "20px", fontFamily: 'Chakra Petch, sans-serif' }}>
+      <div className="content" style={{ flexGrow: 1, paddingTop: "20px", marginBottom: "100px", fontFamily: 'Chakra Petch, sans-serif' }}>
         <Routes>
           <Route
             path={"/component-detail/:component_id"}

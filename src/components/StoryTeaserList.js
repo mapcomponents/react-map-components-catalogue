@@ -49,7 +49,7 @@ function StoryTeaserList(props) {
 
     <Grid container spacing={4}>
       <Grid xs={6} key="filter" item>
-      <FilterDropdown></FilterDropdown>
+      {/*<FilterDropdown></FilterDropdown>*/}
       </Grid>
       <Grid xs={6} key="search" item>
       <TextField InputProps={{

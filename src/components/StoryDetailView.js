@@ -180,7 +180,7 @@ function StoryDetailView(props) {
           key="sidebar"
         >
 
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
 
             <Grid item xs={12} key="demo_link">
               <h3>Demos</h3>
@@ -200,7 +200,7 @@ function StoryDetailView(props) {
                 ))}
             </Grid>
             {componentData.components && (
-              <Grid item xs={12} key="component_list">
+              <Grid item xs={12} key="component_list" style={{ marginTop: "30px" }}>
                 <h3>{t("usedComponents")}</h3>
                 <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
                 {componentData.components.map((el) => (
@@ -208,18 +208,29 @@ function StoryDetailView(props) {
                 ))}
               </Grid>
             )}
+
           </Grid>
         </Grid>
       </Grid>
-      <div style={{
-        color: "white",
-        minHeight: "200px",
-        marginTop: mediaIsMobile ? "80px" : "0px"
-      }}>
-        <h3>{t("description")}</h3>
-        <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
-        <p>{description}</p>
-      </div>
+
+      <Grid container spacing={0}>
+        <Grid item xs={12} style={{ marginTop: "30px" }}>
+          <div style={{
+            color: "white",
+            minHeight: "150px",
+
+          }}>
+            <h3>{t("description")}</h3>
+            <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
+            <p>{description}</p>
+          </div>
+
+
+        </Grid>
+
+      </Grid>
+
+
     </>
   );
 }
