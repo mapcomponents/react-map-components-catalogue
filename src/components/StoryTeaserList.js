@@ -21,7 +21,8 @@ import { fontSize } from "@mui/system";
 
 function StoryTeaserList(props) {
   const demoContext = useContext(DemoContext);
-  const [filter, setFilter] = useState("");
+  const [search, setSearch] = useState("");
+  const [filterState, setFilterState] = useState("");
   const { t, i18n } = useTranslation();
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
@@ -49,7 +50,8 @@ function StoryTeaserList(props) {
 
     <Grid container spacing={4}>
       <Grid xs={6} key="filter" item>
-      {/*<FilterDropdown></FilterDropdown>*/}
+      <FilterDropdown filterState={filterState}
+        setFilterState={setFilterState}></FilterDropdown>
       </Grid>
       <Grid xs={6} key="search" item>
       <TextField InputProps={{
@@ -57,7 +59,7 @@ function StoryTeaserList(props) {
             <SearchIcon color="primary" />
           ),
         }}InputLabelProps={{style: {color: 'white', }}} placeholder={t("search")} variant="outlined" 
-        onChange={(e) => setFilter(e.target.value)} size="small" color="primary" sx={{ 
+        onChange={(e) => setSearch(e.target.value)} size="small" color="primary" sx={{ 
           input: { color: 'white', paddingLeft: "10px"}, 
           display: "flex",
           alignItems: "flex-end",
@@ -81,7 +83,7 @@ function StoryTeaserList(props) {
               let title = i18n.resolvedLanguage !== "en" ? 
               demoContext.componentData[url][key].i18n[i18n.resolvedLanguage].title : 
               demoContext.componentData[url][key].title
-              if(demoContext.componentData[url][key].type === props.type && title.toLowerCase().includes(filter.toLowerCase())){
+              if(demoContext.componentData[url][key].type === props.type && title.toLowerCase().includes(search.toLowerCase())){
                 return <StoryTeaserItem kind={key} key={key} compData={demoContext.componentData[url][key]}></StoryTeaserItem>;
               }
               return null;

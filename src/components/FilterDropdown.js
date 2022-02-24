@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import DemoContext from "./DemoContext";
 import theme from "../theme.js";
 import makeStyles from "@mui/styles/makeStyles";
 
@@ -16,11 +17,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 const FilterDropdown = (props) => {
+  
+  const demoContext = useContext(DemoContext);
   const classes = useStyles(theme);
 
   return (
     <Box sx={{ minWidth: 120 }}>
-    <FormControl fullWidth size="small">
+    <FormControl size="small" style={{width: "40vw", maxWidth: "250px"}}>
       <InputLabel id="inputlabel-filter" sx={{ 
           color: 'white', 
           }}>FILTER</InputLabel>
@@ -33,11 +36,10 @@ const FilterDropdown = (props) => {
         style={{
           color: "white",
         }}
-
+        value={props.filterState}
+        onChange={props.setFilterState}
       >
-        <MenuItem className={classes.selectItem} value={10}>Ten</MenuItem>
-        <MenuItem className={classes.selectItem} value={20}>Twenty</MenuItem>
-        <MenuItem className={classes.selectItem} value={30}>Thirty</MenuItem>
+        {demoContext.tagList.map(tag => <MenuItem className={classes.selectItem} value={tag}>{tag}</MenuItem>)}
       </Select>
     </FormControl>
   </Box>
