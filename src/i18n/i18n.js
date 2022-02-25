@@ -42,6 +42,7 @@ i18n
           search: "Search",
           introHeading: "What is MapComponents?",
           intro: "A MapComponent is a react component that accepts at least 1 attribute \"mapId\" (there are some exceptions) and is expected to retrieve a maplibre-gl instance from mapContext.",
+          noMatches: "No matching results with given filters."
         },
       },
       de: {
@@ -68,6 +69,7 @@ i18n
            search: "Suche",
            introHeading: "Was ist MapComponents?",
            intro: "Ein MapComponent ist ein React Component, das mindestens ein Attribut \"mapId\" akzeptiert (mit ein paar Ausnahmen) und eine maplibre-gl-Instanz von mapContext abruft.",
+           noMatches: "Kein Treffer mit den gewählten Filtern."
         },
       },
     },

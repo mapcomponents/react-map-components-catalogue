@@ -21,6 +21,16 @@ const FilterDropdown = (props) => {
   const demoContext = useContext(DemoContext);
   const classes = useStyles(theme);
 
+
+  const handleChange = (event) => {
+    //Add tag to state
+    //immutable by using slice function
+    let newState = props.filterState.slice()
+    newState = typeof event.target.value === 'string' ? event.target.value.split(',') : event.target.value
+    props.setFilterState(newState)
+  }
+
+
   return (
     <Box sx={{ minWidth: 120 }}>
     <FormControl size="small" style={{width: "40vw", maxWidth: "250px"}}>
@@ -28,6 +38,7 @@ const FilterDropdown = (props) => {
           color: 'white', 
           }}>FILTER</InputLabel>
       <Select
+        multiple
         labelId="inputlabel-filter"
         label="FILTER"
         color="primary"
@@ -37,7 +48,7 @@ const FilterDropdown = (props) => {
           color: "white",
         }}
         value={props.filterState}
-        onChange={props.setFilterState}
+        onChange={handleChange}
       >
         {demoContext.tagList.map(tag => <MenuItem className={classes.selectItem} value={tag}>{tag}</MenuItem>)}
       </Select>

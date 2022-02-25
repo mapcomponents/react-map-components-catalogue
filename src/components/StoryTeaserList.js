@@ -18,13 +18,17 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import FilterDropdown from "./FilterDropdown";
 import { fontSize } from "@mui/system";
+import Tag from "./Tag";
+import { Slide } from "@mui/material";
 
 function StoryTeaserList(props) {
   const demoContext = useContext(DemoContext);
   const [search, setSearch] = useState("");
-  const [filterState, setFilterState] = useState("");
+  const [filterState, setFilterState] = useState([]);
   const { t, i18n } = useTranslation();
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
+
+  var atLeastOneItem = 0
 
   useEffect(() => {
     //console.log(demoContext);
@@ -70,10 +74,16 @@ function StoryTeaserList(props) {
         
     <Divider variant="fullWidth" sx={{
       bgcolor: theme.palette.secondary.main,
-      marginBottom: "40px",
+      marginBottom: "0px",
       marginTop: "10px"
       }}>
     </Divider>
+
+    {filterState.map(
+      (tag) => {
+        return <Tag clickable el={tag} filterState={filterState} setFilterState={setFilterState}></Tag>
+      }
+    )}  
 
       <Grid container spacing={4} style={mediaIsMobile ? {paddingLeft: "30px", paddingRight: "30px"} : {}}>
         {demoContext.storybookUrls.map(
@@ -84,12 +94,14 @@ function StoryTeaserList(props) {
               demoContext.componentData[url][key].i18n[i18n.resolvedLanguage].title : 
               demoContext.componentData[url][key].title
               if(demoContext.componentData[url][key].type === props.type && title.toLowerCase().includes(search.toLowerCase())){
+                atLeastOneItem = true
                 return <StoryTeaserItem kind={key} key={key} compData={demoContext.componentData[url][key]}></StoryTeaserItem>;
               }
               return null;
             });
           }
         )}
+        {!atLeastOneItem ? <h3 style={{textAlign: "center", width: "100%", margin: "200px 50px 200px 50px"}}>{t("noMatches")}</h3> : ""}
       </Grid>
       
     </>

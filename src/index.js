@@ -16,7 +16,7 @@ import './i18n/i18n';
 ReactDOM.render(
   <React.StrictMode>
     <Router basename={"/"}>
-      <ScrollToTop />
+    <ScrollToTop />
 
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>

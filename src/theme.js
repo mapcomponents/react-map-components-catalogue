@@ -10,7 +10,7 @@ const theme = createTheme({
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
       main: "#009ee0", //"#e4e8eb",
-      light: "#05B2FB"
+      light: "#02d7f2" //"#05B2FB"
       //contrastText: "rgba(16, 16, 16, 1)",
     },
     secondary: {
@@ -25,7 +25,7 @@ const theme = createTheme({
       main: "#1c1e21"
     },
     grey: {
-      main: "#757678"
+      main: "#cdcdcd" //"#757678"
     },
     error: {
       light: "#e57373",
