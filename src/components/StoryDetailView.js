@@ -204,19 +204,28 @@ function StoryDetailView(props) {
             <Grid item xs={12} key="demo_link">
               <h3>Demos</h3>
               <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
+
+              <Grid container spacing={4} style={{marginTop: "0px"}}>
               {componentData &&
                 componentData.stories &&
                 componentData.stories.map((story) => (
-                  <Button
-                    style={{ width: "100%", marginBottom: "15px", marginTop: "15px", color: "white" }}
-                    component={Link}
-                    variant="outlined"
-                    to={"/demo/" + story.id}
-                    key={story.id}
-                  >
-                    {story.name === "Example Config" ? "demo" : story.name}
-                  </Button>
+                  
+                    <Grid item xs={6} style={{marginTop: "16px", paddingTop: "0px", }}>
+                        <Button
+                        style={{ width: "100%", color: "white", height: "4em", display: "flex", flexDirection: "column", alignContent: "center",}}
+                        component={Link}
+                        variant="outlined"
+                        to={"/demo/" + story.id}
+                        key={story.id}
+                      >
+                        <span className="twoLinesOfText" style={{}}>
+                          {story.name === "Example Config" ? "demo" : story.name}
+                        </span>
+
+                      </Button>
+                    </Grid>
                 ))}
+                  </Grid>
             </Grid>
             {componentData.components && (
               <Grid item xs={12} key="component_list" style={{ marginTop: "30px" }}>
