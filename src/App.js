@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import logo from "./assets/mapcomponents_logo.png";
+import logo from "./assets/WG-MapComponents-Logo_rgb-weisse-schrift.png";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HamburgerMenu from "./components/HamburgerMenu";
+import HamburgerMenuMobile from "./components/HamburgerMenuMobile";
+import LanguageSelection from "./components/LanguageSelection";
 
 import {
   BrowserRouter,
@@ -29,7 +31,10 @@ import Footer from "./components/Footer";
 
 import StoryTeaserList from "./components/StoryTeaserList";
 import CartDrawer from "./components/Cart/CartDrawer";
+import Cart from "./components/Cart/Cart";
+import MenuDrawer from "./components/MenuDrawer";
 import StoryDetailView from "./components/StoryDetailView";
+import LinkMaterial from '@mui/material/Link';
 import DemoView from "./components/DemoView";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -37,49 +42,20 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import "./App.css";
 import { useTranslation, Trans } from "react-i18next";
 
-const languages = {
-  en: { nativeName: "English" },
-  de: { nativeName: "Deutsch" },
-};
-
-const LanguageSelection = () => {
-  const { t, i18n } = useTranslation();
-  let resolvedLanguage = i18n.resolvedLanguage;
-
-  let buttons = Object.keys(languages).map((key) => (
-    <ToggleButton
-      value={key}
-      key={key}
-      onClick={() => i18n.changeLanguage(key)}
-    >
-      {key.toUpperCase()}
-    </ToggleButton>
-  ));
-
-  return (
-    <ToggleButtonGroup
-      children={buttons}
-      exclusive
-      size="small"
-      aria-label="text button group"
-      value={resolvedLanguage}
-    ></ToggleButtonGroup>
-  );
-};
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
     fontWeight: "bold",
+    color: "white",
     "&:hover": {
       //backgroundColor: "#a51b3b",
     },
   },
   header: {
     padding: "10px 0",
-    backgroundColor: "#f1f1f1",
+    backgroundColor: theme.palette.background.main //'#1c1e21' //"#f1f1f1",
   },
   fullTeaser: {
     height: "100vh",
@@ -96,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Spacer = () => {
   const classes = useStyles();
 
@@ -110,6 +87,7 @@ function App() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
   const HeaderMenuRight = () => (
     <Grid
@@ -123,23 +101,25 @@ function App() {
         fontSize: "0.8em",
       }}
     >
-      <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
-      <LanguageSelection></LanguageSelection>
+      {!mediaIsMobile && <LanguageSelection ></LanguageSelection>}
+      <div id="separator" style={{width: "30px"}}></div>
+
+      {mediaIsMobile ? <HamburgerMenuMobile setMenuDrawerOpen={setMenuDrawerOpen}></HamburgerMenuMobile> : <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen}/>}
     </Grid>
   );
 
   return (
     <Box
-      bgcolor="background.default"
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      bgcolor={theme.palette.background.main}
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column", color: "white" }}
     >
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
-          <Grid container spacing={2}>
-            <Grid item md={2} xs={8}>
-              <Link to="/">
+          <Grid container>
+            <Grid item md={2} xs={8} style={{display: "flex", alignItems: "center", }}>
+            <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
-              </Link>
+             </Link>
             </Grid>
             {mediaIsMobile && <HeaderMenuRight />}
             <Grid
@@ -148,13 +128,13 @@ function App() {
               xs={12}
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "center", 
                 alignItems: "center",
               }}
             >
-              <ToggleButtonGroup
+              {!mediaIsMobile && <ToggleButtonGroup
                 variant="contained"
-                color="secondary"
+                color="primary"
                 aria-label="contained primary button group"
                 value={location.pathname}
               >
@@ -164,7 +144,7 @@ function App() {
                   component={Link}
                   value={"/"}
                 >
-                  Components
+                  MapComponents
                 </ToggleButton>
                 <ToggleButton
                   to="/list-apps"
@@ -174,7 +154,9 @@ function App() {
                 >
                   {t("sampleApplications")}
                 </ToggleButton>
-              </ToggleButtonGroup>
+              </ToggleButtonGroup> }
+
+
             </Grid>
             {!mediaIsMobile && <HeaderMenuRight />}
           </Grid>
@@ -187,7 +169,7 @@ function App() {
             </Grid>
           </Grid>
           */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "20px" }}>
+      <div className="content" style={{ flexGrow: 1, paddingTop: "20px", marginBottom: "100px", fontFamily: 'Chakra Petch, sans-serif' }}>
         <Routes>
           <Route
             path={"/component-detail/:component_id"}
@@ -211,7 +193,6 @@ function App() {
             path={"/"}
             element={
               <Container>
-                <Spacer></Spacer>
                 <StoryTeaserList type="component"></StoryTeaserList>
               </Container>
             }
@@ -220,8 +201,17 @@ function App() {
             path={"/list-apps"}
             element={
               <Container>
-                <Spacer></Spacer>
                 <StoryTeaserList type="application"></StoryTeaserList>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/bookmarks"}
+            element={
+              <Container>
+                <Cart         
+                  open={cartDrawerOpen}
+                  setOpen={setCartDrawerOpen}/>
               </Container>
             }
           ></Route>
@@ -232,6 +222,10 @@ function App() {
         open={cartDrawerOpen}
         setOpen={setCartDrawerOpen}
       ></CartDrawer>
+        <MenuDrawer
+        open={menuDrawerOpen}
+        setOpen={setMenuDrawerOpen}
+      ></MenuDrawer>
     </Box>
   );
 }
