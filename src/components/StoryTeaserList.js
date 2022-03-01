@@ -31,7 +31,7 @@ function StoryTeaserList(props) {
   var atLeastOneItem = 0
 
   useEffect(() => {
-    //console.log(demoContext);
+    console.log(demoContext);
   }, );
 
   return (
@@ -85,7 +85,7 @@ function StoryTeaserList(props) {
       }
     )}  
 
-      <Grid container spacing={4} style={mediaIsMobile ? {paddingLeft: "30px", paddingRight: "30px"} : {}}>
+      <Grid container spacing={4} style={mediaIsMobile ? {paddingLeft: "30px", paddingRight: "30px", marginTop: "0px"} : {marginTop: "0px"}}>
         {demoContext.storybookUrls.map(
           (url) => {
             return demoContext.componentData[url] &&
@@ -93,9 +93,12 @@ function StoryTeaserList(props) {
               let title = i18n.resolvedLanguage !== "en" ? 
               demoContext.componentData[url][key].i18n[i18n.resolvedLanguage].title : 
               demoContext.componentData[url][key].title
-              if(demoContext.componentData[url][key].type === props.type && title.toLowerCase().includes(search.toLowerCase())){
-                atLeastOneItem = true
-                return <StoryTeaserItem kind={key} key={key} compData={demoContext.componentData[url][key]}></StoryTeaserItem>;
+              if(demoContext.componentData[url][key].type === props.type && title.toLowerCase().includes(search.toLowerCase())) {
+                let result = filterState.every(o => demoContext.componentData[url][key].tags.includes(o));
+                      if(result){
+                        atLeastOneItem = true
+                        return <StoryTeaserItem kind={key} key={key} compData={demoContext.componentData[url][key]}></StoryTeaserItem>;
+                      }
               }
               return null;
             });

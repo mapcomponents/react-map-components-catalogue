@@ -5,7 +5,7 @@ import DemoContext from "./../DemoContext";
 import { Drawer, Grid, IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-import ComponentListItemSmall from "./../ComponentListItemSmall";
+import ListItemSmall from "../ListItemSmall";
 
 import { useTranslation } from "react-i18next";
 
@@ -23,7 +23,7 @@ function Cart(props) {
       {demoContext.cartItems.map((el) => (
         <Grid container key={"cli_" + el.id}>
           <Grid item xs={10} key="item">
-            <ComponentListItemSmall
+            <ListItemSmall
               component_id={el}
               onClick={() => {
                 props.setOpen(false);

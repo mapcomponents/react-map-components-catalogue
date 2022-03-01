@@ -80,7 +80,7 @@ function Footer() {
         marginLeft: mediaIsMobile ? "0px" : "64px",
       }}
       target="_blank" >
-        <GitHubIcon style={{ 
+        <GitHubIcon fontSize="medium" style={{ 
         color: theme.palette.primary.light,
         }}></GitHubIcon>
       </a>
@@ -89,7 +89,7 @@ function Footer() {
         marginLeft: "10px",
       }}
       target="_blank" >
-        <TwitterIcon style={{ 
+        <TwitterIcon fontSize="medium" style={{ 
         color: theme.palette.primary.light,
         }}></TwitterIcon>
       </a>

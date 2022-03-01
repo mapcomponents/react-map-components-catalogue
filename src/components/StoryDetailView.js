@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext, useEffect, useCallback, useMemo } from "react";
 import { useResolvedPath, Link } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
@@ -12,7 +12,7 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 //import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 //import ExtensionIcon from '@mui/icons-material/Extension';
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
-import ComponentListItemSmall from "./ComponentListItemSmall";
+import ListItemSmall from "./ListItemSmall";
 import StarIcon from '@mui/icons-material/Star';
 import Divider from '@mui/material/Divider';
 import Tag from "./Tag.js";
@@ -35,6 +35,23 @@ function StoryDetailView(props) {
   const [componentTitle, setComponentTitle] = useState("");
 
   const [bookmarkSet, setBookmarkSet] = useState(false)
+
+  //Retrieve all sample applications where this component is integrated
+  const appsWhichImplement = useMemo(() => {
+    let apps = []
+    let compData = demoContext.componentDataRef.current;
+
+    for (var url in compData) {
+      for(var comp in compData[url]){
+        if(compData[url][comp].components && compData[url][comp].components.includes(componentData.name)){
+          apps.push(comp)
+        }
+      }
+    }
+
+    console.log(apps)
+    return apps
+  }, [componentData, demoContext])
 
   const { t, i18n } = useTranslation();
 
@@ -62,8 +79,6 @@ function StoryDetailView(props) {
       });
   }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
 
-  useEffect(() => { }, []);
-
   useEffect(() => {
     let compData = demoContext.componentDataRef.current;
 
@@ -71,6 +86,7 @@ function StoryDetailView(props) {
       for (var url in compData) {
         if (typeof compData[url][component_id] !== "undefined") {
           setUrl(url);
+          console.log(compData[url][component_id])
           await setComponentData(compData[url][component_id]);
           break;
         }
@@ -100,6 +116,9 @@ function StoryDetailView(props) {
   useEffect(() => {
     setBookmarkSet(demoContext.cartItems.includes(componentData.name))
   }, [demoContext.cartItems, componentData.name])
+
+
+
 
   return (
     <>
@@ -204,9 +223,18 @@ function StoryDetailView(props) {
                 <h3>{t("usedComponents")}</h3>
                 <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
                 {componentData.components.map((el) => (
-                  <ComponentListItemSmall component_id={el} />
+                  <ListItemSmall component_id={el} />
                 ))}
               </Grid>
+            )}
+            {appsWhichImplement.length != 0 && (
+              <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
+              <h3>{t("includedIn")}</h3>
+              <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
+              {appsWhichImplement.map((el) => (
+                <ListItemSmall component_id={el} />
+              ))}
+            </Grid>
             )}
 
           </Grid>

@@ -9,7 +9,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ComponentListItemSmall from "./ComponentListItemSmall";
+import ListItemSmall from "./ListItemSmall";
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import List from '@mui/material/List';

@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ComponentListItemSmall(props) {
+function ListItemSmall(props) {
   const classes = useStyles();
 
   const component_id = props.component_id;
 
   const demoContext = useContext(DemoContext);
 
-  const [componentData, setComponentData] = useState({});
+  const [componentOrApplicationData, setComponentOrApplicationData] = useState({});
   const [storybookData, setStorybookData] = useState({});
 
   const { t, i18n } = useTranslation();
@@ -46,7 +46,7 @@ function ComponentListItemSmall(props) {
     for (var url in sbData) {
       for (var compName in demoContext.componentData[url]) {
         if (storybookData.kind && storybookData.kind.indexOf(compName) !== -1) {
-          setComponentData(demoContext.componentData[url][compName]);
+          setComponentOrApplicationData(demoContext.componentData[url][compName]);
         }
       }
     }
@@ -59,26 +59,26 @@ function ComponentListItemSmall(props) {
     >
       <Grid
         container
-        style={{ marginTop: "0px" }}
+        style={{ marginTop: "0px"}}
         spacing={2}
         onClick={props.onClick}
       >
-        <Grid item xs={4} >
+        <Grid item xs={3} >
           <img
             className={`${classes.teaserItemImage} cutCorners`}
-            src={componentData.thumbnail || "/placeholder.png"}
+            src={componentOrApplicationData.thumbnail || "/placeholder.png"}
             onError={(ev) => {
               ev.target.src = "/placeholder.png";
             }}
             alt=""
           />
         </Grid>
-        <Grid item xs={8}>
-          <h4 style={{ marginTop: "3px", marginBottom: "5px", color: theme.palette.primary.main }}>
-            {componentData.i18n?.[i18n.resolvedLanguage]?.title &&
+        <Grid item xs={9}>
+          <h4 className="twoLinesOfText" style={{ marginTop: "3px", marginBottom: "5px", color: theme.palette.primary.main }}>
+            {componentOrApplicationData.i18n?.[i18n.resolvedLanguage]?.title &&
             i18n.resolvedLanguage !== "en"
-              ? componentData.i18n[i18n.resolvedLanguage].title
-              : componentData.title}
+              ? componentOrApplicationData.i18n[i18n.resolvedLanguage].title
+              : componentOrApplicationData.title} 
           </h4>
         </Grid>
       </Grid>
@@ -86,4 +86,4 @@ function ComponentListItemSmall(props) {
   );
 }
 
-export default ComponentListItemSmall;
+export default ListItemSmall;
