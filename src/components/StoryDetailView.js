@@ -259,7 +259,7 @@ function StoryDetailView(props) {
           }}>
             <h3>{t("description")}</h3>
             <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
-            <div dangerouslySetInnerHTML={description} />
+            <div dangerouslySetInnerHTML={{__html:description}} /> 
           </div>
 
 
