@@ -17,10 +17,6 @@ function StoryTeaserItem(props) {
   const meta = props.meta || {};
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    //console.log(props);
-  }, []);
-
   return (
     <Grid item xs={12} sm={6} md={3}>
       <div style={{ height: "4em", display: "flex", alignContent: "center", flexDirection: "column"}}>
@@ -38,9 +34,9 @@ function StoryTeaserItem(props) {
 
           <img
             className={`${classes.teaserItemImage} cutCorners`}
-            src={props.compData.thumbnail || basepath + "placeholder.png"}
+            src={props.compData.thumbnail || basepath.pathname + "placeholder.png"}
             onError={(ev) => {
-              ev.target.src = basepath + "placeholder.png";
+              ev.target.src = basepath.pathname + "placeholder.png";
             }}
             alt=""
           />
