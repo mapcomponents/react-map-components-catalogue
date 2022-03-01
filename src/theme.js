@@ -1,22 +1,31 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: 'Bai Jamjuree, sans-serif',
+   },
   palette: {
+    mode: 'dark',
     common: { black: "rgba(16, 16, 16, 1)", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
-      light: "#fdffc2",
-      main: "#e4e8eb",
-      dark: "#009ee0",
-      contrastText: "rgba(16, 16, 16, 1)",
+      main: "#009ee0", //"#e4e8eb",
+      light: "#02d7f2" //"#05B2FB"
+      //contrastText: "rgba(16, 16, 16, 1)",
     },
     secondary: {
-      light: "#84dbff",
-      main: "#009ee0",
-      dark: "#006691",
-      lighterDarkBackground: "#323645",
-      greyText: "#b1b1b8",
-      contrastText: "#fafafa",
+      main: "#cbd300",
+      light: "#dfe803",
+      //dark: "#006691",
+      //lighterDarkBackground: "#323645",
+      //greyText: "#b1b1b8",
+      //contrastText: "#fafafa",
+    },
+    background: {
+      main: "#1c1e21"
+    },
+    grey: {
+      main: "#cdcdcd" //"#757678"
     },
     error: {
       light: "#e57373",

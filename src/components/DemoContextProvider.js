@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { DemoContextProviderCore } from "./DemoContext";
 
@@ -87,6 +87,7 @@ const DemoContextProvider = ({ children }) => {
               console.log(msg);
             }))(storybookUrls[r])
       );
+
       promises.push(
         ((url) =>
           fetch(url + "/stories.json")
@@ -138,6 +139,21 @@ const DemoContextProvider = ({ children }) => {
     });
   }, []);
 
+  const tagList = useMemo(() => {
+    let tags = [];
+    // alle vorhandenen Tags aus componentData ermitteln und zum tags array hinzufügen
+    for (let url in componentData) {
+      for (let component in componentData[url]){
+        for(let tag of componentData[url][component].tags){
+          if(!tags.includes(tag)){
+            tags.push(tag)
+          }
+        }
+      }
+    }
+    return tags;
+  }, [componentData])
+
   const value = {
     storybookData: storybookData,
     setStorybookData: setStorybookData,
@@ -148,6 +164,7 @@ const DemoContextProvider = ({ children }) => {
     cartItems: cartItems,
     setCartItems: setCartItems,
     getComponentDataByName: getComponentDataByName,
+    tagList: tagList
   };
 
   return (

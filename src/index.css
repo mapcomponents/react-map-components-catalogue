@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Chakra+Petch:wght@300;400;600&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Chakra+Petch:wght@300;600&display=swap');*/
+
 body {
   margin: 0;
-  font-family: 'OpenSansRegular', 'Arial','Roboto', 'Oxygen',
+  /*font-family: 'OpenSansRegular', 'Arial','Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif;*/
+  font-family: 'Bai Jamjuree';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

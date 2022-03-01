@@ -17,31 +17,29 @@ function StoryTeaserItem(props) {
   const meta = props.meta || {};
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    console.log(props);
-  }, []);
-
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={3}>
+      <div style={{ height: "4em", display: "flex", alignContent: "center", flexDirection: "column"}}>
+      <h3 className="twoLinesOfText" style={{ color: "white", marginTop: "auto", marginBottom: "10px" }}>
+          {i18n.resolvedLanguage !== "en"
+              ? props.compData.i18n[i18n.resolvedLanguage].title
+              : props.compData.title}
+        </h3>
+      </div>
+        
       <Link
         to={"/component-detail/" + props.kind}
         style={{ textDecoration: "none" }}
       >
-        <Paper style={{ padding: "15px" }}>
-          <h4 style={{ marginTop: "0" }}>
-            {i18n.resolvedLanguage !== "en"
-              ? props.compData.i18n[i18n.resolvedLanguage].title
-              : props.compData.title}
-          </h4>
+
           <img
-            className={classes.teaserItemImage}
-            src={props.compData.thumbnail || basepath + "placeholder.png"}
+            className={`${classes.teaserItemImage} cutCorners`}
+            src={props.compData.thumbnail || basepath.pathname + "placeholder.png"}
             onError={(ev) => {
-              ev.target.src = basepath + "placeholder.png";
+              ev.target.src = basepath.pathname + "placeholder.png";
             }}
             alt=""
           />
-        </Paper>
       </Link>
     </Grid>
   );
