@@ -212,13 +212,13 @@ function StoryDetailView(props) {
                   
                     <Grid item xs={6} style={{marginTop: "16px", paddingTop: "0px", }}>
                         <Button
-                        style={{ width: "100%", color: "white", height: "4em", display: "flex", flexDirection: "column", alignContent: "center",}}
+                        style={{ width: "100%", color: "white", height: "5em", display: "flex", flexDirection: "column", alignContent: "center",}}
                         component={Link}
                         variant="outlined"
                         to={"/demo/" + story.id}
                         key={story.id}
                       >
-                        <span className="twoLinesOfText" style={{}}>
+                        <span className="twoLinesOfText" style={{textAlign: "center"}}>
                           {story.name === "Example Config" ? "demo" : story.name}
                         </span>
 
