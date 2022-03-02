@@ -195,7 +195,7 @@ function StoryDetailView(props) {
           item
           md={4}
           xs={12}
-          style={{ paddingTop: mediaIsMobile ? 0 : "20px" }}
+          style={{ paddingTop: mediaIsMobile ? 0 : "0px" }}
           key="sidebar"
         >
 
@@ -205,7 +205,7 @@ function StoryDetailView(props) {
               <h3>Demos</h3>
               <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
 
-              <Grid container spacing={4} style={{marginTop: "0px"}}>
+              <Grid container spacing={2} style={{marginTop: "0px"}}>
               {componentData &&
                 componentData.stories &&
                 componentData.stories.map((story) => (
