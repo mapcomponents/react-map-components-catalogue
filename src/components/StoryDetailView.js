@@ -219,7 +219,7 @@ function StoryDetailView(props) {
                         key={story.id}
                       >
                         <span className="twoLinesOfText" style={{textAlign: "center"}}>
-                          {story.name === "Example Config" ? "demo demo demo demo demo demo demo demo" : story.name}
+                          {story.name === "Example Config" ? "demo" : story.name}
                         </span>
 
                       </Button>
