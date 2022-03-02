@@ -167,9 +167,9 @@ function StoryDetailView(props) {
             <Grid key="thumbnail" item xs={12}>
               <Paper elevation={1} className="cutCorners" style={{ maxHeight: "600px" }}>
                 <img
-                  src={componentData.thumbnail || basepath + "placeholder.png"}
+                  src={componentData.thumbnail || basepath.pathname + "placeholder.png"}
                   onError={(ev) => {
-                    ev.target.src = basepath + "placeholder.png";
+                    ev.target.src = basepath.pathname + "placeholder.png";
                   }}
                   style={{ width: "100%" }}
                   alt=""
@@ -212,13 +212,13 @@ function StoryDetailView(props) {
                   
                     <Grid item xs={6} style={{marginTop: "16px", paddingTop: "0px", }}>
                         <Button
-                        style={{ width: "100%", color: "white", height: "4em", display: "flex", flexDirection: "column", alignContent: "center",}}
+                        style={{ width: "100%", color: "white", height: "5em", display: "flex", flexDirection: "column", alignContent: "center",}}
                         component={Link}
                         variant="outlined"
                         to={"/demo/" + story.id}
                         key={story.id}
                       >
-                        <span className="twoLinesOfText" style={{}}>
+                        <span className="twoLinesOfText" style={{textAlign: "center"}}>
                           {story.name === "Example Config" ? "demo" : story.name}
                         </span>
 
@@ -259,7 +259,7 @@ function StoryDetailView(props) {
           }}>
             <h3>{t("description")}</h3>
             <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
-            <p>{description}</p>
+            <div dangerouslySetInnerHTML={{__html:description}} /> 
           </div>
 
 
