@@ -42,8 +42,9 @@ i18n
           // teaser list
           search: "Search",
           introHeading: "What is MapComponents?",
-          intro: "A MapComponent is a react component that accepts at least 1 attribute \"mapId\" (there are some exceptions) and is expected to retrieve a maplibre-gl instance from mapContext.",
-          noMatches: "No results with given filters."
+          intro:
+            "The next generation webGIS: a react component framework for GIS application development by WhereGroup GmbH",
+          noMatches: "No results with given filters.",
         },
       },
       de: {
@@ -67,11 +68,12 @@ i18n
           bookmark: "Merkliste",
           empty: "LEER",
 
-           // teaser list
-           search: "Suche",
-           introHeading: "Was ist MapComponents?",
-           intro: "Ein MapComponent ist ein React Component, das mindestens ein Attribut \"mapId\" akzeptiert (mit ein paar Ausnahmen) und eine maplibre-gl-Instanz von mapContext abruft.",
-           noMatches: "Keine Treffer mit den gewählten Filtern."
+          // teaser list
+          search: "Suche",
+          introHeading: "Was ist MapComponents?",
+          intro:
+            "Die nächste Generation von webGIS: ein React Component Framework für GIS Applications entwickelt von der WhereGroup GmbH",
+          noMatches: "Keine Treffer mit den gewählten Filtern.",
         },
       },
     },

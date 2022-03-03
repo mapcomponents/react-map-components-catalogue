@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
   listitemSelected: {
     fontSize: "17pt",
     justifyContent: "center",
-    color: theme.palette.primary.main
-  }
+    color: theme.palette.primary.main,
+  },
 }));
 
 function MenuDrawer(props) {

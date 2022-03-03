@@ -195,7 +195,7 @@ function StoryDetailView(props) {
           item
           md={4}
           xs={12}
-          style={{ paddingTop: mediaIsMobile ? 0 : "20px" }}
+          style={{ paddingTop: mediaIsMobile ? 0 : "0px" }}
           key="sidebar"
         >
 
@@ -205,20 +205,20 @@ function StoryDetailView(props) {
               <h3>Demos</h3>
               <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
 
-              <Grid container spacing={4} style={{marginTop: "0px"}}>
+              <Grid container spacing={2} style={{marginTop: "0px"}}>
               {componentData &&
                 componentData.stories &&
                 componentData.stories.map((story) => (
                   
                     <Grid item xs={6} style={{marginTop: "16px", paddingTop: "0px", }}>
                         <Button
-                        style={{ width: "100%", color: "white", height: "4em", display: "flex", flexDirection: "column", alignContent: "center",}}
+                        style={{ width: "100%", color: "white", height: "4.5em", display: "flex", flexDirection: "column", alignContent: "center",}}
                         component={Link}
                         variant="outlined"
                         to={"/demo/" + story.id}
                         key={story.id}
                       >
-                        <span className="twoLinesOfText" style={{}}>
+                        <span className="twoLinesOfText" style={{textAlign: "center"}}>
                           {story.name === "Example Config" ? "demo" : story.name}
                         </span>
 
