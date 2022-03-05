@@ -23,6 +23,10 @@ let storybookUrls = [
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
 
+let demoProviderUrls = [
+  "https://mapcomponents.github.io/react-map-components-apps/mc_meta.json",
+];
+
 /**
 if (window.location.host.indexOf("mapcomponents.org") === -1) {
   storybookUrls = [
@@ -56,6 +60,33 @@ const DemoContextProvider = ({ children }) => {
     return null;
   };
 
+  /**
+   * enrich storybook mc_meta.json data with thumbnail URL and demo URLs from stories.json
+   */
+  const applyStorybookDataToMcMeta = ({
+    componentData,
+    storybookData,
+    compId,
+    url,
+  }) => {
+    for (var storyId in storybookData.stories) {
+      let _storyData = storybookData.stories[storyId];
+      let _compName = _storyData.kind.split("/");
+      if (typeof _compName[1] !== "undefined" && _compName[1] === compId) {
+        componentData.stories.push(_storyData);
+        componentData.url = url;
+        componentData.demos ||= [];
+        componentData.demos.push({
+          name: _storyData.name === "Example Config" ? "demo" : _storyData.name,
+          url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
+          id: _storyData.id,
+        });
+        componentData.thumbnail = url + "/thumbnails/" + _compName[1] + ".png";
+      }
+    }
+    return componentData;
+  };
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -63,10 +94,14 @@ const DemoContextProvider = ({ children }) => {
   useEffect(() => {
     let promises = [];
 
-    for (var r = 0, len = storybookUrls.length; r < len; r++) {
+    let mcMetaUrls = [
+      ...demoProviderUrls,
+      ...storybookUrls.map((el) => el + "/catalogue/mc_meta.json"),
+    ];
+    for (var r = 0, len = mcMetaUrls.length; r < len; r++) {
       promises.push(
         ((url) =>
-          fetch(url + "/catalogue/mc_meta.json")
+          fetch(url)
             .then((res) => {
               if (!res.ok) {
                 throw Error(res.statusText);
@@ -75,7 +110,7 @@ const DemoContextProvider = ({ children }) => {
             })
             .then((data) => {
               let tmpData = {};
-              tmpData[url] = data;
+              tmpData[url.replace("/catalogue/mc_meta.json", "")] = data;
 
               componentDataRef.current = {
                 ...componentDataRef.current,
@@ -85,9 +120,10 @@ const DemoContextProvider = ({ children }) => {
             .catch((msg) => {
               console.log("error");
               console.log(msg);
-            }))(storybookUrls[r])
+            }))(mcMetaUrls[r])
       );
-
+    }
+    for (var r = 0, len = storybookUrls.length; r < len; r++) {
       promises.push(
         ((url) =>
           fetch(url + "/stories.json")
@@ -114,57 +150,54 @@ const DemoContextProvider = ({ children }) => {
     }
 
     Promise.all(promises).then(() => {
+      let componentData = {};
+      // process mc_meta.json & storybook data
       for (var url in componentDataRef.current) {
         let _compObj = componentDataRef?.current[url];
         for (var compId in _compObj) {
           let _compData = _compObj[compId];
           _compData.stories = [];
 
-          for (var storyId in storybookDataRef.current[url].stories) {
-            let _storyData = storybookDataRef.current[url].stories[storyId];
-            let _compName = _storyData.kind.split("/");
-            if (
-              typeof _compName[1] !== "undefined" &&
-              _compName[1] === compId
-            ) {
-              _compData.stories.push(_storyData);
-              _compData.thumbnail =
-                url + "/thumbnails/" + _compName[1] + ".png";
-            }
+          if (typeof storybookDataRef.current[url] !== "undefined") {
+            _compData = applyStorybookDataToMcMeta({
+              componentData: _compData,
+              storybookData: storybookDataRef.current[url],
+              compId,
+              url,
+            });
           }
           componentDataRef.current[url][compId] = _compData;
+          componentData[compId] = _compData;
         }
       }
-      setComponentData(componentDataRef.current);
+      setComponentData(componentData);
     });
   }, []);
 
   const tagList = useMemo(() => {
     let tags = [];
     // alle vorhandenen Tags aus componentData ermitteln und zum tags array hinzufügen
-    for (let url in componentData) {
-      for (let component in componentData[url]){
-        for(let tag of componentData[url][component].tags){
-          if(!tags.includes(tag)){
-            tags.push(tag)
-          }
+    for (let componentName in componentData) {
+      for (let tag of componentData[componentName].tags) {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
         }
       }
     }
     return tags;
-  }, [componentData])
+  }, [componentData]);
 
   const value = {
     storybookData: storybookData,
     setStorybookData: setStorybookData,
     storybookDataRef: storybookDataRef,
-    storybookUrls: storybookUrls,
+    storybookUrls: [...storybookUrls, ...demoProviderUrls],
     componentDataRef: componentDataRef,
     componentData: componentData,
     cartItems: cartItems,
     setCartItems: setCartItems,
     getComponentDataByName: getComponentDataByName,
-    tagList: tagList
+    tagList: tagList,
   };
 
   return (

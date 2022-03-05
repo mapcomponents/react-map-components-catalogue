@@ -21,41 +21,23 @@ function ListItemSmall(props) {
 
   const demoContext = useContext(DemoContext);
 
-  const [componentOrApplicationData, setComponentOrApplicationData] = useState({});
-  const [storybookData, setStorybookData] = useState({});
+  const [componentData, setComponentData] = useState({});
 
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    let sbData = demoContext.storybookDataRef.current;
 
-    for (var url in sbData) {
-      for (var story_id in sbData[url].stories) {
-        if (sbData[url].stories[story_id].kind.indexOf(component_id) !== -1) {
-          setStorybookData(sbData[url].stories[story_id]);
-        }
-      }
-    }
-  }, [demoContext.storybookData, component_id, demoContext]);
 
   useEffect(() => {
-    if (!storybookData) return;
+    if(!demoContext.componentData?.[component_id])return;
 
-    let sbData = demoContext.storybookDataRef.current;
-
-    for (var url in sbData) {
-      for (var compName in demoContext.componentData[url]) {
-        if (storybookData.kind && storybookData.kind.indexOf(compName) !== -1) {
-          setComponentOrApplicationData(demoContext.componentData[url][compName]);
-        }
-      }
-    }
-  }, [demoContext.componentData, demoContext, storybookData]);
+    setComponentData(demoContext.componentData[component_id]);
+  }, [demoContext.componentData, demoContext]);
 
   return (
     <Link
       to={"/component-detail/" + component_id}
       style={{ color: "white", textDecoration: "none", marginTop: "10px" }}
+      key={component_id}
     >
       <Grid
         container
@@ -63,22 +45,22 @@ function ListItemSmall(props) {
         spacing={2}
         onClick={props.onClick}
       >
-        <Grid item xs={3} >
+        <Grid item xs={3} key="imgContainer" >
           <img
             className={`${classes.teaserItemImage} cutCorners`}
-            src={componentOrApplicationData.thumbnail || "/placeholder.png"}
+            src={componentData.thumbnail || "/placeholder.png"}
             onError={(ev) => {
               ev.target.src = "/placeholder.png";
             }}
             alt=""
           />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={9} key="textContainer">
           <h4 className="twoLinesOfText" style={{ marginTop: "3px", marginBottom: "5px", color: theme.palette.primary.main }}>
-            {componentOrApplicationData.i18n?.[i18n.resolvedLanguage]?.title &&
+            {componentData.i18n?.[i18n.resolvedLanguage]?.title &&
             i18n.resolvedLanguage !== "en"
-              ? componentOrApplicationData.i18n[i18n.resolvedLanguage].title
-              : componentOrApplicationData.title} 
+              ? componentData.i18n[i18n.resolvedLanguage].title
+              : componentData.title} 
           </h4>
         </Grid>
       </Grid>

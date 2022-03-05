@@ -181,7 +181,7 @@ function App() {
             }
           ></Route>
           <Route
-            path={"/demo/:story_id"}
+            path={"/demo/:component_name/:demo_id"}
             element={
               <Container>
                 <Spacer></Spacer>

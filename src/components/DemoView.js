@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function DemoView(props) {
-  const { story_id } = useParams();
+  const { component_name, demo_id } = useParams();
   const navigate = useNavigate();
 
   const [demoViewerOpen, setDemoViewerOpen] = useState(false);
@@ -17,41 +17,32 @@ function DemoView(props) {
   const [fadein, setFadein] = useState(false);
 
   const init = useCallback(
-    (story_id) => {
-      if (demoUrl) return;
-      if (!demoContext.storybookData || !story_id) return;
+    (demo_id) => {
+      if (!demoContext.componentData?.[component_name] || !demo_id ) return;
 
       setFadein(true);
 
-      let sbData = demoContext.storybookDataRef.current;
+      let _compData = demoContext.componentData?.[component_name];
 
-      console.log(story_id);
-      for (var url in sbData) {
-        for (var story_key in sbData[url].stories) {
-          if (story_key === story_id) {
-            setDemoUrl(url + "/iframe.html?id=" + story_id + "&viewMode=story");
-            console.log(
-              url + "/iframe.html?id=" + story_id + "&viewMode=story"
-            );
-
+        _compData.demos?.forEach(demo => {
+          if ((demo.id?demo.id:demo.name) === demo_id) {
+            setDemoUrl(demo.url);
             setTimeout(() => {
               setDemoViewerOpen(true);
             }, 500);
-            break;
           }
-        }
-      }
+        })
     },
     [demoUrl, demoContext]
   );
 
   useEffect(() => {
-    init(story_id);
+    init(demo_id);
   }, []);
 
   useEffect(() => {
-    init(story_id);
-  }, [demoContext.storybookData, init, story_id]);
+    init(demo_id);
+  }, [demoContext.storybookData, init, demo_id]);
 
   return (
     <div

@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { useResolvedPath, Link } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
@@ -13,8 +19,8 @@ import { Grid, Button, Paper, Chip } from "@mui/material";
 //import ExtensionIcon from '@mui/icons-material/Extension';
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ListItemSmall from "./ListItemSmall";
-import StarIcon from '@mui/icons-material/Star';
-import Divider from '@mui/material/Divider';
+import StarIcon from "@mui/icons-material/Star";
+import Divider from "@mui/material/Divider";
 import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
@@ -26,47 +32,44 @@ function StoryDetailView(props) {
   const demoContext = useContext(DemoContext);
 
   const [componentData, setComponentData] = useState({});
-  const [storybookData, setStorybookData] = useState({});
-
-  const [url, setUrl] = useState("");
-  const [demos, setDemos] = useState([]);
 
   const [description, setDescription] = useState("");
   const [componentTitle, setComponentTitle] = useState("");
 
-  const [bookmarkSet, setBookmarkSet] = useState(false)
+  const [bookmarkSet, setBookmarkSet] = useState(false);
 
   //Retrieve all sample applications where this component is integrated
   const appsWhichImplement = useMemo(() => {
-    let apps = []
+    let apps = [];
     let compData = demoContext.componentDataRef.current;
 
     for (var url in compData) {
-      for(var comp in compData[url]){
-        if(compData[url][comp].components && compData[url][comp].components.includes(componentData.name)){
-          apps.push(comp)
+      for (var comp in compData[url]) {
+        if (
+          compData[url][comp].components &&
+          compData[url][comp].components.includes(componentData.name)
+        ) {
+          apps.push(comp);
         }
       }
     }
 
-    console.log(apps)
-    return apps
-  }, [componentData, demoContext])
+    return apps;
+  }, [componentData, demoContext]);
 
   const { t, i18n } = useTranslation();
 
   const fetchDescription = useCallback(() => {
-    if (!url || !componentData || (componentData && !componentData.name))
-      return;
+    if (!componentData || (componentData && !componentData.name)) return;
 
     let currentLanguage = i18n.resolvedLanguage;
-    let componentTitle =
-      currentLanguage !== "en"
-        ? componentData.i18n[currentLanguage].title
-        : componentData.title;
-    setComponentTitle(componentTitle);
     fetch(
-      url + "/catalogue/" + componentData.name + "." + currentLanguage + ".html"
+      componentData.url +
+        "/catalogue/" +
+        componentData.name +
+        "." +
+        currentLanguage +
+        ".html"
     )
       .then((res) => {
         if (!res.ok) {
@@ -77,36 +80,27 @@ function StoryDetailView(props) {
       .then((text) => {
         setDescription(text);
       });
-  }, [componentData, url, i18n.resolvedLanguage, componentTitle]);
+  }, [componentData, i18n.resolvedLanguage]);
 
   useEffect(() => {
-    let compData = demoContext.componentDataRef.current;
-
-    (async () => {
-      for (var url in compData) {
-        if (typeof compData[url][component_id] !== "undefined") {
-          setUrl(url);
-          console.log(compData[url][component_id])
-          await setComponentData(compData[url][component_id]);
-          break;
-        }
-      }
-    })();
+    if (
+      demoContext?.componentData &&
+      typeof demoContext.componentData[component_id] !== "undefined"
+    ) {
+      let currentLanguage = i18n.resolvedLanguage;
+      let componentTitle =
+        currentLanguage !== "en"
+          ? demoContext.componentData[component_id].i18n[currentLanguage].title
+          : demoContext.componentData[component_id].title;
+      setComponentTitle(componentTitle);
+    }
   }, [component_id, demoContext.componentData, demoContext]);
 
   useEffect(() => {
-    if (!storybookData) return;
+    if(!demoContext.componentData?.[component_id])return;
 
-    let sbData = demoContext.storybookDataRef.current;
-
-    for (var url in sbData) {
-      for (var compName in demoContext.componentData[url]) {
-        if (storybookData.kind && storybookData.kind.indexOf(compName) !== -1) {
-          setComponentData(demoContext.componentData[url][compName]);
-        }
-      }
-    }
-  }, [demoContext.componentData, storybookData, demoContext]);
+    setComponentData(demoContext.componentData[component_id]);
+  }, [demoContext.componentData, demoContext]);
 
   useEffect(() => {
     fetchDescription();
@@ -114,21 +108,20 @@ function StoryDetailView(props) {
 
   //Set state of the bookmark icon. Called when demoContext.cartItems changed
   useEffect(() => {
-    setBookmarkSet(demoContext.cartItems.includes(componentData.name))
-  }, [demoContext.cartItems, componentData.name])
-
-
-
+    setBookmarkSet(demoContext.cartItems.includes(componentData?.name));
+  }, [demoContext.cartItems, componentData]);
 
   return (
     <>
       <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
 
-      <div style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        marginBottom: "20px"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "20px",
+        }}
+      >
         <Button
           variant={bookmarkSet ? "contained" : "outlined"}
           color="primary"
@@ -147,7 +140,12 @@ function StoryDetailView(props) {
         </Button>
       </div>
 
-      <Grid container spacing={4} style={{ color: "white" }}>
+      <Grid
+        container
+        spacing={4}
+        style={{ color: "white" }}
+        key="contentContainer"
+      >
         <Grid
           item
           md={8}
@@ -156,18 +154,25 @@ function StoryDetailView(props) {
             ...(mediaIsMobile
               ? {}
               : {
-                marginBottom: "80px",
-                paddingBottom: "20px",
-                minHeight: "500px",
-              }),
+                  marginBottom: "80px",
+                  paddingBottom: "20px",
+                  minHeight: "500px",
+                }),
           }}
           key="content"
         >
-          <Grid container spacing={0}>
+          <Grid container spacing={0} key="contentLeft">
             <Grid key="thumbnail" item xs={12}>
-              <Paper elevation={1} className="cutCorners" style={{ maxHeight: "600px" }}>
+              <Paper
+                elevation={1}
+                className="cutCorners"
+                style={{ maxHeight: "600px" }}
+              >
                 <img
-                  src={componentData.thumbnail || basepath.pathname + "placeholder.png"}
+                  src={
+                    componentData.thumbnail ||
+                    basepath.pathname + "placeholder.png"
+                  }
                   onError={(ev) => {
                     ev.target.src = basepath.pathname + "placeholder.png";
                   }}
@@ -185,7 +190,7 @@ function StoryDetailView(props) {
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>
               <div
                 className="content"
-              //dangerouslySetInnerHTML={{ __html: description }}
+                //dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </Grid>
           </Grid>
@@ -198,76 +203,104 @@ function StoryDetailView(props) {
           style={{ paddingTop: mediaIsMobile ? 0 : "0px" }}
           key="sidebar"
         >
-
           <Grid container spacing={0}>
-
             <Grid item xs={12} key="demo_link">
               <h3>Demos</h3>
-              <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
+              <Divider
+                variant="fullWidth"
+                sx={{ bgcolor: theme.palette.secondary.main }}
+              ></Divider>
 
-              <Grid container spacing={2} style={{marginTop: "0px"}}>
-              {componentData &&
-                componentData.stories &&
-                componentData.stories.map((story) => (
-                  
-                    <Grid item xs={6} style={{marginTop: "16px", paddingTop: "0px", }}>
-                        <Button
-                        style={{ width: "100%", color: "white", height: "4.5em", display: "flex", flexDirection: "column", alignContent: "center",}}
+              <Grid container spacing={2} style={{ marginTop: "0px" }}>
+                {componentData &&
+                  componentData.demos &&
+                  componentData.demos.map((demo) => (
+                    <Grid
+                      item
+                      xs={6}
+                      style={{ marginTop: "16px", paddingTop: "0px" }}
+                      key={demo.id ? demo.id : demo.name}
+                    >
+                      <Button
+                        style={{
+                          width: "100%",
+                          color: "white",
+                          height: "4.5em",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignContent: "center",
+                        }}
                         component={Link}
                         variant="outlined"
-                        to={"/demo/" + story.id}
-                        key={story.id}
+                        to={
+                          "/demo/" +
+                          componentData.name +
+                          "/" +
+                          (demo.id ? demo.id : demo.name)
+                        }
+                        key={demo.name}
                       >
-                        <span className="twoLinesOfText" style={{textAlign: "center"}}>
-                          {story.name === "Example Config" ? "demo" : story.name}
+                        <span
+                          className="twoLinesOfText"
+                          style={{ textAlign: "center" }}
+                        >
+                          {demo.name}
                         </span>
-
                       </Button>
                     </Grid>
-                ))}
-                  </Grid>
+                  ))}
+              </Grid>
             </Grid>
             {componentData.components && (
-              <Grid item xs={12} key="component_list" style={{ marginTop: "30px" }}>
+              <Grid
+                item
+                xs={12}
+                key="component_list"
+                style={{ marginTop: "30px" }}
+              >
                 <h3>{t("usedComponents")}</h3>
-                <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
+                <Divider
+                  variant="fullWidth"
+                  sx={{ bgcolor: theme.palette.secondary.main }}
+                ></Divider>
                 {componentData.components.map((el) => (
-                  <ListItemSmall component_id={el} />
+                  <ListItemSmall component_id={el} key={el.name} />
                 ))}
               </Grid>
             )}
             {appsWhichImplement.length != 0 && (
               <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
-              <h3>{t("includedIn")}</h3>
-              <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
-              {appsWhichImplement.map((el) => (
-                <ListItemSmall component_id={el} />
-              ))}
-            </Grid>
+                <h3>{t("includedIn")}</h3>
+                <Divider
+                  variant="fullWidth"
+                  sx={{ bgcolor: theme.palette.secondary.main }}
+                ></Divider>
+                {appsWhichImplement.map((el) => (
+                  <ListItemSmall component_id={el} key={el.name} />
+                ))}
+              </Grid>
             )}
-
           </Grid>
         </Grid>
       </Grid>
 
-      <Grid container spacing={0}>
+      <Grid container spacing={0} key="descriptionContainer">
         <Grid item xs={12} style={{ marginTop: "30px" }}>
-          <div style={{
-            color: "white",
-            minHeight: "150px",
-
-          }}>
+          <div
+            style={{
+              color: "white",
+              minHeight: "150px",
+            }}
+          >
             <h3>{t("description")}</h3>
-            <Divider variant="fullWidth" sx={{ bgcolor: theme.palette.secondary.main }}></Divider>
-            <div dangerouslySetInnerHTML={{__html:description}} /> 
+            <Divider
+              variant="fullWidth"
+              sx={{ bgcolor: theme.palette.secondary.main }}
+            ></Divider>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
-
-
         </Grid>
-
       </Grid>
-
-
     </>
   );
 }
