@@ -29,7 +29,8 @@
 .cutCorners {
   -webkit-clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
   clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
-
+  aspect-ratio: 8 / 6;
+  object-fit: cover;
 }
 
 .cutCornersTag {
