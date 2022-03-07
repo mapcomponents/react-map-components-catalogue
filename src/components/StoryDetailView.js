@@ -150,7 +150,7 @@ function StoryDetailView(props) {
       </Grid>
 
       <div
-        style={{ marginBottom: "20px" }}
+        style={{ marginBottom: "50px" }}
         dangerouslySetInnerHTML={{ __html: description }}
       />
 
