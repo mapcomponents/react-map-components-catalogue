@@ -94,7 +94,12 @@ function StoryDetailView(props) {
           : demoContext.componentData[component_id].title;
       setComponentTitle(componentTitle);
     }
-  }, [component_id, demoContext.componentData, demoContext]);
+  }, [
+    component_id,
+    demoContext.componentData,
+    demoContext,
+    i18n.resolvedLanguage,
+  ]);
 
   useEffect(() => {
     if (!demoContext.componentData?.[component_id]) return;
@@ -113,32 +118,41 @@ function StoryDetailView(props) {
 
   return (
     <>
-      <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Button
+              variant={bookmarkSet ? "contained" : "outlined"}
+              color="primary"
+              onClick={() => {
+                //add to cart but only if element not existing already
+                if (!demoContext.cartItems.includes(componentData.name)) {
+                  demoContext.setCartItems([
+                    ...demoContext.cartItems,
+                    componentData.name,
+                  ]);
+                }
+              }}
+            >
+              <StarIcon></StarIcon>
+              {/* {t("addToBookmarks")} */}
+            </Button>
+          </div>
+        </Grid>
+      </Grid>
 
       <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginBottom: "20px",
-        }}
-      >
-        <Button
-          variant={bookmarkSet ? "contained" : "outlined"}
-          color="primary"
-          onClick={() => {
-            //add to cart but only if element not existing already
-            if (!demoContext.cartItems.includes(componentData.name)) {
-              demoContext.setCartItems([
-                ...demoContext.cartItems,
-                componentData.name,
-              ]);
-            }
-          }}
-        >
-          <StarIcon></StarIcon>
-          {/* {t("addToBookmarks")} */}
-        </Button>
-      </div>
+        style={{ marginBottom: "20px" }}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
 
       <Grid
         container
@@ -280,6 +294,7 @@ function StoryDetailView(props) {
         </Grid>
       </Grid>
 
+      {/*
       <Grid container spacing={0} key="descriptionContainer">
         <Grid item xs={12} style={{ marginTop: "30px" }}>
           <div
@@ -293,10 +308,11 @@ function StoryDetailView(props) {
               variant="fullWidth"
               sx={{ bgcolor: theme.palette.secondary.main }}
             ></Divider>
-            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </Grid>
       </Grid>
+
+          */}
     </>
   );
 }
