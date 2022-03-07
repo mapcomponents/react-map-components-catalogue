@@ -111,27 +111,24 @@ function StoryTeaserList(props) {
         key="componentContainer"
       >
         {Object.keys(demoContext.componentData).map((componentName) => {
-              let _compData =demoContext.componentData[componentName] ;
-              if (
-                _compData.type === props.type &&
-                _compData.title.toLowerCase().includes(search.toLowerCase())
-              ) {
-                let result = filterState.every((o) =>
-                  _compData.tags.includes(o)
-                );
-                  atLeastOneItem = true;
-                if (result) {
-                  return (
-                    <StoryTeaserItem
-                      kind={componentName}
-                      key={componentName}
-                      compData={demoContext.componentData[componentName]}
-                    ></StoryTeaserItem>
-                  );
-              }
-              }
-              return null;
-
+          let _compData = demoContext.componentData[componentName];
+          if (
+            _compData.type === props.type &&
+            _compData.title.toLowerCase().includes(search.toLowerCase())
+          ) {
+            let result = filterState.every((o) => _compData.tags.includes(o));
+            if (result) {
+              atLeastOneItem = true;
+              return (
+                <StoryTeaserItem
+                  kind={componentName}
+                  key={componentName}
+                  compData={demoContext.componentData[componentName]}
+                ></StoryTeaserItem>
+              );
+            }
+          }
+          return null;
         })}
         {demoContext.storybookUrls.map((url) => {
           return (
@@ -164,6 +161,7 @@ function StoryTeaserList(props) {
             })
           );
         })}
+        {console.log(atLeastOneItem)}
         {!atLeastOneItem ? (
           <h3
             style={{

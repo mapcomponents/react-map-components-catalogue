@@ -163,23 +163,19 @@ function StoryDetailView(props) {
         >
           <Grid container spacing={0} key="contentLeft">
             <Grid key="thumbnail" item xs={12}>
-              <Paper
-                elevation={1}
-                className="cutCorners"
+              <img
                 style={{ maxHeight: "600px" }}
-              >
-                <img
-                  src={
-                    componentData.thumbnail ||
-                    basepath.pathname + "placeholder.png"
-                  }
-                  onError={(ev) => {
-                    ev.target.src = basepath.pathname + "placeholder.png";
-                  }}
-                  style={{ width: "100%" }}
-                  alt=""
-                />
-              </Paper>
+                className="cutCorners"
+                src={
+                  componentData.thumbnail ||
+                  basepath.pathname + "placeholder.png"
+                }
+                onError={(ev) => {
+                  ev.target.src = basepath.pathname + "placeholder.png";
+                }}
+                style={{ width: "100%" }}
+                alt=""
+              />
             </Grid>
             <Grid item xs={12} key="tags">
               {componentData.tags &&
