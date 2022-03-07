@@ -97,10 +97,10 @@ function StoryDetailView(props) {
   }, [component_id, demoContext.componentData, demoContext]);
 
   useEffect(() => {
-    if(!demoContext.componentData?.[component_id])return;
+    if (!demoContext.componentData?.[component_id]) return;
 
     setComponentData(demoContext.componentData[component_id]);
-  }, [demoContext.componentData, demoContext]);
+  }, [demoContext.componentData, demoContext, component_id]);
 
   useEffect(() => {
     fetchDescription();
@@ -227,7 +227,7 @@ function StoryDetailView(props) {
                           alignContent: "center",
                         }}
                         component={Link}
-                        variant="outlined"
+                        variant="contained"
                         to={
                           "/demo/" +
                           componentData.name +

@@ -59,45 +59,61 @@ function Footer() {
       sx={{
         marginTop: "100px",
         backgroundColor: theme.palette.background.main,
-        color: "white"
+        color: "white",
       }}
     >
       <div
         style={{
           height: "10px",
           marginBottom: "20px",
-          backgroundColor: theme.palette.primary.main
-        }}></div>
-
+          backgroundColor: theme.palette.primary.main,
+        }}
+      ></div>
 
       <Container className={classes.footer}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: mediaIsMobile ? "center" : "flex-start",
+          }}
+        >
+          <a
+            href="https://github.com/mapcomponents"
+            style={{
+              marginLeft: mediaIsMobile ? "0px" : "64px",
+            }}
+            target="_blank"
+          >
+            <GitHubIcon
+              fontSize="medium"
+              style={{
+                color: theme.palette.primary.light,
+              }}
+            ></GitHubIcon>
+          </a>
 
-      <div style={{
-        display: "flex",
-        justifyContent: mediaIsMobile ? "center" : "flex-start",
-        }}>
-      <a href="https://github.com/WhereGroup" style={{
-        marginLeft: mediaIsMobile ? "0px" : "64px",
-      }}
-      target="_blank" >
-        <GitHubIcon fontSize="medium" style={{ 
-        color: theme.palette.primary.light,
-        }}></GitHubIcon>
-      </a>
+          <a
+            href="http://twitter.com/wheregroup_com"
+            style={{
+              marginLeft: "10px",
+            }}
+            target="_blank"
+          >
+            <TwitterIcon
+              fontSize="medium"
+              style={{
+                color: theme.palette.primary.light,
+              }}
+            ></TwitterIcon>
+          </a>
+        </div>
 
-      <a href="http://twitter.com/wheregroup_com" style={{
-        marginLeft: "10px",
-      }}
-      target="_blank" >
-        <TwitterIcon fontSize="medium" style={{ 
-        color: theme.palette.primary.light,
-        }}></TwitterIcon>
-      </a>
-      </div>
-
-        <Grid container style={{
-          marginTop: "50px",
-        }}>
+        <Grid
+          container
+          style={{
+            marginTop: "50px",
+          }}
+        >
           <Grid
             item
             md={6}
@@ -108,8 +124,7 @@ function Footer() {
               justifyContent: mediaIsMobile ? "center" : "flex-start",
             }}
           >
-      
-      <Wglogo
+            <Wglogo
               className={classes.logo}
               style={{
                 marginLeft: mediaIsMobile ? "0px" : "64px",
@@ -117,7 +132,6 @@ function Footer() {
                 height: "85px",
               }}
             />
-      
           </Grid>
           {/*
           <Grid
@@ -151,7 +165,7 @@ function Footer() {
           <Grid
             item
             md={6}
-            xs={12}          
+            xs={12}
             style={{
               ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
             }}
@@ -167,25 +181,33 @@ function Footer() {
                 ...(mediaIsMobile ? {} : { marginTop: "20px" }),
               }}
             >
-              <ListItem style={{
-                width: "initial"
-              }}>
+              <ListItem
+                style={{
+                  width: "initial",
+                }}
+              >
                 <a
-                  href={i18n.resolvedLanguage !== "en"
-                  ? "https://wheregroup.com/impressum/"
-                  : "https://wheregroup.com/en/legalnotice/"}
+                  href={
+                    i18n.resolvedLanguage !== "en"
+                      ? "https://wheregroup.com/impressum/"
+                      : "https://wheregroup.com/en/legalnotice/"
+                  }
                   className={classes.link}
                 >
                   {t("imprint")}
                 </a>
               </ListItem>
-              <ListItem style={{
-                width: "initial"
-              }}>
+              <ListItem
+                style={{
+                  width: "initial",
+                }}
+              >
                 <a
-                  href={i18n.resolvedLanguage !== "en"
-                  ? "https://wheregroup.com/datenschutz/"
-                  : "https://wheregroup.com/en/privacypolicy/"}
+                  href={
+                    i18n.resolvedLanguage !== "en"
+                      ? "https://wheregroup.com/datenschutz/"
+                      : "https://wheregroup.com/en/privacypolicy/"
+                  }
                   className={classes.link}
                 >
                   {t("dataProtection")}
@@ -200,7 +222,6 @@ function Footer() {
              */}
             </List>
           </Grid>
-          
         </Grid>
       </Container>
     </Paper>

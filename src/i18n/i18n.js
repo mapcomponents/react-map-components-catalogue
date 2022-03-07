@@ -41,9 +41,13 @@ i18n
 
           // teaser list
           search: "Search",
-          introHeading: "What is MapComponents?",
+          introHeading: "MapComponents",
+          introHeading2: "Next Generation WebGIS",
           intro:
-            "The next generation webGIS: a react component framework for GIS application development by WhereGroup GmbH",
+            "A react component framework for GIS application development by WhereGroup GmbH",
+          introLi1: "",
+          introLi2: "",
+          introLi3: "",
           noMatches: "No results with given filters.",
         },
       },
@@ -70,9 +74,14 @@ i18n
 
           // teaser list
           search: "Suche",
-          introHeading: "Was ist MapComponents?",
+          introHeading: "MapComponents",
+          introHeading2: "Next Generation WebGIS",
           intro:
-            "Die nächste Generation von webGIS: ein React Component Framework für GIS Applications entwickelt von der WhereGroup GmbH",
+            "Ein modernes Baukastensystem zur Erstellung individueller Kartenanwendungen.",
+          introLi1:
+            "bedient modernste Browser-Technologien (PWA, Fugu, WebAssembly etc.)",
+          introLi2: "ein React Component Framework",
+          introLi3: "stark anpassbar, individualisierbar und skalierbar",
           noMatches: "Keine Treffer mit den gewählten Filtern.",
         },
       },

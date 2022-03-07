@@ -35,22 +35,49 @@ function StoryTeaserList(props) {
       >
         {t("introHeading")}
       </h1>
+      <h1
+        style={{
+          color: theme.palette.primary.main,
+          textAlign: "center",
+        }}
+      >
+        {t("introHeading2")}
+      </h1>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px",
+          marginTop: "20px",
+          textAlign: "center",
         }}
       >
         <p
           style={{
             width: "75%",
             fontSize: "15pt",
+            marginBottom: "0px",
           }}
         >
           {t("intro")}
         </p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "40px",
+        }}
+      >
+        {i18n.resolvedLanguage !== "en" && (
+          <ul>
+            <li>{t("introLi1")}</li>
+            <li>{t("introLi2")}</li>
+            <li>{t("introLi3")}</li>
+          </ul>
+        )}
       </div>
 
       <Grid container spacing={4} key="filterContainer">
@@ -161,7 +188,6 @@ function StoryTeaserList(props) {
             })
           );
         })}
-        {console.log(atLeastOneItem)}
         {!atLeastOneItem ? (
           <h3
             style={{
