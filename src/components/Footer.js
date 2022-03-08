@@ -93,7 +93,7 @@ function Footer() {
           </a>
 
           <a
-            href="http://twitter.com/wheregroup_com"
+            href="https://twitter.com/mapcomponents"
             style={{
               marginLeft: "10px",
             }}
