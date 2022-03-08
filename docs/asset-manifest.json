@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.20ce1a3e.css",
+    "main.css": "/static/css/main.5faaa08c.css",
     "main.js": "/static/js/main.2b0d4435.js",
     "static/js/787.95160200.chunk.js": "/static/js/787.95160200.chunk.js",
     "static/media/WG-MapComponents-Logo_rgb-weisse-schrift.png": "/static/media/WG-MapComponents-Logo_rgb-weisse-schrift.a237cc24b617412bef63.png",
     "static/media/wheregroup-logo-white.svg": "/static/media/wheregroup-logo-white.dc914bdb581491ee4a99264923160393.svg",
     "index.html": "/index.html",
-    "main.20ce1a3e.css.map": "/static/css/main.20ce1a3e.css.map",
+    "main.5faaa08c.css.map": "/static/css/main.5faaa08c.css.map",
     "main.2b0d4435.js.map": "/static/js/main.2b0d4435.js.map",
     "787.95160200.chunk.js.map": "/static/js/787.95160200.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.20ce1a3e.css",
+    "static/css/main.5faaa08c.css",
     "static/js/main.2b0d4435.js"
   ]
 }
