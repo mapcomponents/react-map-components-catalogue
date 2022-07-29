@@ -2,20 +2,15 @@ import React, { useContext, useEffect } from "react";
 
 import DemoContext from "./DemoContext";
 
-import { Link,  useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import { Drawer, Grid, IconButton } from "@mui/material";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Drawer, IconButton } from "@mui/material";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ListItemSmall from "./ListItemSmall";
-import Box from '@mui/material/Box';
-import CloseIcon from '@mui/icons-material/Close';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import CloseIcon from "@mui/icons-material/Close";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 
 import { useTranslation } from "react-i18next";
 
@@ -49,7 +44,6 @@ function MenuDrawer(props) {
 
   const classes = useStyles();
 
-
   return (
     <Drawer
       anchor="right"
@@ -63,43 +57,80 @@ function MenuDrawer(props) {
           maxWidth: "80vw",
           padding: "20px",
           color: "white",
-          fontFamily: 'Chakra Petch, sans-serif'
+          fontFamily: "Chakra Petch, sans-serif",
         }}
       >
-
-      <IconButton
+        <IconButton
           onClick={(ev) => {
-            props.setOpen(!props.open)
+            props.setOpen(!props.open);
           }}
           size="large"
-          style={{display: "flex", float: "right"}}
+          style={{ display: "flex", float: "right" }}
         >
           <CloseIcon />
-      </IconButton>
+        </IconButton>
 
-      <br></br><br></br>
+        <br></br>
+        <br></br>
 
-      <List>
+        <List>
           <ListItem disablePadding>
-            <ListItemButton className={location.pathname != '/' ? classes.listitem : classes.listitemSelected} component={Link} to="/" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton
+              className={
+                location.pathname != "/"
+                  ? classes.listitem
+                  : classes.listitemSelected
+              }
+              component={Link}
+              to="/"
+              onClick={() => {
+                props.setOpen(!props.open);
+              }}
+            >
               MapComponents
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton className={location.pathname != '/list-apps' ? classes.listitem : classes.listitemSelected} component={Link} to="/list-apps" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton
+              className={
+                location.pathname != "/list-apps"
+                  ? classes.listitem
+                  : classes.listitemSelected
+              }
+              component={Link}
+              to="/list-apps"
+              onClick={() => {
+                props.setOpen(!props.open);
+              }}
+            >
               {t("sampleApplications")}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton className={location.pathname != '/bookmarks' ? classes.listitem : classes.listitemSelected} component={Link} to="/bookmarks" onClick={() => {props.setOpen(!props.open)}}>
+            <ListItemButton
+              className={
+                location.pathname != "/bookmarks"
+                  ? classes.listitem
+                  : classes.listitemSelected
+              }
+              component={Link}
+              to="/bookmarks"
+              onClick={() => {
+                props.setOpen(!props.open);
+              }}
+            >
               {t("bookmark")}
             </ListItemButton>
           </ListItem>
-          <ListItem className={classes.listitem} onClick={() => {props.setOpen(!props.open)}}>
+          <ListItem
+            className={classes.listitem}
+            onClick={() => {
+              props.setOpen(!props.open);
+            }}
+          >
             <LanguageSelection></LanguageSelection>
           </ListItem>
-      </List>
-          
+        </List>
       </div>
     </Drawer>
   );
