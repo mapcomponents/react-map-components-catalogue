@@ -34,7 +34,7 @@ import CartDrawer from "./components/Cart/CartDrawer";
 import Cart from "./components/Cart/Cart";
 import MenuDrawer from "./components/MenuDrawer";
 import StoryDetailView from "./components/StoryDetailView";
-import LinkMaterial from '@mui/material/Link';
+import LinkMaterial from "@mui/material/Link";
 import DemoView from "./components/DemoView";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     padding: "10px 0",
-    backgroundColor: theme.palette.background.main //'#1c1e21' //"#f1f1f1",
+    backgroundColor: theme.palette.background.main, //'#1c1e21' //"#f1f1f1",
   },
   fullTeaser: {
     height: "100vh",
@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
     height: "46px",
   },
 }));
-
 
 const Spacer = () => {
   const classes = useStyles();
@@ -101,25 +100,41 @@ function App() {
         fontSize: "0.8em",
       }}
     >
-      {!mediaIsMobile && <LanguageSelection ></LanguageSelection>}
-      <div id="separator" style={{width: "30px"}}></div>
+      {!mediaIsMobile && <LanguageSelection></LanguageSelection>}
+      <div id="separator" style={{ width: "30px" }}></div>
 
-      {mediaIsMobile ? <HamburgerMenuMobile setMenuDrawerOpen={setMenuDrawerOpen}></HamburgerMenuMobile> : <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen}/>}
+      {mediaIsMobile ? (
+        <HamburgerMenuMobile
+          setMenuDrawerOpen={setMenuDrawerOpen}
+        ></HamburgerMenuMobile>
+      ) : (
+        <HamburgerMenu setCartDrawerOpen={setCartDrawerOpen} />
+      )}
     </Grid>
   );
 
   return (
     <Box
       bgcolor={theme.palette.background.main}
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column", color: "white" }}
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        color: "white",
+      }}
     >
       <AppBar position="static" className={classes.header}>
         <Toolbar variant="dense">
           <Grid container>
-            <Grid item md={2} xs={8} style={{display: "flex", alignItems: "center", }}>
-            <Link to="/">
+            <Grid
+              item
+              md={2}
+              xs={8}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Link to="/">
                 <img src={logo} className="App-logo" alt="logo" />
-             </Link>
+              </Link>
             </Grid>
             {mediaIsMobile && <HeaderMenuRight />}
             <Grid
@@ -128,35 +143,35 @@ function App() {
               xs={12}
               style={{
                 display: "flex",
-                justifyContent: "center", 
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {!mediaIsMobile && <ToggleButtonGroup
-                variant="contained"
-                color="primary"
-                aria-label="contained primary button group"
-                value={location.pathname}
-              >
-                <ToggleButton
-                  to="/"
-                  className={classes.menuButton}
-                  component={Link}
-                  value={"/"}
+              {!mediaIsMobile && (
+                <ToggleButtonGroup
+                  variant="contained"
+                  color="primary"
+                  aria-label="contained primary button group"
+                  value={location.pathname}
                 >
-                  MapComponents
-                </ToggleButton>
-                <ToggleButton
-                  to="/list-apps"
-                  className={classes.menuButton}
-                  component={Link}
-                  value={"/list-apps"}
-                >
-                  {t("sampleApplications")}
-                </ToggleButton>
-              </ToggleButtonGroup> }
-
-
+                  <ToggleButton
+                    to="/"
+                    className={classes.menuButton}
+                    component={Link}
+                    value={"/"}
+                  >
+                    MapComponents
+                  </ToggleButton>
+                  <ToggleButton
+                    to="/list-apps"
+                    className={classes.menuButton}
+                    component={Link}
+                    value={"/list-apps"}
+                  >
+                    {t("sampleApplications")}
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              )}
             </Grid>
             {!mediaIsMobile && <HeaderMenuRight />}
           </Grid>
@@ -169,7 +184,15 @@ function App() {
             </Grid>
           </Grid>
           */}
-      <div className="content" style={{ flexGrow: 1, paddingTop: "20px", marginBottom: "100px", fontFamily: 'Chakra Petch, sans-serif' }}>
+      <div
+        className="content"
+        style={{
+          flexGrow: 1,
+          paddingTop: "20px",
+          marginBottom: "100px",
+          fontFamily: "Chakra Petch, sans-serif",
+        }}
+      >
         <Routes>
           <Route
             path={"/component-detail/:component_id"}
@@ -209,9 +232,7 @@ function App() {
             path={"/bookmarks"}
             element={
               <Container>
-                <Cart         
-                  open={cartDrawerOpen}
-                  setOpen={setCartDrawerOpen}/>
+                <Cart open={cartDrawerOpen} setOpen={setCartDrawerOpen} />
               </Container>
             }
           ></Route>
@@ -222,7 +243,7 @@ function App() {
         open={cartDrawerOpen}
         setOpen={setCartDrawerOpen}
       ></CartDrawer>
-        <MenuDrawer
+      <MenuDrawer
         open={menuDrawerOpen}
         setOpen={setMenuDrawerOpen}
       ></MenuDrawer>
