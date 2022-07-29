@@ -33,7 +33,7 @@ function ListItemSmall(props) {
 
   return (
     <Link
-      to={"/component-detail/" + component_id}
+      to={"/" + i18n.resolvedLanguage + "/component-detail/" + component_id}
       style={{ color: "white", textDecoration: "none", marginTop: "10px" }}
       key={component_id}
     >

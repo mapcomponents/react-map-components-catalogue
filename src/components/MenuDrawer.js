@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 
 import makeStyles from "@mui/styles/makeStyles";
 import LanguageSelection from "./LanguageSelection";
+import i18n from "../i18n/i18n";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -98,7 +99,7 @@ function MenuDrawer(props) {
                   : classes.listitemSelected
               }
               component={Link}
-              to="/list-apps"
+              to={"/" + i18n.resolvedLanguage + "/list-apps"}
               onClick={() => {
                 props.setOpen(!props.open);
               }}
@@ -114,7 +115,7 @@ function MenuDrawer(props) {
                   : classes.listitemSelected
               }
               component={Link}
-              to="/bookmarks"
+              to={"/" + i18n.resolvedLanguage + "/bookmarks"}
               onClick={() => {
                 props.setOpen(!props.open);
               }}

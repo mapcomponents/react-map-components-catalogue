@@ -243,6 +243,8 @@ function StoryDetailView(props) {
                         component={Link}
                         variant="contained"
                         to={
+                          "/" +
+                          i18n.resolvedLanguage +
                           "/demo/" +
                           componentData.name +
                           "/" +

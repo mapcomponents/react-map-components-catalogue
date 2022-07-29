@@ -17,6 +17,8 @@ function StoryTeaserItem(props) {
   const meta = props.meta || {};
   const { t, i18n } = useTranslation();
 
+  const target = `/${i18n.resolvedLanguage}/component-detail/${props.kind}`;
+
   return (
     <Grid item xs={12} sm={6} md={3}>
       <div
@@ -37,10 +39,7 @@ function StoryTeaserItem(props) {
         </h3>
       </div>
 
-      <Link
-        to={"/component-detail/" + props.kind}
-        style={{ textDecoration: "none" }}
-      >
+      <Link to={target} style={{ textDecoration: "none" }}>
         <img
           className={`${classes.teaserItemImage} cutCorners`}
           src={

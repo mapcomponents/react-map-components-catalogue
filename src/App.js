@@ -155,18 +155,18 @@ function App() {
                   value={location.pathname}
                 >
                   <ToggleButton
-                    to="/"
+                    to={i18n.language + "/"}
                     className={classes.menuButton}
                     component={Link}
-                    value={"/"}
+                    value={i18n.language + "/"}
                   >
                     MapComponents
                   </ToggleButton>
                   <ToggleButton
-                    to="/list-apps"
+                    to={i18n.language + "/list-apps"}
                     className={classes.menuButton}
                     component={Link}
-                    value={"/list-apps"}
+                    value={i18n.language + "/list-apps"}
                   >
                     {t("sampleApplications")}
                   </ToggleButton>
@@ -195,7 +195,7 @@ function App() {
       >
         <Routes>
           <Route
-            path={"/component-detail/:component_id"}
+            path={"/:locale/component-detail/:component_id"}
             element={
               <Container>
                 <Spacer></Spacer>
@@ -204,7 +204,7 @@ function App() {
             }
           ></Route>
           <Route
-            path={"/demo/:component_name/:demo_id"}
+            path={"/:locale/demo/:component_name/:demo_id"}
             element={
               <Container>
                 <Spacer></Spacer>
@@ -221,7 +221,15 @@ function App() {
             }
           ></Route>
           <Route
-            path={"/list-apps"}
+            path="/:locale"
+            element={
+              <Container>
+                <StoryTeaserList type="component"></StoryTeaserList>
+              </Container>
+            }
+          ></Route>
+          <Route
+            path={"/:locale/list-apps"}
             element={
               <Container>
                 <StoryTeaserList type="application"></StoryTeaserList>
@@ -229,7 +237,7 @@ function App() {
             }
           ></Route>
           <Route
-            path={"/bookmarks"}
+            path={"/:locale/bookmarks"}
             element={
               <Container>
                 <Cart open={cartDrawerOpen} setOpen={setCartDrawerOpen} />
