@@ -12,7 +12,14 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: true,
+    supportedLngs: ["en", "de"],
+    whitelist: ["en", "de"],
     fallbackLng: "en",
+    detection: {
+      order: ["path"],
+      lookupFromPathIndex: 0,
+      checkWhitelist: true,
+    },
     keySeparator: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

@@ -11,21 +11,24 @@ import DemoContextProvider from "./components/DemoContextProvider";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import theme from "./theme.js";
 
-import './i18n/i18n';
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n/i18n";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={"/"}>
-    <ScrollToTop />
+    <I18nextProvider i18n={i18n}>
+      <Router basename={"/"}>
+        <ScrollToTop />
 
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <DemoContextProvider>
-            <App />
-          </DemoContextProvider>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </Router>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <DemoContextProvider>
+              <App />
+            </DemoContextProvider>
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </Router>
+    </I18nextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
