@@ -1,17 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.5faaa08c.css",
+    "main.css": "/static/css/main.562f1983.css",
     "main.js": "/static/js/main.9a7149f3.js",
     "static/js/787.95160200.chunk.js": "/static/js/787.95160200.chunk.js",
+    "static/media/bai-jamjuree-all-400-normal.woff": "/static/media/bai-jamjuree-all-400-normal.d324ffa9d162dbbd4eac.woff",
+    "static/media/chakra-petch-all-400-normal.woff": "/static/media/chakra-petch-all-400-normal.c86750cb709c0bc60cc2.woff",
     "static/media/WG-MapComponents-Logo_rgb-weisse-schrift.png": "/static/media/WG-MapComponents-Logo_rgb-weisse-schrift.a237cc24b617412bef63.png",
+    "static/media/bai-jamjuree-latin-400-normal.woff2": "/static/media/bai-jamjuree-latin-400-normal.93d59a1c5757ff4f6f09.woff2",
+    "static/media/bai-jamjuree-thai-400-normal.woff2": "/static/media/bai-jamjuree-thai-400-normal.081ec12f4f0f81819b89.woff2",
+    "static/media/chakra-petch-latin-400-normal.woff2": "/static/media/chakra-petch-latin-400-normal.45099b4b202c56917332.woff2",
+    "static/media/bai-jamjuree-latin-ext-400-normal.woff2": "/static/media/bai-jamjuree-latin-ext-400-normal.827b2cc3131023148f58.woff2",
+    "static/media/chakra-petch-latin-ext-400-normal.woff2": "/static/media/chakra-petch-latin-ext-400-normal.9d8ef46b4d8c0a09abf7.woff2",
+    "static/media/chakra-petch-thai-400-normal.woff2": "/static/media/chakra-petch-thai-400-normal.f5107669b4a4ddcfbc0f.woff2",
     "static/media/wheregroup-logo-white.svg": "/static/media/wheregroup-logo-white.dc914bdb581491ee4a99264923160393.svg",
+    "static/media/bai-jamjuree-vietnamese-400-normal.woff2": "/static/media/bai-jamjuree-vietnamese-400-normal.69b232401033c95755ec.woff2",
+    "static/media/chakra-petch-vietnamese-400-normal.woff2": "/static/media/chakra-petch-vietnamese-400-normal.0dc81d529f8224536509.woff2",
     "index.html": "/index.html",
-    "main.5faaa08c.css.map": "/static/css/main.5faaa08c.css.map",
+    "main.562f1983.css.map": "/static/css/main.562f1983.css.map",
     "main.9a7149f3.js.map": "/static/js/main.9a7149f3.js.map",
     "787.95160200.chunk.js.map": "/static/js/787.95160200.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5faaa08c.css",
+    "static/css/main.562f1983.css",
     "static/js/main.9a7149f3.js"
   ]
 }
