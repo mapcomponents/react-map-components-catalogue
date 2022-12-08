@@ -11,7 +11,6 @@ import makeStyles from "@mui/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
   selectItem: {
-    color: "white",
   },
 }));
 
@@ -36,7 +35,6 @@ const FilterDropdown = (props) => {
         <InputLabel
           id="inputlabel-filter"
           sx={{
-            color: "white",
           }}
         >
           FILTER
@@ -47,9 +45,7 @@ const FilterDropdown = (props) => {
           label="FILTER"
           color="primary"
           variant="outlined"
-          /*InputLabelProps={{style: {color: 'white',}}}   */
           style={{
-            color: "white",
           }}
           value={props.filterState}
           onChange={handleChange}

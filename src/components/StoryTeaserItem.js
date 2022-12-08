@@ -31,7 +31,7 @@ function StoryTeaserItem(props) {
       >
         <h3
           className="twoLinesOfText"
-          style={{ color: "white", marginTop: "auto", marginBottom: "10px" }}
+          style={{ marginTop: "auto", marginBottom: "10px", fontWeight:'normal' }}
         >
           {i18n.resolvedLanguage !== "en"
             ? props.compData.i18n[i18n.resolvedLanguage].title

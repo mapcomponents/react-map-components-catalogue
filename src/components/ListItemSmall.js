@@ -34,7 +34,7 @@ function ListItemSmall(props) {
   return (
     <Link
       to={"/" + i18n.resolvedLanguage + "/component-detail/" + component_id}
-      style={{ color: "white", textDecoration: "none", marginTop: "10px" }}
+      style={{  textDecoration: "none", marginTop: "10px" }}
       key={component_id}
     >
       <Grid

@@ -27,59 +27,6 @@ function StoryTeaserList(props) {
 
   return (
     <>
-      <h1
-        style={{
-          color: theme.palette.primary.main,
-          textAlign: "center",
-        }}
-      >
-        {t("introHeading")}
-      </h1>
-      <h1
-        style={{
-          color: theme.palette.primary.main,
-          textAlign: "center",
-        }}
-      >
-        {t("introHeading2")}
-      </h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "20px",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            width: "75%",
-            fontSize: "15pt",
-            marginBottom: "0px",
-          }}
-        >
-          {t("intro")}
-        </p>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "40px",
-        }}
-      >
-        {i18n.resolvedLanguage !== "en" && (
-          <ul>
-            <li>{t("introLi1")}</li>
-            <li>{t("introLi2")}</li>
-            <li>{t("introLi3")}</li>
-          </ul>
-        )}
-      </div>
-
       <Grid container spacing={4} key="filterContainer">
         <Grid xs={6} key="filter" item>
           <FilterDropdown
@@ -92,14 +39,14 @@ function StoryTeaserList(props) {
             InputProps={{
               startAdornment: <SearchIcon color="primary" />,
             }}
-            InputLabelProps={{ style: { color: "white" } }}
+            InputLabelProps={{ style: { } }}
             placeholder={t("search")}
             variant="outlined"
             onChange={(e) => setSearch(e.target.value)}
             size="small"
             color="primary"
             sx={{
-              input: { color: "white", paddingLeft: "10px" },
+              input: { paddingLeft: "10px" },
               display: "flex",
               alignItems: "flex-end",
             }}

@@ -2,11 +2,11 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Bai Jamjuree, sans-serif',
+    fontFamily: 'Hero New, sans-serif',
    },
   palette: {
-    mode: 'dark',
-    common: { black: "rgba(16, 16, 16, 1)", white: "#fafafa" },
+    mode: 'light',
+    common: { black: "#282828", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
       main: "#009ee0", //"#e4e8eb",
@@ -22,7 +22,7 @@ const theme = createTheme({
       //contrastText: "#fafafa",
     },
     background: {
-      main: "#1c1e21"
+      main: "#fff"
     },
     grey: {
       main: "#cdcdcd" //"#757678"

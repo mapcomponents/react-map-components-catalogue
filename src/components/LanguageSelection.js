@@ -30,12 +30,12 @@ const LanguageSelection = () => {
 
   let buttons = Object.keys(languages).map((key, index) => (
     <div key={key}>
-      <span style={{ whiteSpace: "pre", color: "white" }}>
+      <span style={{ whiteSpace: "pre" }}>
         {index != 0 ? " | " : ""}
       </span>
 
       <Button
-        style={{ color: key == resolvedLanguage ? "primary" : "white" }}
+        style={{ color: key === resolvedLanguage ? "green" : "initial" }}
         onClick={() => handleChangeLanguage(key)}
         underline="hover"
         key={key}

@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "white",
   },
   listitem: {
     fontSize: "17pt",
@@ -57,8 +56,6 @@ function MenuDrawer(props) {
           width: "400px",
           maxWidth: "80vw",
           padding: "20px",
-          color: "white",
-          fontFamily: "Chakra Petch, sans-serif",
         }}
       >
         <IconButton

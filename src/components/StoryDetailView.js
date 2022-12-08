@@ -157,7 +157,6 @@ function StoryDetailView(props) {
       <Grid
         container
         spacing={4}
-        style={{ color: "white" }}
         key="contentContainer"
       >
         <Grid
@@ -234,7 +233,6 @@ function StoryDetailView(props) {
                       <Button
                         style={{
                           width: "100%",
-                          color: "white",
                           height: "4.5em",
                           display: "flex",
                           flexDirection: "column",
@@ -301,7 +299,6 @@ function StoryDetailView(props) {
         <Grid item xs={12} style={{ marginTop: "30px" }}>
           <div
             style={{
-              color: "white",
               minHeight: "150px",
             }}
           >

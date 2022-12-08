@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "white",
     /**color: theme.palette.secondary.greyText,
     "&:hover": {
       color: theme.palette.secondary.contrastText + " !important",
@@ -59,7 +58,6 @@ function Footer() {
       sx={{
         marginTop: "100px",
         backgroundColor: theme.palette.background.main,
-        color: "white",
       }}
     >
       <div

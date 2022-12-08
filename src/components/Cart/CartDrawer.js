@@ -30,7 +30,6 @@ function CartDrawer(props) {
           width: "400px",
           maxWidth: "80vw",
           padding: "20px",
-          color: "white"
         }}
       >
 

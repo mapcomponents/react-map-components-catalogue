@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Hero New';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-Light.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Hero New';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-Regular.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Hero New';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-Medium.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Hero New';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-SemiBold.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Hero New';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-Bold.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Hero New';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/Hero-New-Bold-Italic.otf') format('opentype')
+}

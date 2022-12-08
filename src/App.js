@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     fontWeight: "bold",
-    color: "white",
     "&:hover": {
       //backgroundColor: "#a51b3b",
     },
@@ -59,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
   },
   fullTeaser: {
     height: "100vh",
-    backgroundImage: "url(https://placeskull.com/2000/1200)",
     width: "100%",
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -120,7 +118,6 @@ function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        color: "white",
       }}
     >
       <AppBar position="static" className={classes.header}>
@@ -160,7 +157,7 @@ function App() {
                     component={Link}
                     value={i18n.language + "/"}
                   >
-                    MapComponents
+                    Components
                   </ToggleButton>
                   <ToggleButton
                     to={i18n.language + "/list-apps"}
@@ -190,7 +187,6 @@ function App() {
           flexGrow: 1,
           paddingTop: "20px",
           marginBottom: "100px",
-          fontFamily: "Chakra Petch, sans-serif",
         }}
       >
         <Routes>
