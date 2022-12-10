@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import theme from "../theme.js";
 
-import { useTheme } from '@mui/styles';
+import { useTheme } from "@mui/styles";
 
 import { Container, Grid } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
@@ -15,9 +15,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import { Divider } from '@mui/material';
+import GitHubIcon from "@mui/icons-material/GitHub";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { Divider } from "@mui/material";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -29,8 +29,10 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     //backgroundColor: theme.palette.secondary.lighterDarkBackground,
     maxWidth: "100%",
+    padding: "40px 0",
   },
   link: {
+    color: theme.palette.secondary.greyText,
     textDecoration: "none",
     /**color: theme.palette.secondary.greyText,
     "&:hover": {
@@ -54,173 +56,58 @@ function Footer() {
 
   return (
     <Paper
-      elevation={5}
+      elevation={0}
       sx={{
-        marginTop: "100px",
         backgroundColor: theme.palette.background.main,
+        fontSize: "0.75rem",
+        color: "#282828",
+        fontWeight: "500",
       }}
+      className={classes.footer}
     >
-      <div
-        style={{
-          height: "10px",
-          marginBottom: "20px",
-          backgroundColor: theme.palette.primary.main,
-        }}
-      ></div>
-
-      <Container className={classes.footer}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: mediaIsMobile ? "center" : "flex-start",
-          }}
-        >
-          <a
-            href="https://github.com/mapcomponents"
+      <Container>
+        <div class="container">
+          <ul
             style={{
-              marginLeft: mediaIsMobile ? "0px" : "64px",
-            }}
-            target="_blank"
-          >
-            <GitHubIcon
-              fontSize="medium"
-              style={{
-                color: theme.palette.primary.light,
-              }}
-            ></GitHubIcon>
-          </a>
-
-          <a
-            href="https://twitter.com/mapcomponents"
-            style={{
-              marginLeft: "10px",
-            }}
-            target="_blank"
-          >
-            <TwitterIcon
-              fontSize="medium"
-              style={{
-                color: theme.palette.primary.light,
-              }}
-            ></TwitterIcon>
-          </a>
-        </div>
-
-        <Grid
-          container
-          style={{
-            marginTop: "50px",
-          }}
-        >
-          <Grid
-            item
-            md={6}
-            xs={12}
-            style={{
+              margin: "0 0 1rem",
+              padding: "0",
+              listStyle: "none",
               display: "flex",
-              marginTop: "10px",
-              justifyContent: mediaIsMobile ? "center" : "flex-start",
+              justifyContent: "center",
+              gap: "24px",
             }}
           >
-            <Wglogo
-              className={classes.logo}
-              style={{
-                marginLeft: mediaIsMobile ? "0px" : "64px",
-                marginTop: mediaIsMobile ? "40px" : "0",
-                height: "85px",
-              }}
-            />
-          </Grid>
-          {/*
-          <Grid
-            item
-            md={4}
-       
-            style={{
-              ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
-            }}
-          >
-            {/*
-            <List component="nav" aria-label="Kontakt">
-              <ListItem className={classes.link}>
-                <ListItemIcon>
-                  <PhoneIcon className={classes.link} />
-                </ListItemIcon>
-                <ListItemText primary="+49 (0) 228 / 90 90 38 - 0" />
-              </ListItem>
-              <ListItem className={classes.link}>
-                <ListItemIcon>
-                  <EmailIcon className={classes.link} />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ wordBreak: "break-word" }}
-                  primary="info@wheregroup.com"
-                />
-              </ListItem>
-            </List>
-          </Grid>
-                      */}
-          <Grid
-            item
-            md={6}
-            xs={12}
-            style={{
-              ...(mediaIsMobile ? { paddingTop: "10px" } : {}),
-            }}
-          >
-            <List
-              component="nav"
-              style={{
-                display: "flex",
-                justifyContent: mediaIsMobile ? "center" : "flex-end",
-                marginRight: mediaIsMobile ? "0px" : "64px",
-                marginBottom: "20px",
-                flexDirection: "row",
-                ...(mediaIsMobile ? {} : { marginTop: "20px" }),
-              }}
-            >
-              <ListItem
-                style={{
-                  width: "initial",
-                }}
+            <li>
+              <a
+                href="/datenschutz"
+                title="Datenschutz"
+                className={classes.link}
               >
-                <a
-                  href={
-                    i18n.resolvedLanguage !== "en"
-                      ? "https://wheregroup.com/impressum/"
-                      : "https://wheregroup.com/en/legalnotice/"
-                  }
-                  className={classes.link}
-                >
-                  {t("imprint")}
-                </a>
-              </ListItem>
-              <ListItem
-                style={{
-                  width: "initial",
-                }}
+                Datenschutz
+              </a>
+            </li>
+            <li>
+              <a
+                href="#uc-corner-modal-show"
+                title="Privatsphäre Einstellungen"
+                className={classes.link}
               >
-                <a
-                  href={
-                    i18n.resolvedLanguage !== "en"
-                      ? "https://wheregroup.com/datenschutz/"
-                      : "https://wheregroup.com/en/privacypolicy/"
-                  }
-                  className={classes.link}
-                >
-                  {t("dataProtection")}
-                </a>
-              </ListItem>
-              {/**
-            <ListItem>
-              <Link to="/" className={classes.link}>
-                Cookie settings
-              </Link>
-            </ListItem>
-             */}
-            </List>
-          </Grid>
-        </Grid>
+                Privatsphäre Einstellungen
+              </a>
+            </li>
+            <li>
+              <a href="/impressum" title="Impressum" className={classes.link}>
+                Impressum
+              </a>
+            </li>
+          </ul>
+          <p
+            class="disclaimer"
+            style={{ margin: 0, textAlign: "center", fontWeight: 400 }}
+          >
+            ©&nbsp;2022&nbsp;WhereGroup GmbH. Alle Rechte vorbehalten.
+          </p>
+        </div>
       </Container>
     </Paper>
   );

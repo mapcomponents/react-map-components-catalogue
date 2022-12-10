@@ -3,13 +3,24 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 
 const languages = {
   en: { nativeName: "English" },
   de: { nativeName: "Deutsch" },
 };
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    color: theme.palette.secondary.greyText,
+  },
+  selected: {
+    color: theme.palette.primary.main,
+  },
+}));
+
 const LanguageSelection = () => {
+  const classes = useStyles();
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,7 +46,7 @@ const LanguageSelection = () => {
       </span>
 
       <Button
-        style={{ color: key === resolvedLanguage ? "green" : "initial" }}
+        className={(key === resolvedLanguage ? classes.selected : classes.button) }
         onClick={() => handleChangeLanguage(key)}
         underline="hover"
         key={key}

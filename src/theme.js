@@ -2,30 +2,31 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Hero New, sans-serif',
-   },
+    fontFamily: "Hero New, sans-serif",
+  },
   palette: {
-    mode: 'light',
+    mode: "light",
     common: { black: "#282828", white: "#fafafa" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
-      main: "#009ee0", //"#e4e8eb",
-      light: "#02d7f2" //"#05B2FB"
+      main: "#009fe3", //"#e4e8eb",
+      light: "#02d7f2", //"#05B2FB"
       //contrastText: "rgba(16, 16, 16, 1)",
     },
     secondary: {
-      main: "#cbd300",
+      main: "#dcdcdc",
       light: "#dfe803",
       //dark: "#006691",
       //lighterDarkBackground: "#323645",
       //greyText: "#b1b1b8",
+      greyText: "#282828",
       //contrastText: "#fafafa",
     },
     background: {
-      main: "#fff"
+      main: "#fff",
     },
     grey: {
-      main: "#cdcdcd" //"#757678"
+      main: "#cdcdcd", //"#757678"
     },
     error: {
       light: "#e57373",

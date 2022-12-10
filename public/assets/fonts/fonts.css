@@ -45,3 +45,10 @@
   font-display: swap;
   src: url('/assets/fonts/Hero-New-Bold-Italic.otf') format('opentype')
 }
+body{
+
+    background-image: url(/assets/body-bgr.png);
+    background-position: center 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

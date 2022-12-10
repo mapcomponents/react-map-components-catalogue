@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import DemoContext from "./DemoContext";
 
@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Drawer, IconButton } from "@mui/material";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -37,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuDrawer(props) {
-  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const demoContext = useContext(DemoContext);
   const { t } = useTranslation();
   const location = useLocation();
@@ -47,8 +45,8 @@ function MenuDrawer(props) {
   return (
     <Drawer
       anchor="right"
-      open={props.open}
-      onClose={() => props.setOpen(!props.open)}
+      open={demoContext.menuDrawerOpen}
+      onClose={() => demoContext.setMenuDrawerOpen(false)}
       classes={{ paper: classes.paper }}
     >
       <div
@@ -75,7 +73,7 @@ function MenuDrawer(props) {
           <ListItem disablePadding>
             <ListItemButton
               className={
-                location.pathname != "/"
+                location.pathname !== "/"
                   ? classes.listitem
                   : classes.listitemSelected
               }
@@ -91,7 +89,7 @@ function MenuDrawer(props) {
           <ListItem disablePadding>
             <ListItemButton
               className={
-                location.pathname != "/list-apps"
+                location.pathname !== "/list-apps"
                   ? classes.listitem
                   : classes.listitemSelected
               }
@@ -107,7 +105,7 @@ function MenuDrawer(props) {
           <ListItem disablePadding>
             <ListItemButton
               className={
-                location.pathname != "/bookmarks"
+                location.pathname !== "/bookmarks"
                   ? classes.listitem
                   : classes.listitemSelected
               }

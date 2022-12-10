@@ -36,6 +36,8 @@ if (window.location.host.indexOf("mapcomponents.org") === -1) {
  */
 
 const DemoContextProvider = ({ children }) => {
+  const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
+
   const [componentData, setComponentData] = useState({});
   const componentDataRef = useRef({});
 
@@ -198,6 +200,8 @@ const DemoContextProvider = ({ children }) => {
     setCartItems: setCartItems,
     getComponentDataByName: getComponentDataByName,
     tagList: tagList,
+    menuDrawerOpen,
+    setMenuDrawerOpen,
   };
 
   return (

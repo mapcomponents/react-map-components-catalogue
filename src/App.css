@@ -1,8 +1,10 @@
-
-
 body {
-  background-color: #FFF;
+  background-color: #fff;
   color: #282828;
+    font-size: 1rem;
+    font-family: 'Hero New', sans-serif;
+    font-weight: 400;
+    -webkit-text-size-adjust: none;
 }
 
 .App-logo {
@@ -16,7 +18,7 @@ body {
   opacity: 1;
   transition: all 200ms linear;
 }
-.demoOverlayBlackscreen-fadein{
+.demoOverlayBlackscreen-fadein {
   opacity: 1;
   transition: all 200ms linear;
 }
@@ -24,18 +26,52 @@ body {
   opacity: 0;
   transition: all 800ms linear;
 }
-
+.roundCorners{
+  border-radius: 30px;
+}
 .cutCorners {
-  -webkit-clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
-  clip-path: polygon(0 5%, 0 95%, 5% 100%, 95% 100%, 100% 95%, 100% 5%, 95% 0, 5% 0);
+  -webkit-clip-path: polygon(
+    0 5%,
+    0 95%,
+    5% 100%,
+    95% 100%,
+    100% 95%,
+    100% 5%,
+    95% 0,
+    5% 0
+  );
+  clip-path: polygon(
+    0 5%,
+    0 95%,
+    5% 100%,
+    95% 100%,
+    100% 95%,
+    100% 5%,
+    95% 0,
+    5% 0
+  );
   aspect-ratio: 8 / 6;
   width: 100%;
   object-fit: cover;
 }
 
 .cutCornersTag {
-  -webkit-clip-path: polygon(0 10px, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0, 10px 0);
-  clip-path: polygon(0 10px, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0, 10px 0);
+  -webkit-clip-path: polygon(
+    0 10px,
+    0 100%,
+    100% 100%,
+    100% 10px,
+    calc(100% - 10px) 0,
+    10px 0
+  );
+  clip-path: polygon(
+    0 10px,
+    0 100%,
+    100% 100%,
+    100% 10px,
+    calc(100% - 10px) 0,
+    10px 0
+  );
 }
 
 .twoLinesOfText {
@@ -43,7 +79,113 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
-          line-clamp: 2; 
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
+ul.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.menu li {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 160%;
+  display: block;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+  position: relative;
+}
+.menu li a:not(.btn) {
+  line-height: 48px;
+  display: block;
+  color: #494848;
+  font-weight: 500;
+  padding: 0 24px;
+  text-align: center;
+  transition: 0.3s ease;
+  will-change: color;
+}
+.menu li a:not(.btn) svg {
+  margin-left: 8px;
+}
+.menu li a.btn {
+  margin-left: 24px;
+  background-color: #009fe3;
+  color: #fff;
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0px 32px;
+  border-radius: 8px;
+  appearance: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.3s ease;
+  filter: brightness(100%);
+}
+.menu li a:not(.btn):hover,
+.menu li a:not(.btn).active {
+  color: #009fe3;
+}
+.menu .menu-lvl2 {
+  position: absolute;
+  width: 240px;
+  top: 48px;
+  left: 0;
+  padding: 16px 0;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  transition: 0.3s ease;
+  transform-origin: left top;
+  transform: scale(0);
+  opacity: 0;
+}
+.menu li:hover .menu-lvl2 {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 10001;
+}
+a {
+  text-decoration: none;
+  color: #009fe3;
+}
+
+.topbar ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+}
+.topbar ul li {
+  padding: 0;
+  margin: 0;
+}
+
+.topbar .right a {
+  width: 48px;
+  text-align: center;
+}
+.topbar a {
+  text-align: center;
+  width: 48px;
+  display: block;
+  line-height: 48px;
+  color: #282828;
+  transition: 0.3s ease;
+}
+.topbar a:hover {
+  color: #009FE3;
+}
+.menu li a.btn:hover, form button:hover {
+  filter: brightness(110%);
+}

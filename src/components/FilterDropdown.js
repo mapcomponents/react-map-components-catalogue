@@ -4,19 +4,18 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import theme from "../theme";
 
 import DemoContext from "./DemoContext";
-import theme from "../theme.js";
-import makeStyles from "@mui/styles/makeStyles";
+import { styled } from "@mui/material/styles";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
-const useStyles = makeStyles((theme) => ({
-  selectItem: {
-  },
-}));
+const MccSelect = styled(Select)({
+  ".MuiOutlinedInput-notchedOutline": { border: 0 },
+});
 
 const FilterDropdown = (props) => {
   const demoContext = useContext(DemoContext);
-  const classes = useStyles(theme);
 
   const handleChange = (event) => {
     //Add tag to state
@@ -32,30 +31,31 @@ const FilterDropdown = (props) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl size="small" style={{ width: "40vw", maxWidth: "250px" }}>
-        <InputLabel
-          id="inputlabel-filter"
-          sx={{
-          }}
-        >
+        <InputLabel id="inputlabel-filter" sx={{}}>
+          <FilterAltIcon
+            sx={{
+              color: theme.palette.primary.main,
+              fontSize: "1rem",
+              marginBottom: "-2px",
+            }}
+          />{" "}
           FILTER
         </InputLabel>
-        <Select
+        <MccSelect
           multiple
           labelId="inputlabel-filter"
           label="FILTER"
-          color="primary"
-          variant="outlined"
-          style={{
-          }}
+          //color="primary"
           value={props.filterState}
           onChange={handleChange}
+          
         >
           {demoContext.tagList.map((tag) => (
-            <MenuItem className={classes.selectItem} key={tag} value={tag}>
+            <MenuItem key={tag} value={tag}>
               {tag}
             </MenuItem>
           ))}
-        </Select>
+        </MccSelect>
       </FormControl>
     </Box>
   );

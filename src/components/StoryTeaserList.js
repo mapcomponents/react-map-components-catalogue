@@ -15,6 +15,11 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterDropdown from "./FilterDropdown";
 import Tag from "./Tag";
+import { styled } from '@mui/material/styles';
+
+const MccTextField = styled(TextField)({
+  ".MuiOutlinedInput-notchedOutline": { border: 0 },
+});
 
 function StoryTeaserList(props) {
   const demoContext = useContext(DemoContext);
@@ -35,7 +40,7 @@ function StoryTeaserList(props) {
           ></FilterDropdown>
         </Grid>
         <Grid xs={6} key="search" item>
-          <TextField
+          <MccTextField
             InputProps={{
               startAdornment: <SearchIcon color="primary" />,
             }}
@@ -50,18 +55,10 @@ function StoryTeaserList(props) {
               display: "flex",
               alignItems: "flex-end",
             }}
-          ></TextField>
+          ></MccTextField>
         </Grid>
       </Grid>
 
-      <Divider
-        variant="fullWidth"
-        sx={{
-          bgcolor: theme.palette.secondary.main,
-          marginBottom: "0px",
-          marginTop: "10px",
-        }}
-      ></Divider>
 
       {filterState.map((tag) => {
         return (

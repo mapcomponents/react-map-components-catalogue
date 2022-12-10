@@ -13,6 +13,7 @@ import theme from "../theme.js";
 
 import DemoContext from "./DemoContext";
 
+import makeStyles from "@mui/styles/makeStyles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Grid, Button, Paper, Chip } from "@mui/material";
 //import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -25,6 +26,8 @@ import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
 
+const useStyles = makeStyles((theme) => ({
+}));
 function StoryDetailView(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const basepath = useResolvedPath("/");
@@ -122,6 +125,8 @@ function StoryDetailView(props) {
         <Grid item xs={12} md={6}>
           <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
         </Grid>
+        {/**
+         * add to bookmarks button
         <Grid item xs={12} md={6}>
           <div
             style={{
@@ -143,10 +148,10 @@ function StoryDetailView(props) {
               }}
             >
               <StarIcon></StarIcon>
-              {/* {t("addToBookmarks")} */}
             </Button>
           </div>
         </Grid>
+         */}
       </Grid>
 
       <div
@@ -177,8 +182,8 @@ function StoryDetailView(props) {
           <Grid container spacing={0} key="contentLeft">
             <Grid key="thumbnail" item xs={12}>
               <img
-                style={{ maxHeight: "600px" }}
-                className="cutCorners"
+                style={{ width: "100%", maxHeight: "600px" }}
+                className="roundCorners"
                 src={
                   componentData.thumbnail ||
                   basepath.pathname + "placeholder.png"
@@ -186,7 +191,6 @@ function StoryDetailView(props) {
                 onError={(ev) => {
                   ev.target.src = basepath.pathname + "placeholder.png";
                 }}
-                style={{ width: "100%" }}
                 alt=""
               />
             </Grid>
@@ -278,7 +282,7 @@ function StoryDetailView(props) {
                 ))}
               </Grid>
             )}
-            {appsWhichImplement.length != 0 && (
+            {appsWhichImplement.length !== 1 && (
               <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
                 <h3>{t("includedIn")}</h3>
                 <Divider
