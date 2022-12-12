@@ -79,7 +79,11 @@ function Footer() {
           >
             <li>
               <a
-                href="/datenschutz"
+                href={
+                  i18n.resolvedLanguage !== "en"
+                    ? "https://wheregroup.com/datenschutz/"
+                    : "https://wheregroup.com/en/privacypolicy/"
+                }
                 title="Datenschutz"
                 className={classes.link}
               >
@@ -88,15 +92,14 @@ function Footer() {
             </li>
             <li>
               <a
-                href="#uc-corner-modal-show"
-                title="Privatsphäre Einstellungen"
+                href={
+                  i18n.resolvedLanguage !== "en"
+                    ? "https://wheregroup.com/impressum/"
+                    : "https://wheregroup.com/en/legalnotice/"
+                }
+                title="Impressum"
                 className={classes.link}
               >
-                Privatsphäre Einstellungen
-              </a>
-            </li>
-            <li>
-              <a href="/impressum" title="Impressum" className={classes.link}>
                 Impressum
               </a>
             </li>

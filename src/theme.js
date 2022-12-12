@@ -6,7 +6,7 @@ const theme = createTheme({
   },
   palette: {
     mode: "light",
-    common: { black: "#282828", white: "#fafafa" },
+    common: { black: "#282828", white: "#fff" },
     background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
     primary: {
       main: "#009fe3", //"#e4e8eb",

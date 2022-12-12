@@ -241,6 +241,8 @@ function StoryDetailView(props) {
                           display: "flex",
                           flexDirection: "column",
                           alignContent: "center",
+                          color: theme.palette.common.white,
+                          borderRadius: '8px'
                         }}
                         component={Link}
                         variant="contained"

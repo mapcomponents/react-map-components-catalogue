@@ -53,7 +53,7 @@ function App() {
         style={{
           flexGrow: 1,
           paddingTop: "280px",
-          marginBottom: "100px",
+          paddingBottom: '100px'
         }}
       >
         <Routes>

@@ -77,7 +77,7 @@ function StoryTeaserList(props) {
         style={
           mediaIsMobile
             ? { paddingLeft: "30px", paddingRight: "30px", marginTop: "0px" }
-            : { marginTop: "0px" }
+            : { marginTop: "0px", }
         }
         key="componentContainer"
       >
