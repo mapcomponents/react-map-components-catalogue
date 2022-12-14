@@ -64,10 +64,21 @@ export default function Header() {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: mediaIsMobile ? "space-between" : "flex-end",
           }}
           className="topbar"
         >
+          {mediaIsMobile && (
+            <div
+              style={{
+                height: "46px",
+                display: "flex",
+                marginTop: "7px",
+              }}
+            >
+              <LanguageSelection></LanguageSelection>
+            </div>
+          )}
           <ul>
             <li>
               <a
@@ -123,14 +134,14 @@ export default function Header() {
             />
           </Link>
         </Grid>
-          <Grid
-            item
-            md={9}
-            xs={12}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <WebsiteHeader expanded={menuExpanded} />
-          </Grid>
+        <Grid
+          item
+          md={9}
+          xs={12}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <WebsiteHeader expanded={menuExpanded} />
+        </Grid>
         {mediaIsMobile && (
           <button
             type="button"
