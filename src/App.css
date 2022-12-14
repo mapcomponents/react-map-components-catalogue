@@ -1,10 +1,10 @@
 body {
   background-color: #fff;
   color: #282828;
-    font-size: 1rem;
-    font-family: 'Hero New', sans-serif;
-    font-weight: 400;
-    -webkit-text-size-adjust: none;
+  font-size: 1rem;
+  font-family: "Hero New", sans-serif;
+  font-weight: 400;
+  -webkit-text-size-adjust: none;
 }
 
 .App-logo {
@@ -26,7 +26,7 @@ body {
   opacity: 0;
   transition: all 800ms linear;
 }
-.roundCorners{
+.roundCorners {
   border-radius: 30px;
 }
 .cutCorners {
@@ -83,7 +83,7 @@ body {
   -webkit-box-orient: vertical;
 }
 
-ul.menu {
+.menu {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -184,8 +184,122 @@ a {
   transition: 0.3s ease;
 }
 .topbar a:hover {
-  color: #009FE3;
+  color: #009fe3;
 }
-.menu li a.btn:hover, form button:hover {
+.menu li a.btn:hover,
+form button:hover {
   filter: brightness(110%);
+}
+
+.navbar-toggle {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  appearance: none;
+}
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background-color: #282828;
+  position: relative;
+  transition: 0.3s ease;
+  margin: 0 auto;
+  will-change: background-color;
+}
+
+.navbar-toggle .icon-bar:before,
+.navbar-toggle .icon-bar:after {
+  content: "";
+  display: block;
+  background-color: #282828;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  transform: rotate(0deg);
+  transform-origin: center;
+  transition: 0.3s ease;
+  will-change: transform;
+}
+
+.navbar-toggle .icon-bar:before {
+  top: -7px;
+}
+
+.navbar-toggle .icon-bar:after {
+  top: 7px;
+}
+
+.navbar-toggle.expanded .icon-bar {
+  background-color: transparent;
+}
+
+.navbar-toggle.expanded .icon-bar:before {
+  left: 4px;
+  top: 0;
+  width: 20px;
+  transform: rotate(45deg);
+}
+
+.navbar-toggle.expanded .icon-bar:after {
+  left: 4px;
+  top: 0;
+  width: 20px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .menu {
+  }
+  .menu {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    flex-flow: column;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    will-change: max-height, padding;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  .menu li a:not(.btn) {
+    padding: 0 16px 0 40px;
+    text-align: left;
+    line-height: 56px;
+    opacity: 0;
+    transition: 0s ease-in;
+    will-change: padding, opacity;
+  }
+
+  .menu li a.btn {
+    margin: 24px 16px 24px 40px;
+    opacity: 0;
+    will-change: margin-left, opacity;
+    transition: 0s ease-in;
+  }
+
+  .menu.expanded {
+    padding: 24px 0 0;
+    max-height: 660px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .menu.expanded li a:not(.btn) {
+    padding: 0 16px;
+    opacity: 1;
+    transition: 0.5s ease-out;
+  }
+
+  .menu.expanded li a.btn {
+    margin-left: 16px;
+    opacity: 1;
+    transition: 0.5s ease-out;
+  }
 }

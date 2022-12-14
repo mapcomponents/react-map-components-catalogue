@@ -40,7 +40,6 @@ export default function CatalogueHeader() {
         alignItems: "center",
       }}
     >
-      {!mediaIsMobile && (
         <ToggleButtonGroup
           variant="contained"
           color="primary"
@@ -64,7 +63,6 @@ export default function CatalogueHeader() {
             {t("sampleApplications")}
           </ToggleButton>
         </ToggleButtonGroup>
-      )}
     </Grid>
   );
 }

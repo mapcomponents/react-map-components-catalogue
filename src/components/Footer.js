@@ -66,7 +66,7 @@ function Footer() {
       className={classes.footer}
     >
       <Container>
-        <div class="container">
+        <div className="container">
           <ul
             style={{
               margin: "0 0 1rem",
@@ -105,7 +105,7 @@ function Footer() {
             </li>
           </ul>
           <p
-            class="disclaimer"
+            className="disclaimer"
             style={{ margin: 0, textAlign: "center", fontWeight: 400 }}
           >
             ©&nbsp;2022&nbsp;WhereGroup GmbH. Alle Rechte vorbehalten.

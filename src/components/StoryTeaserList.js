@@ -37,6 +37,7 @@ function StoryTeaserList(props) {
           <FilterDropdown
             filterState={filterState}
             setFilterState={setFilterState}
+            sx={{paddingLeft:mediaIsMobile?"32px":"0"}}
           ></FilterDropdown>
         </Grid>
         <Grid xs={6} key="search" item>

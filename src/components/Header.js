@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../logo.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import HamburgerMenuMobile from "./HamburgerMenuMobile";
@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    position: 'fixed',
-    zIndex: 1000
+    position: "fixed",
+    zIndex: 1000,
   },
   horizontalLine: {
     margin: "0",
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
+  const [menuExpanded, setMenuExpanded] = useState(false);
 
   return (
     <AppBar position="static" className={classes.header}>
@@ -92,10 +93,12 @@ export default function Header() {
         container
         sx={{
           maxWidth: "1200px",
-          height: "80px",
+          height: mediaIsMobile ? "64px" : "80px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignContent: "space-between",
+          ...(mediaIsMobile ? { paddingLeft: "16px" } : {}),
         }}
       >
         <Grid
@@ -120,19 +123,30 @@ export default function Header() {
             />
           </Link>
         </Grid>
-        <Grid
-          item
-          md={9}
-          xs={12}
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <WebsiteHeader />
-        </Grid>
+          <Grid
+            item
+            md={9}
+            xs={12}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <WebsiteHeader expanded={menuExpanded} />
+          </Grid>
+        {mediaIsMobile && (
+          <button
+            type="button"
+            className={"navbar-toggle" + (menuExpanded ? " expanded" : "")}
+            onClick={() => setMenuExpanded((val) => !val)}
+          >
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar"></span>
+          </button>
+        )}
       </Grid>
       <hr className={classes.horizontalLine} />
-      <Grid container sx={{ maxWidth: "1200px" }}>
+      <Grid container sx={{ maxWidth: "1200px", justifyContent: "center" }}>
         <CatalogueHeader />
-        <HeaderMenuRight />
+        {/*<HeaderMenuRight />*/}
+        {!mediaIsMobile && <LanguageSelection></LanguageSelection>}
       </Grid>
     </AppBar>
   );

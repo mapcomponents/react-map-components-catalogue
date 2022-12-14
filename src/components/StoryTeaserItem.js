@@ -5,6 +5,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import { Grid, Paper } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     marginBottom: "8px",
     fontSize: ".7rem",
+    "@media (max-width: 900px)": {
+    fontSize: ".5rem",
+    },
   },
   title: {
     marginTop: "auto",
@@ -73,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "0",
     color: "#282828",
     transition: "0.3s ease",
+    "@media (max-width: 900px)": {
+      fontSize: "clamp(1rem, 5vw, 1rem)",
+    },
   },
   plusIcon: {
     position: "absolute",
@@ -80,10 +87,14 @@ const useStyles = makeStyles((theme) => ({
     bottom: "25px",
     fontSize: "2.5rem",
     transition: "0.3s ease",
+    "@media (max-width: 900px)": {
+      fontSize: "1rem",
+    },
   },
 }));
 
 function StoryTeaserItem(props) {
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles();
   const basepath = useResolvedPath("/");
   const meta = props.meta || {};
@@ -103,7 +114,7 @@ function StoryTeaserItem(props) {
                 : props.compData.title}
             </h3>
             <div className={`${classes.plusIcon}`}>
-              <AddCircleOutlineIcon sx={{ fontSize: "48px" }} />
+              <AddCircleOutlineIcon sx={{ fontSize: mediaIsMobile?"30px":"48px" }} />
             </div>
           </div>
 
