@@ -1,54 +1,64 @@
 {
   "$id": "https://example.com/component.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Component",
   "description": "Component",
   "type": "object",
-  "properties": {
-    "category": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "i18n": {
-      "type": "object",
-      "properties": {
-        "de": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "title": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "name": {
-      "type": "string"
-    },
-    "price": {
-      "type": "integer"
-    },
-    "tags": {
-      "type": "array"
-    },
-    "title": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    }
-  },
   "patternProperties": {
     "^.*$": {
-      "type": "object"
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "i18n": {
+          "type": "object",
+          "properties": {
+            "^.*$": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["title", "description"]
+            }
+          }
+        },
+        "tags": {
+          "type": "array"
+        },
+        "category": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "description",
+        "i18n",
+        "tags",
+        "category",
+        "type",
+        "price"
+      ]
     }
-  },
-  "additionalProperties": false,
-  "required": ["name", "title"],
-  "dependentRequired": ["name", "title"]
+  }
 }
