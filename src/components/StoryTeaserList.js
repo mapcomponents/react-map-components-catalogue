@@ -15,7 +15,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterDropdown from "./FilterDropdown";
 import Tag from "./Tag";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const MccTextField = styled(TextField)({
   ".MuiOutlinedInput-notchedOutline": { border: 0 },
@@ -37,7 +37,6 @@ function StoryTeaserList(props) {
           <FilterDropdown
             filterState={filterState}
             setFilterState={setFilterState}
-            sx={{paddingLeft:mediaIsMobile?"32px":"0"}}
           ></FilterDropdown>
         </Grid>
         <Grid xs={6} key="search" item>
@@ -45,7 +44,7 @@ function StoryTeaserList(props) {
             InputProps={{
               startAdornment: <SearchIcon color="primary" />,
             }}
-            InputLabelProps={{ style: { } }}
+            InputLabelProps={{ style: {} }}
             placeholder={t("search")}
             variant="outlined"
             onChange={(e) => setSearch(e.target.value)}
@@ -59,7 +58,6 @@ function StoryTeaserList(props) {
           ></MccTextField>
         </Grid>
       </Grid>
-
 
       {filterState.map((tag) => {
         return (
@@ -75,11 +73,7 @@ function StoryTeaserList(props) {
       <Grid
         container
         spacing={4}
-        style={
-          mediaIsMobile
-            ? { paddingLeft: "30px", paddingRight: "30px", marginTop: "0px" }
-            : { marginTop: "0px", }
-        }
+        style={{ marginTop: "0px" }}
         key="componentContainer"
       >
         {Object.keys(demoContext.componentData).map((componentName) => {
