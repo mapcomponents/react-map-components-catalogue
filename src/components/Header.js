@@ -118,8 +118,8 @@ export default function Header() {
           xs={8}
           style={{ display: "flex", alignItems: "center" }}
         >
-          <Link
-            to="/"
+          <a
+            href="https://mapcomponents.org/"
             style={{
               lineHeight: 0,
             }}
@@ -132,7 +132,7 @@ export default function Header() {
               alt="logo"
               style={{ height: "40px", width: "auto" }}
             />
-          </Link>
+          </a>
         </Grid>
         <Grid
           item
