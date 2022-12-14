@@ -20,7 +20,7 @@
         },
         "i18n": {
           "type": "object",
-          "properties": {
+          "patternProperties": {
             "^.*$": {
               "additionalProperties": false,
               "type": "object",
