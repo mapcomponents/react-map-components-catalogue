@@ -44,9 +44,6 @@
         },
         "type": {
           "type": "string"
-        },
-        "price": {
-          "type": "number"
         }
       },
       "required": [
@@ -56,8 +53,7 @@
         "i18n",
         "tags",
         "category",
-        "type",
-        "price"
+        "type"
       ]
     }
   }
