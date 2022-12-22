@@ -1,16 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 
 import DemoContext from "./DemoContext";
 
 import { Grid } from "@mui/material";
 
-import theme from "../theme.js";
 
 import { useTranslation } from "react-i18next";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import StoryTeaserItem from "./StoryTeaserItem";
-import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterDropdown from "./FilterDropdown";
@@ -26,7 +23,6 @@ function StoryTeaserList(props) {
   const [search, setSearch] = useState("");
   const [filterState, setFilterState] = useState([]);
   const { t, i18n } = useTranslation();
-  const mediaIsMobile = useMediaQuery("(max-width:900px)");
 
   var atLeastOneItem = 0;
 

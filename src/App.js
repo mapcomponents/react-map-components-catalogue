@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import makeStyles from "@mui/styles/makeStyles";
-import theme from "./theme.js";
 
 import { Container, Box } from "@mui/material";
 

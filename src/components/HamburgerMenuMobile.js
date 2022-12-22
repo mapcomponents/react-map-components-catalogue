@@ -1,7 +1,6 @@
 import React from "react";
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton, Grid } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { IconButton } from "@mui/material";
 
 const HamburgerMenuMobile = (props) => {
   return (

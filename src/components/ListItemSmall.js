@@ -14,27 +14,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ListItemSmall(props) {
+function ListItemSmall({ component_id, ...props }) {
   const classes = useStyles();
-
-  const component_id = props.component_id;
 
   const demoContext = useContext(DemoContext);
 
   const [componentData, setComponentData] = useState({});
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (!demoContext.componentData?.[component_id]) return;
 
     setComponentData(demoContext.componentData[component_id]);
-  }, [demoContext.componentData, demoContext]);
+  }, [demoContext.componentData, demoContext, component_id]);
 
   return (
     <Link
       to={"/" + i18n.resolvedLanguage + "/component-detail/" + component_id}
-      style={{  textDecoration: "none", marginTop: "10px" }}
+      style={{ textDecoration: "none", marginTop: "10px" }}
       key={component_id}
     >
       <Grid

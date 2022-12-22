@@ -1,29 +1,10 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
 import theme from "../theme.js";
-
-import { useTheme } from "@mui/styles";
-
-import { Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import Paper from "@mui/material/Paper";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import { Divider } from "@mui/material";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-
-import { ReactComponent as Wglogo } from "../assets/wheregroup-logo-white.svg";
-
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -50,9 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Footer() {
-  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles(theme);
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Paper

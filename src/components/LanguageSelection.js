@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,15 +13,24 @@ const languages = {
 const useStyles = makeStyles((theme) => ({
   button: {
     color: theme.palette.secondary.greyText,
+    border: "none",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "initial",
+      color: theme.palette.primary.main,
+    },
   },
   selected: {
     color: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: "initial",
+    },
   },
 }));
 
 const LanguageSelection = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   let resolvedLanguage = i18n.resolvedLanguage;
@@ -40,16 +49,16 @@ const LanguageSelection = () => {
   };
 
   let buttons = Object.keys(languages).map((key, index) => (
-    <div key={key}>
-      <span style={{ whiteSpace: "pre" }}>
-        {index != 0 ? " | " : ""}
-      </span>
+    <div key={key} style={{display:'flex', alignContent:'center', alignItems:'center'}}>
+      <div>
+        {index !== 0 ? " | " : ""}
+      </div>
 
       <Button
         className={(key === resolvedLanguage ? classes.selected : classes.button) }
         onClick={() => handleChangeLanguage(key)}
-        underline="hover"
         key={key}
+        variant='text'
       >
         {key.toUpperCase()}
       </Button>
