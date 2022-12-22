@@ -33,16 +33,12 @@ function DemoView(props) {
           }
         })
     },
-    [demoUrl, demoContext]
+    [ demoContext, component_name]
   );
 
   useEffect(() => {
     init(demo_id);
-  }, []);
-
-  useEffect(() => {
-    init(demo_id);
-  }, [demoContext.storybookData, init, demo_id]);
+  }, [init,  demo_id]);
 
   return (
     <div

@@ -1,14 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import logo from "../logo.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import HamburgerMenuMobile from "./HamburgerMenuMobile";
 import LanguageSelection from "./LanguageSelection";
-import DemoContext from "./DemoContext";
-
 import makeStyles from "@mui/styles/makeStyles";
-import { Link } from "react-router-dom";
 
-import { Grid, AppBar, Toolbar } from "@mui/material";
+import { Grid, AppBar } from "@mui/material";
 import WebsiteHeader from "./WebsiteHeader";
 import CatalogueHeader from "./CatalogueHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -162,31 +158,3 @@ export default function Header() {
     </AppBar>
   );
 }
-
-const HeaderMenuRight = () => {
-  const mediaIsMobile = useMediaQuery("(max-width:900px)");
-  const demoContext = useContext(DemoContext);
-
-  return (
-    <Grid
-      item
-      md={2}
-      xs={mediaIsMobile ? 4 : 12}
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center",
-        fontSize: "0.8em",
-      }}
-    >
-      {!mediaIsMobile && <LanguageSelection></LanguageSelection>}
-      <div id="separator" style={{ width: "30px" }}></div>
-
-      {mediaIsMobile && (
-        <HamburgerMenuMobile
-          setMenuDrawerOpen={demoContext.setMenuDrawerOpen}
-        ></HamburgerMenuMobile>
-      )}
-    </Grid>
-  );
-};

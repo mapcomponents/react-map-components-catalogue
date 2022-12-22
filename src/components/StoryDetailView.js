@@ -13,21 +13,17 @@ import theme from "../theme.js";
 
 import DemoContext from "./DemoContext";
 
-import makeStyles from "@mui/styles/makeStyles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Grid, Button, Paper, Chip } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 //import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 //import ExtensionIcon from '@mui/icons-material/Extension';
 //import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ListItemSmall from "./ListItemSmall";
-import StarIcon from "@mui/icons-material/Star";
 import Divider from "@mui/material/Divider";
 import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
 
-const useStyles = makeStyles((theme) => ({
-}));
 function StoryDetailView(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const basepath = useResolvedPath("/");
@@ -38,8 +34,6 @@ function StoryDetailView(props) {
 
   const [description, setDescription] = useState("");
   const [componentTitle, setComponentTitle] = useState("");
-
-  const [bookmarkSet, setBookmarkSet] = useState(false);
 
   //Retrieve all sample applications where this component is integrated
   const appsWhichImplement = useMemo(() => {
@@ -83,7 +77,7 @@ function StoryDetailView(props) {
       .then((text) => {
         setDescription(text);
       });
-  }, [componentData, i18n.resolvedLanguage]);
+  }, [componentData, i18n.resolvedLanguage, t]);
 
   useEffect(() => {
     if (
@@ -113,11 +107,6 @@ function StoryDetailView(props) {
   useEffect(() => {
     fetchDescription();
   }, [fetchDescription]);
-
-  //Set state of the bookmark icon. Called when demoContext.cartItems changed
-  useEffect(() => {
-    setBookmarkSet(demoContext.cartItems.includes(componentData?.name));
-  }, [demoContext.cartItems, componentData]);
 
   return (
     <>
@@ -225,14 +214,14 @@ function StoryDetailView(props) {
               ></Divider>
 
               <Grid container spacing={2} style={{ marginTop: "0px" }}>
-                {componentData &&
-                  componentData.demos &&
-                  componentData.demos.map((demo) => (
+                {
+                  componentData?.demos?.length &&
+                  componentData.demos.map((demo,idx) => (
                     <Grid
                       item
                       xs={6}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
-                      key={demo.id ? demo.id : demo.name}
+                      key={demo.name + idx}
                     >
                       <Button
                         style={{
@@ -267,7 +256,7 @@ function StoryDetailView(props) {
                   ))}
               </Grid>
             </Grid>
-            {componentData.components && (
+            {componentData.components?.length && (
               <Grid
                 item
                 xs={12}
@@ -279,20 +268,20 @@ function StoryDetailView(props) {
                   variant="fullWidth"
                   sx={{ bgcolor: theme.palette.secondary.main }}
                 ></Divider>
-                {componentData.components.map((el) => (
-                  <ListItemSmall component_id={el} key={el.name} />
+                {componentData.components.map((el, idx) => (
+                  <ListItemSmall component_id={el} key={el + idx} />
                 ))}
               </Grid>
             )}
-            {appsWhichImplement.length !== 1 && (
+            {appsWhichImplement?.length > 0 && (
               <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
                 <h3>{t("includedIn")}</h3>
                 <Divider
                   variant="fullWidth"
                   sx={{ bgcolor: theme.palette.secondary.main }}
                 ></Divider>
-                {appsWhichImplement.map((el) => (
-                  <ListItemSmall component_id={el} key={el.name} />
+                {appsWhichImplement.map((el, idx) => (
+                  <ListItemSmall component_id={el} key={el.name + idx} />
                 ))}
               </Grid>
             )}

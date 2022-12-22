@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link, useResolvedPath } from "react-router-dom";
 
 import makeStyles from "@mui/styles/makeStyles";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "8px",
     fontSize: ".7rem",
     "@media (max-width: 900px)": {
-    fontSize: ".5rem",
+      fontSize: ".5rem",
     },
   },
   title: {
@@ -97,8 +97,7 @@ function StoryTeaserItem(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles();
   const basepath = useResolvedPath("/");
-  const meta = props.meta || {};
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const target = `/${i18n.resolvedLanguage}/component-detail/${props.kind}`;
 
@@ -114,7 +113,9 @@ function StoryTeaserItem(props) {
                 : props.compData.title}
             </h3>
             <div className={`${classes.plusIcon}`}>
-              <AddCircleOutlineIcon sx={{ fontSize: mediaIsMobile?"30px":"48px" }} />
+              <AddCircleOutlineIcon
+                sx={{ fontSize: mediaIsMobile ? "30px" : "48px" }}
+              />
             </div>
           </div>
 
