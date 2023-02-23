@@ -5,6 +5,7 @@ import DemoContext from "./DemoContext";
 
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useTranslation } from "react-i18next";
 
 function DemoView(props) {
   const { component_name, demo_id } = useParams();
@@ -15,6 +16,9 @@ function DemoView(props) {
 
   const [demoUrl, setDemoUrl] = useState("");
   const [fadein, setFadein] = useState(false);
+  const { i18n } = useTranslation();
+
+  const detailViewPath = `/${i18n.resolvedLanguage}/component-detail/${component_name}`;
 
   const init = useCallback(
     (demo_id) => {
@@ -79,7 +83,7 @@ function DemoView(props) {
           onClick={() => {
             setFadein(false);
             setTimeout(() => {
-              navigate(-1);
+              navigate(detailViewPath);
             }, 480);
           }}
           aria-label="delete"

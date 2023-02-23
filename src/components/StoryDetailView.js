@@ -256,7 +256,7 @@ function StoryDetailView(props) {
                   ))}
               </Grid>
             </Grid>
-            {componentData.components?.length && (
+            {componentData?.components?.length > 0 && (
               <Grid
                 item
                 xs={12}
