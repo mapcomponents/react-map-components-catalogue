@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useEffect } from "react";
+import React, { useCallback, useState, useContext, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
@@ -15,6 +15,7 @@ function DemoView(props) {
   const demoContext = useContext(DemoContext);
 
   const [demoUrl, setDemoUrl] = useState("");
+  const [closeButtonPosition, setCloseButtonPosition] = useState("bottom_left");
   const [fadein, setFadein] = useState(false);
   const { i18n } = useTranslation();
 
@@ -22,27 +23,56 @@ function DemoView(props) {
 
   const init = useCallback(
     (demo_id) => {
-      if (!demoContext.componentData?.[component_name] || !demo_id ) return;
+      if (!demoContext.componentData?.[component_name] || !demo_id) return;
 
       setFadein(true);
 
       let _compData = demoContext.componentData?.[component_name];
 
-        _compData.demos?.forEach(demo => {
-          if ((demo.id?demo.id:demo.name) === demo_id) {
-            setDemoUrl(demo.url);
-            setTimeout(() => {
-              setDemoViewerOpen(true);
-            }, 500);
+      _compData.demos?.forEach((demo) => {
+        if ((demo.id ? demo.id : demo.name) === demo_id) {
+          setDemoUrl(demo.url);
+          if (typeof demo.closeButtonPosition !== "undefined") {
+            setCloseButtonPosition(demo.closeButtonPosition);
           }
-        })
+          setTimeout(() => {
+            setDemoViewerOpen(true);
+          }, 500);
+        }
+      });
     },
-    [ demoContext, component_name]
+    [demoContext, component_name]
   );
+
+  const closeButtonCss = useMemo(() => {
+    switch (closeButtonPosition) {
+      case "top_left":
+        return {
+          top: 0,
+          left: 0,
+        };
+      case "top_right":
+        return {
+          top: 0,
+          right: 0,
+        };
+      case "bottom_right":
+        return {
+          bottom: 0,
+          right: 0,
+        };
+      case "bottom_left":
+      default:
+        return {
+          bottom: 0,
+          left: 0,
+        };
+    }
+  }, [closeButtonPosition]);
 
   useEffect(() => {
     init(demo_id);
-  }, [init,  demo_id]);
+  }, [init, demo_id]);
 
   return (
     <div
@@ -76,7 +106,7 @@ function DemoView(props) {
           cursor: "pointer",
           position: "fixed",
           zIndex: 1020,
-          bottom: 0,
+          ...closeButtonCss,
         }}
       >
         <IconButton
@@ -86,7 +116,7 @@ function DemoView(props) {
               navigate(detailViewPath);
             }, 480);
           }}
-          aria-label="delete"
+          aria-label="close"
           size="large"
         >
           <HighlightOffIcon style={{ fontSize: "3em" }}></HighlightOffIcon>
