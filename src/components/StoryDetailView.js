@@ -2,7 +2,6 @@ import React, {
   useState,
   useContext,
   useEffect,
-  useCallback,
   useMemo,
 } from "react";
 import { useResolvedPath, Link } from "react-router-dom";
@@ -15,16 +14,13 @@ import DemoContext from "./DemoContext";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Grid, Button } from "@mui/material";
-//import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-//import ExtensionIcon from '@mui/icons-material/Extension';
-//import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import ListItemSmall from "./ListItemSmall";
 import Divider from "@mui/material/Divider";
 import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
 
-function StoryDetailView(props) {
+function StoryDetailView() {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const basepath = useResolvedPath("/");
   const { component_id } = useParams();
@@ -56,40 +52,25 @@ function StoryDetailView(props) {
 
   const { t, i18n } = useTranslation();
 
-  const fetchDescription = useCallback(() => {
-    if (!componentData || (componentData && !componentData.name)) return;
-
-    let currentLanguage = i18n.resolvedLanguage;
-    fetch(
-      componentData.url +
-        "/catalogue/" +
-        componentData.name +
-        "." +
-        currentLanguage +
-        ".html"
-    )
-      .then((res) => {
-        if (!res.ok) {
-          return t("noDescription");
-        }
-        return res.text();
-      })
-      .then((text) => {
-        setDescription(text);
-      });
-  }, [componentData, i18n.resolvedLanguage, t]);
-
   useEffect(() => {
     if (
       demoContext?.componentData &&
       typeof demoContext.componentData[component_id] !== "undefined"
     ) {
       let currentLanguage = i18n.resolvedLanguage;
-      let componentTitle =
-        currentLanguage !== "en"
-          ? demoContext.componentData[component_id].i18n[currentLanguage].title
-          : demoContext.componentData[component_id].title;
+      let componentTitle = demoContext.componentData[component_id].i18n?.[
+        currentLanguage
+      ]?.title
+        ? demoContext.componentData[component_id].i18n[currentLanguage].title
+        : demoContext.componentData[component_id].title;
       setComponentTitle(componentTitle);
+      let componentDescription = demoContext.componentData[component_id].i18n?.[
+        currentLanguage
+      ]?.description
+        ? demoContext.componentData[component_id].i18n[currentLanguage]
+            .description
+        : demoContext.componentData[component_id].description;
+      setDescription(componentDescription);
     }
   }, [
     component_id,
@@ -104,55 +85,17 @@ function StoryDetailView(props) {
     setComponentData(demoContext.componentData[component_id]);
   }, [demoContext.componentData, demoContext, component_id]);
 
-  useEffect(() => {
-    fetchDescription();
-  }, [fetchDescription]);
-
   return (
     <>
       <Grid container>
         <Grid item xs={12} md={6}>
           <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
         </Grid>
-        {/**
-         * add to bookmarks button
-        <Grid item xs={12} md={6}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            <Button
-              variant={bookmarkSet ? "contained" : "outlined"}
-              color="primary"
-              onClick={() => {
-                //add to cart but only if element not existing already
-                if (!demoContext.cartItems.includes(componentData.name)) {
-                  demoContext.setCartItems([
-                    ...demoContext.cartItems,
-                    componentData.name,
-                  ]);
-                }
-              }}
-            >
-              <StarIcon></StarIcon>
-            </Button>
-          </div>
-        </Grid>
-         */}
       </Grid>
 
-      <div
-        style={{ marginBottom: "50px" }}
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
+      <div style={{ marginBottom: "50px" }}>{description}</div>
 
-      <Grid
-        container
-        spacing={4}
-        key="contentContainer"
-      >
+      <Grid container spacing={4} key="contentContainer">
         <Grid
           item
           md={8}
@@ -214,9 +157,8 @@ function StoryDetailView(props) {
               ></Divider>
 
               <Grid container spacing={2} style={{ marginTop: "0px" }}>
-                {
-                  componentData?.demos?.length &&
-                  componentData.demos.map((demo,idx) => (
+                {componentData?.demos?.length &&
+                  componentData.demos.map((demo, idx) => (
                     <Grid
                       item
                       xs={6}
@@ -231,7 +173,7 @@ function StoryDetailView(props) {
                           flexDirection: "column",
                           alignContent: "center",
                           color: theme.palette.common.white,
-                          borderRadius: '8px'
+                          borderRadius: "8px",
                         }}
                         component={Link}
                         variant="contained"
