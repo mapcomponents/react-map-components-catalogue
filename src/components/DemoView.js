@@ -3,20 +3,17 @@ import { useParams } from "react-router-dom";
 
 import DemoContext from "./DemoContext";
 
-function DemoView(props) {
+function DemoView() {
   const { component_name, demo_id } = useParams();
 
   const [demoViewerOpen, setDemoViewerOpen] = useState(false);
   const demoContext = useContext(DemoContext);
 
   const [demoUrl, setDemoUrl] = useState("");
-  const [fadein, setFadein] = useState(false);
 
   const init = useCallback(
     (demo_id) => {
       if (!demoContext.componentData?.[component_name] || !demo_id) return;
-
-      setFadein(true);
 
       let _compData = demoContext.componentData?.[component_name];
 
@@ -42,7 +39,6 @@ function DemoView(props) {
 
   return (
     <div
-      className={fadein ? "demoOverlay-fadein" : "demoOverlay-fadeout"}
       style={{
         position: "fixed",
         zIndex: 1000,
@@ -53,19 +49,6 @@ function DemoView(props) {
         backgroundColor: "#000",
       }}
     >
-      <div
-        className={fadein ? "" : "demoOverlayBlackscreen-fadein"}
-        style={{
-          position: "fixed",
-          zIndex: 10000000,
-          top: 0,
-          right: 0,
-          left: 0,
-          height: "100vh",
-          backgroundColor: "#000",
-          display: fadein ? "none" : "block",
-        }}
-      ></div>
       {demoViewerOpen && (
         <iframe
           title="component-demo-viewer"

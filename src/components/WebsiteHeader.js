@@ -6,7 +6,7 @@ const websiteUrl = 'https://mapcomponents.org';
 
 export default function WebsiteHeader() {
   return (
-    <ul class="menu">
+    <ul className="menu">
       <li>
         <a href={websiteUrl + "/entdecken"} title="MapComponents entdecken">
           Entdecken
@@ -23,10 +23,11 @@ export default function WebsiteHeader() {
         </a>
       </li>
       <li>
-        <a href={websiteUrl + "/service"} class="has-sub">
-          Service<FontAwesomeIcon icon={faChevronDown} />
+        <a href={websiteUrl + "/service"} className="has-sub">
+          Service
+          <FontAwesomeIcon icon={faChevronDown} />
         </a>
-        <ul class="menu-lvl2">
+        <ul className="menu-lvl2">
           <li>
             <a href={websiteUrl + "/wartung"} title="Wartung">
               Wartung
@@ -40,7 +41,10 @@ export default function WebsiteHeader() {
         </ul>
       </li>
       <li>
-        <a href={websiteUrl + "/jetzt-ausprobieren"} class="btn btn-primary">
+        <a
+          href={websiteUrl + "/jetzt-ausprobieren"}
+          className="btn btn-primary"
+        >
           Jetzt ausprobieren
         </a>
       </li>
