@@ -159,11 +159,7 @@ function StoryDetailView(props) {
         dangerouslySetInnerHTML={{ __html: description }}
       />
 
-      <Grid
-        container
-        spacing={4}
-        key="contentContainer"
-      >
+      <Grid container spacing={4} key="contentContainer">
         <Grid
           item
           md={8}
@@ -242,8 +238,9 @@ function StoryDetailView(props) {
                           flexDirection: "column",
                           alignContent: "center",
                           color: theme.palette.common.white,
-                          borderRadius: '8px'
+                          borderRadius: "8px",
                         }}
+                        target="blank"
                         component={Link}
                         variant="contained"
                         to={
