@@ -2,6 +2,7 @@ import React, {
   useState,
   useContext,
   useEffect,
+  useCallback,
   useMemo,
 } from "react";
 import { useResolvedPath, Link } from "react-router-dom";
@@ -20,7 +21,7 @@ import Tag from "./Tag.js";
 
 import { useTranslation } from "react-i18next";
 
-function StoryDetailView() {
+function StoryDetailView(props) {
   const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const basepath = useResolvedPath("/");
   const { component_id } = useParams();
@@ -52,25 +53,40 @@ function StoryDetailView() {
 
   const { t, i18n } = useTranslation();
 
+  const fetchDescription = useCallback(() => {
+    if (!componentData || (componentData && !componentData.name)) return;
+
+    let currentLanguage = i18n.resolvedLanguage;
+    fetch(
+      componentData.url +
+        "/catalogue/" +
+        componentData.name +
+        "." +
+        currentLanguage +
+        ".html"
+    )
+      .then((res) => {
+        if (!res.ok) {
+          return t("noDescription");
+        }
+        return res.text();
+      })
+      .then((text) => {
+        setDescription(text);
+      });
+  }, [componentData, i18n.resolvedLanguage, t]);
+
   useEffect(() => {
     if (
       demoContext?.componentData &&
       typeof demoContext.componentData[component_id] !== "undefined"
     ) {
       let currentLanguage = i18n.resolvedLanguage;
-      let componentTitle = demoContext.componentData[component_id].i18n?.[
-        currentLanguage
-      ]?.title
-        ? demoContext.componentData[component_id].i18n[currentLanguage].title
-        : demoContext.componentData[component_id].title;
+      let componentTitle =
+        currentLanguage !== "en"
+          ? demoContext.componentData[component_id].i18n[currentLanguage].title
+          : demoContext.componentData[component_id].title;
       setComponentTitle(componentTitle);
-      let componentDescription = demoContext.componentData[component_id].i18n?.[
-        currentLanguage
-      ]?.description
-        ? demoContext.componentData[component_id].i18n[currentLanguage]
-            .description
-        : demoContext.componentData[component_id].description;
-      setDescription(componentDescription);
     }
   }, [
     component_id,
@@ -85,6 +101,10 @@ function StoryDetailView() {
     setComponentData(demoContext.componentData[component_id]);
   }, [demoContext.componentData, demoContext, component_id]);
 
+  useEffect(() => {
+    fetchDescription();
+  }, [fetchDescription]);
+
   return (
     <>
       <Grid container>
@@ -93,7 +113,10 @@ function StoryDetailView() {
         </Grid>
       </Grid>
 
-      <div style={{ marginBottom: "50px" }}>{description}</div>
+      <div
+        style={{ marginBottom: "50px" }}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
 
       <Grid container spacing={4} key="contentContainer">
         <Grid
@@ -133,10 +156,7 @@ function StoryDetailView() {
                 ))}
             </Grid>
             <Grid key="description" item xs={12} style={{ marginTop: "30px" }}>
-              <div
-                className="content"
-                //dangerouslySetInnerHTML={{ __html: description }}
-              ></div>
+              <div className="content"></div>
             </Grid>
           </Grid>
         </Grid>
@@ -157,13 +177,14 @@ function StoryDetailView() {
               ></Divider>
 
               <Grid container spacing={2} style={{ marginTop: "0px" }}>
-                {componentData?.demos?.length &&
-                  componentData.demos.map((demo, idx) => (
+                {componentData &&
+                  componentData.demos &&
+                  componentData.demos.map((demo) => (
                     <Grid
                       item
                       xs={6}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
-                      key={demo.name + idx}
+                      key={demo.id ? demo.id : demo.name}
                     >
                       <Button
                         style={{
@@ -175,6 +196,7 @@ function StoryDetailView() {
                           color: theme.palette.common.white,
                           borderRadius: "8px",
                         }}
+                        target="blank"
                         component={Link}
                         variant="contained"
                         to={
@@ -198,7 +220,7 @@ function StoryDetailView() {
                   ))}
               </Grid>
             </Grid>
-            {componentData?.components?.length > 0 && (
+            {componentData.components && (
               <Grid
                 item
                 xs={12}
@@ -210,45 +232,26 @@ function StoryDetailView() {
                   variant="fullWidth"
                   sx={{ bgcolor: theme.palette.secondary.main }}
                 ></Divider>
-                {componentData.components.map((el, idx) => (
-                  <ListItemSmall component_id={el} key={el + idx} />
+                {componentData.components.map((el) => (
+                  <ListItemSmall component_id={el} key={el.name} />
                 ))}
               </Grid>
             )}
-            {appsWhichImplement?.length > 0 && (
+            {appsWhichImplement.length !== 1 && (
               <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
                 <h3>{t("includedIn")}</h3>
                 <Divider
                   variant="fullWidth"
                   sx={{ bgcolor: theme.palette.secondary.main }}
                 ></Divider>
-                {appsWhichImplement.map((el, idx) => (
-                  <ListItemSmall component_id={el} key={el.name + idx} />
+                {appsWhichImplement.map((el) => (
+                  <ListItemSmall component_id={el} key={el.name} />
                 ))}
               </Grid>
             )}
           </Grid>
         </Grid>
       </Grid>
-
-      {/*
-      <Grid container spacing={0} key="descriptionContainer">
-        <Grid item xs={12} style={{ marginTop: "30px" }}>
-          <div
-            style={{
-              minHeight: "150px",
-            }}
-          >
-            <h3>{t("description")}</h3>
-            <Divider
-              variant="fullWidth"
-              sx={{ bgcolor: theme.palette.secondary.main }}
-            ></Divider>
-          </div>
-        </Grid>
-      </Grid>
-
-          */}
     </>
   );
 }

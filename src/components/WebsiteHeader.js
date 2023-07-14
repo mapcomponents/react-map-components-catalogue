@@ -4,27 +4,28 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 const websiteUrl = 'https://mapcomponents.org';
 
-export default function WebsiteHeader(props) {
+export default function WebsiteHeader() {
   return (
-    <ul className={"menu" + (props.expanded?' expanded':'')}>
+    <ul className="menu">
       <li>
-        <a href={websiteUrl + "/entdecken"} title="MapComponents entdecken" style={{transitionDelay: "0.15s"}}>
+        <a href={websiteUrl + "/entdecken"} title="MapComponents entdecken">
           Entdecken
         </a>
       </li>
       <li>
-        <a href={websiteUrl + "/dokumentation"} title="Dokumentation" style={{transitionDelay: "0.2s"}}>
+        <a href={websiteUrl + "/dokumentation"} title="Dokumentation">
           Dokumentation
         </a>
       </li>
       <li>
-        <a href={websiteUrl + "/aktuelles"} title="Aktuelles" style={{transitionDelay: "0.25s"}}>
+        <a href={websiteUrl + "/aktuelles"} title="Aktuelles">
           Aktuelles
         </a>
       </li>
       <li>
-        <a href={websiteUrl + "/service"} className="has-sub" style={{transitionDelay: "0.30s"}}>
-          Service<FontAwesomeIcon icon={faChevronDown} />
+        <a href={websiteUrl + "/service"} className="has-sub">
+          Service
+          <FontAwesomeIcon icon={faChevronDown} />
         </a>
         <ul className="menu-lvl2">
           <li>
@@ -40,7 +41,10 @@ export default function WebsiteHeader(props) {
         </ul>
       </li>
       <li>
-        <a href={"https://catalogue.mapcomponents.org/"} className="btn btn-primary" style={{transitionDelay: "0.35s"}}>
+        <a
+          href={websiteUrl + "/jetzt-ausprobieren"}
+          className="btn btn-primary"
+        >
           Jetzt ausprobieren
         </a>
       </li>

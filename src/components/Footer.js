@@ -1,38 +1,28 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { Paper, Container } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 
 import theme from "../theme.js";
-import { Container } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import Paper from "@mui/material/Paper";
-import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    //backgroundColor: theme.palette.secondary.lighterDarkBackground,
     maxWidth: "100%",
     padding: "40px 0",
   },
   link: {
     color: theme.palette.secondary.greyText,
     textDecoration: "none",
-    /**color: theme.palette.secondary.greyText,
-    "&:hover": {
-      color: theme.palette.secondary.contrastText + " !important",
-    },
-    "&:visited": {
-      color: theme.palette.secondary.greyText,
-    },*/
   },
   logo: {
-    //fill: theme.palette.secondary.greyText,
     width: "230px",
-    //opacity: 0.6,
   },
 }));
 
 function Footer() {
   const classes = useStyles(theme);
-  const { i18n } = useTranslation();
+  // eslint-disable-next-line
+  const { t, i18n } = useTranslation();
 
   return (
     <Paper
