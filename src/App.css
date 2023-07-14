@@ -239,8 +239,6 @@ form button:hover {
 
 @media (max-width: 900px) {
   .menu {
-  }
-  .menu {
     background: #fff;
     position: absolute;
     left: 0;
