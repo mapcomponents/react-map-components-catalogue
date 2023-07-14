@@ -26,12 +26,12 @@ function DemoView() {
         }
       });
     },
-    [demoUrl, demoContext]
+    [demoContext, component_name]
   );
 
   useEffect(() => {
     init(demo_id);
-  }, []);
+  }, [init, demo_id]);
 
   useEffect(() => {
     init(demo_id);
