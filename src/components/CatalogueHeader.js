@@ -1,5 +1,4 @@
 import React from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import makeStyles from "@mui/styles/makeStyles";
 import { Link } from "react-router-dom";
 import { Grid, ToggleButtonGroup, ToggleButton } from "@mui/material";
@@ -26,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CatalogueHeader() {
-  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   const classes = useStyles();
   const { t, i18n } = useTranslation();
 
@@ -40,7 +38,6 @@ export default function CatalogueHeader() {
         alignItems: "center",
       }}
     >
-      {!mediaIsMobile && (
         <ToggleButtonGroup
           variant="contained"
           color="primary"
@@ -64,7 +61,6 @@ export default function CatalogueHeader() {
             {t("sampleApplications")}
           </ToggleButton>
         </ToggleButtonGroup>
-      )}
     </Grid>
   );
 }

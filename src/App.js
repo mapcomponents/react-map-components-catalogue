@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import makeStyles from "@mui/styles/makeStyles";
-import theme from "./theme.js";
 
 import { Container, Box } from "@mui/material";
 
@@ -14,6 +13,7 @@ import MenuDrawer from "./components/MenuDrawer";
 import StoryDetailView from "./components/StoryDetailView";
 import DemoView from "./components/DemoView";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
 import "./App.css";
 import Header from "./components/Header";
 
@@ -39,6 +39,7 @@ const Spacer = () => {
 };
 
 function App() {
+  const mediaIsMobile = useMediaQuery("(max-width:900px)");
   return (
     <Box
       style={{
@@ -52,7 +53,7 @@ function App() {
         className="content"
         style={{
           flexGrow: 1,
-          paddingTop: "280px",
+          paddingTop: mediaIsMobile?"200px":"280px",
           paddingBottom: '100px'
         }}
       >

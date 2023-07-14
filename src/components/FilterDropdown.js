@@ -29,7 +29,7 @@ const FilterDropdown = (props) => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 120, ...props.sx }}>
       <FormControl size="small" style={{ width: "40vw", maxWidth: "250px" }}>
         <InputLabel id="inputlabel-filter" sx={{}}>
           <FilterAltIcon

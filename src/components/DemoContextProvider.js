@@ -2,20 +2,18 @@ import React, { useMemo, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { DemoContextProviderCore } from "./DemoContext";
 
-function camelCaseToDash(str) {
-  if (typeof str === "string") {
-    return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
-  }
-  return "";
-}
+//function camelCaseToDash(str) {
+//  if (typeof str === "string") {
+//    return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
+//  }
+//  return "";
+//}
 
-function storiesJsonElToComponentId(el) {
-  return camelCaseToDash(el.kind + el.name)
-    .replace("/", "-")
-    .replaceAll(" ", "-");
-}
-
-const hostname_ = window.location.hostname;
+//function storiesJsonElToComponentId(el) {
+//  return camelCaseToDash(el.kind + el.name)
+//    .replace("/", "-")
+//    .replaceAll(" ", "-");
+//}
 
 let storybookUrls = [
   "https://mapcomponents.github.io/react-map-components-maplibre", // MapLibre
@@ -25,6 +23,8 @@ let storybookUrls = [
 
 let demoProviderUrls = [
   "https://mapcomponents.github.io/react-map-components-apps/mc_meta.json",
+  "https://mapcomponents.github.io/react-admin-demo-apps/mc_meta.json",
+  "https://mapcomponents.github.io/european_wolves_app/mc_meta.json",
 ];
 
 /**
@@ -125,7 +125,7 @@ const DemoContextProvider = ({ children }) => {
             }))(mcMetaUrls[r])
       );
     }
-    for (var r = 0, len = storybookUrls.length; r < len; r++) {
+    for (r = 0, len = storybookUrls.length; r < len; r++) {
       promises.push(
         ((url) =>
           fetch(url + "/stories.json")

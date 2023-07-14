@@ -7,7 +7,9 @@ const theme = createTheme({
   palette: {
     mode: "light",
     common: { black: "#282828", white: "#fff" },
-    background: { paper: "rgba(247, 247, 247, 1)", default: "#f3f3f3" },
+    background: {
+      main: "#fff",
+    },
     primary: {
       main: "#009fe3", //"#e4e8eb",
       light: "#02d7f2", //"#05B2FB"
@@ -21,9 +23,6 @@ const theme = createTheme({
       //greyText: "#b1b1b8",
       greyText: "#282828",
       //contrastText: "#fafafa",
-    },
-    background: {
-      main: "#fff",
     },
     grey: {
       main: "#cdcdcd", //"#757678"

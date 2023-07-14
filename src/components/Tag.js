@@ -1,12 +1,9 @@
 import React from "react";
 
-import { Chip } from "@mui/material";
-
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
 
 import theme from "../theme";
-import { lineHeight, textAlign } from "@mui/system";
 
 const Tag = (props) => {
   return (
@@ -16,7 +13,6 @@ const Tag = (props) => {
           backgroundColor: theme.palette.secondary.light,
           borderRadius: "10px",
           height: "20px",
-          display: "inline-block",
           margin: "10px 10px 10px 0px",
           color: theme.palette.secondary.greyText,
           fontSize: "10pt",
