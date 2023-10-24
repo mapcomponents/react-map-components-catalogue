@@ -65,6 +65,13 @@ const DemoContextProvider = ({ children }) => {
   /**
    * enrich storybook mc_meta.json data with thumbnail URL and demo URLs from stories.json
    */
+
+  /*
+componentData.stories.push(_storyData.filter((el) => {
+return  (el.name === 'Catalogue Demo');
+}));
+*/
+
   const applyStorybookDataToMcMeta = ({
     componentData,
     storybookData,
@@ -73,17 +80,23 @@ const DemoContextProvider = ({ children }) => {
   }) => {
     for (var storyId in storybookData.stories) {
       let _storyData = storybookData.stories[storyId];
+      console.log(_storyData);
       let _compName = _storyData.kind.split("/");
       if (typeof _compName[1] !== "undefined" && _compName[1] === compId) {
-        componentData.stories.push(_storyData);
-        componentData.url = url;
-        componentData.demos ||= [];
-        componentData.demos.push({
-          name: _storyData.name === "Example Config" ? "demo" : _storyData.name,
-          url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
-          id: _storyData.id,
-        });
-        componentData.thumbnail = url + "/thumbnails/" + _compName[1] + ".png";
+        if (
+          _storyData.name === "Catalogue Demo" ||
+          _storyData.name === "Example Config"
+        ) {
+          componentData.url = url;
+          componentData.demos ||= [];
+          componentData.demos.push({
+            name: "demo",
+            url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
+            id: _storyData.id,
+          });
+          componentData.thumbnail =
+            url + "/thumbnails/" + _compName[1] + ".png";
+        }
       }
     }
     return componentData;
