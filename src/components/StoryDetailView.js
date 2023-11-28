@@ -91,7 +91,6 @@ function StoryDetailView(props) {
 
     setComponentData(demoContext.componentData[component_id]);
   }, [demoContext.componentData, demoContext, component_id]);
-  console.log(componentData.demos);
 
   return (
     <>
@@ -168,7 +167,6 @@ function StoryDetailView(props) {
                       item
                       xs={6}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
-                      key={demo.name}
                     >
                       <Button
                         style={{
