@@ -54,12 +54,11 @@ const DemoContextProvider = ({ children }) => {
   }) => {
     for (var storyId in storybookData.stories) {
       let _storyData = storybookData.stories[storyId];
-      console.log(_storyData);
       let _compName = _storyData.kind.split("/");
       if (typeof _compName[1] !== "undefined" && _compName[1] === compId) {
         if (_storyData.name === "Catalogue Demo") {
           componentData.url = url;
-          componentData.demos ||= [];
+          componentData.demos = [];
           componentData.demos.push({
             name: "demo",
             url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
@@ -69,7 +68,7 @@ const DemoContextProvider = ({ children }) => {
             url + "/thumbnails/" + _compName[1] + ".png";
         } else if (_storyData.name === "Example Config") {
           componentData.url = url;
-          componentData.demos ||= [];
+          componentData.demos = [];
           componentData.demos.push({
             name: "demo",
             url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
@@ -80,6 +79,7 @@ const DemoContextProvider = ({ children }) => {
         }
       }
     }
+    console.log(componentData);
     return componentData;
   };
 
