@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import { useResolvedPath, Link } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
@@ -53,28 +47,25 @@ function StoryDetailView(props) {
 
   const { t, i18n } = useTranslation();
 
-  const fetchDescription = useCallback(() => {
-    if (!componentData || (componentData && !componentData.name)) return;
-
-    let currentLanguage = i18n.resolvedLanguage;
-    fetch(
-      componentData.url +
-        "/catalogue/" +
-        componentData.name +
-        "." +
-        currentLanguage +
-        ".html"
-    )
-      .then((res) => {
-        if (!res.ok) {
-          return t("noDescription");
-        }
-        return res.text();
-      })
-      .then((text) => {
-        setDescription(text);
-      });
-  }, [componentData, i18n.resolvedLanguage, t]);
+  useEffect(() => {
+    if (
+      demoContext?.componentData &&
+      typeof demoContext.componentData[component_id] !== "undefined"
+    ) {
+      let currentLanguage = i18n.resolvedLanguage;
+      let componentDes =
+        currentLanguage !== "en"
+          ? demoContext.componentData[component_id].i18n[currentLanguage]
+              .description
+          : demoContext.componentData[component_id].description;
+      setDescription(componentDes);
+    }
+  }, [
+    component_id,
+    demoContext.componentData,
+    demoContext,
+    i18n.resolvedLanguage,
+  ]);
 
   useEffect(() => {
     if (
@@ -100,12 +91,6 @@ function StoryDetailView(props) {
 
     setComponentData(demoContext.componentData[component_id]);
   }, [demoContext.componentData, demoContext, component_id]);
-
-  useEffect(() => {
-    fetchDescription();
-  }, [fetchDescription]);
-
-  console.log(componentData.demos);
 
   return (
     <>
@@ -182,7 +167,6 @@ function StoryDetailView(props) {
                       item
                       xs={6}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
-                      key={demo.name}
                     >
                       <Button
                         style={{

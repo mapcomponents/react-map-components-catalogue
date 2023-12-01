@@ -65,7 +65,6 @@ const DemoContextProvider = ({ children }) => {
 
     for (storyId in storybookData.stories) {
       let _storyData = storybookData.stories[storyId];
-      console.log(_storyData);
       let _compName = _storyData.kind.split("/");
       if (typeof _compName[1] !== "undefined" && _compName[1] === compId) {
         if (
@@ -73,7 +72,7 @@ const DemoContextProvider = ({ children }) => {
           (!catalogueDemoExists && _storyData.name === "Example Config")
         ) {
           componentData.url = url;
-          componentData.demos ||= [];
+          componentData.demos = [];
           componentData.demos.push({
             name: "demo",
             url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
