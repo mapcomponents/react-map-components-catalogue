@@ -178,17 +178,9 @@ function StoryDetailView(props) {
                           color: theme.palette.common.white,
                           borderRadius: "8px",
                         }}
-                        target="blank"
-                        component={Link}
+                        target="_blank"
                         variant="contained"
-                        to={
-                          "/" +
-                          i18n.resolvedLanguage +
-                          "/demo/" +
-                          componentData.name +
-                          "/" +
-                          (demo.id ? demo.id : demo.name)
-                        }
+                        href={demo.url}
                         key={demo.name}
                       >
                         <span

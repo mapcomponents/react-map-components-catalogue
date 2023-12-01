@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Hero New, sans-serif",
+    fontFamily: "Ubuntu, sans-serif",
   },
   palette: {
     mode: "light",

@@ -1,50 +1,69 @@
+@charset "UTF-8";
+
 @font-face {
-  font-family: 'Hero New';
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-Light.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-Light.ttf') format('truetype')
 }
 
 @font-face {
-  font-family: 'Hero New';
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/fonts/Ubuntu-LightItalic.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-Regular.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-Regular.ttf') format('truetype')
 }
 
 @font-face {
-  font-family: 'Hero New';
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Ubuntu-Italic.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-Medium.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-Medium.ttf') format('truetype')
 }
 
 @font-face {
-  font-family: 'Hero New';
-  font-style: normal;
-  font-weight: 600;
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 500;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-SemiBold.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-MediumItalic.ttf') format('truetype')
 }
 
 @font-face {
-  font-family: 'Hero New';
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-Bold.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-Bold.ttf') format('truetype')
 }
 
 @font-face {
-  font-family: 'Hero New';
+  font-family: 'Ubuntu';
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url('/assets/fonts/Hero-New-Bold-Italic.otf') format('opentype')
+  src: url('/assets/fonts/Ubuntu-BoldItalic.ttf') format('truetype')
 }
+
 body{
 
     background-image: url(/assets/body-bgr.png);
