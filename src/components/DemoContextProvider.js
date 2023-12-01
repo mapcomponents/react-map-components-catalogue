@@ -2,19 +2,6 @@ import React, { useMemo, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { DemoContextProviderCore } from "./DemoContext";
 
-//function camelCaseToDash(str) {
-//  if (typeof str === "string") {
-//    return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
-//  }
-//  return "";
-//}
-
-//function storiesJsonElToComponentId(el) {
-//  return camelCaseToDash(el.kind + el.name)
-//    .replace("/", "-")
-//    .replaceAll(" ", "-");
-//}
-
 let storybookUrls = [
   "https://mapcomponents.github.io/react-map-components-maplibre", // MapLibre
   "https://mapcomponents.github.io/react-map-components-maplibre-lab", // MapLibre-Lab
@@ -26,14 +13,6 @@ let demoProviderUrls = [
   "https://mapcomponents.github.io/react-admin-demo-apps/mc_meta.json",
   "https://mapcomponents.github.io/european_wolves_app/mc_meta.json",
 ];
-
-/**
-if (window.location.host.indexOf("mapcomponents.org") === -1) {
-  storybookUrls = [
-    "http://" + window.location.hostname + ":6006", // MapLibre
-  ];
-}
- */
 
 const DemoContextProvider = ({ children }) => {
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
@@ -65,25 +44,44 @@ const DemoContextProvider = ({ children }) => {
   /**
    * enrich storybook mc_meta.json data with thumbnail URL and demo URLs from stories.json
    */
+
   const applyStorybookDataToMcMeta = ({
     componentData,
     storybookData,
     compId,
     url,
   }) => {
+    let catalogueDemoExists = false;
     for (var storyId in storybookData.stories) {
+      let _compName = storybookData.stories[storyId].kind.split("/");
+      if (
+        typeof _compName[1] !== "undefined" &&
+        _compName[1] === compId &&
+        storybookData.stories[storyId].name === "Catalogue Demo"
+      ) {
+        catalogueDemoExists = true;
+      }
+    }
+
+    for (storyId in storybookData.stories) {
       let _storyData = storybookData.stories[storyId];
+      console.log(_storyData);
       let _compName = _storyData.kind.split("/");
       if (typeof _compName[1] !== "undefined" && _compName[1] === compId) {
-        componentData.stories.push(_storyData);
-        componentData.url = url;
-        componentData.demos ||= [];
-        componentData.demos.push({
-          name: _storyData.name === "Example Config" ? "demo" : _storyData.name,
-          url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
-          id: _storyData.id,
-        });
-        componentData.thumbnail = url + "/thumbnails/" + _compName[1] + ".png";
+        if (
+          _storyData.name === "Catalogue Demo" ||
+          (!catalogueDemoExists && _storyData.name === "Example Config")
+        ) {
+          componentData.url = url;
+          componentData.demos ||= [];
+          componentData.demos.push({
+            name: "demo",
+            url: url + "/iframe.html?id=" + _storyData.id + "&viewMode=story",
+            id: _storyData.id,
+          });
+          componentData.thumbnail =
+            url + "/thumbnails/" + _compName[1] + ".png";
+        }
       }
     }
     return componentData;

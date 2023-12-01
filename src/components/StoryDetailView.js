@@ -105,6 +105,8 @@ function StoryDetailView(props) {
     fetchDescription();
   }, [fetchDescription]);
 
+  console.log(componentData.demos);
+
   return (
     <>
       <Grid container>
@@ -170,11 +172,7 @@ function StoryDetailView(props) {
         >
           <Grid container spacing={0}>
             <Grid item xs={12} key="demo_link">
-              <h3>Demos</h3>
-              <Divider
-                variant="fullWidth"
-                sx={{ bgcolor: theme.palette.secondary.main }}
-              ></Divider>
+              <h3> </h3>
 
               <Grid container spacing={2} style={{ marginTop: "0px" }}>
                 {componentData &&
@@ -184,7 +182,7 @@ function StoryDetailView(props) {
                       item
                       xs={6}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
-                      key={demo.id ? demo.id : demo.name}
+                      key={demo.name}
                     >
                       <Button
                         style={{
@@ -196,17 +194,9 @@ function StoryDetailView(props) {
                           color: theme.palette.common.white,
                           borderRadius: "8px",
                         }}
-                        target="blank"
-                        component={Link}
+                        target="_blank"
                         variant="contained"
-                        to={
-                          "/" +
-                          i18n.resolvedLanguage +
-                          "/demo/" +
-                          componentData.name +
-                          "/" +
-                          (demo.id ? demo.id : demo.name)
-                        }
+                        href={demo.url}
                         key={demo.name}
                       >
                         <span
