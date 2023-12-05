@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useMemo } from "react";
-import { useResolvedPath, Link } from "react-router-dom";
+import { useResolvedPath } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 

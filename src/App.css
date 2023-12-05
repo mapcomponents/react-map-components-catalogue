@@ -7,6 +7,14 @@ body {
   -webkit-text-size-adjust: none;
 }
 
+@media(prefers-color-scheme: dark){
+body {
+  background-color: #000;
+  background-repeat: unset;
+  background-size: cover;
+}
+}
+
 .App-logo {
   width: 225px;
   display: block;
@@ -17,7 +25,7 @@ body {
 }
 .cutCorners {
   -webkit-clip-path: polygon(
-    0 5%,
+    0 25%,
     0 95%,
     5% 100%,
     95% 100%,

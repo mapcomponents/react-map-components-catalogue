@@ -69,5 +69,5 @@ body{
     background-image: url(/assets/body-bgr.png);
     background-position: center 100px;
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
 }

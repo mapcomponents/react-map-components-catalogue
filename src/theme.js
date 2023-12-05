@@ -1,6 +1,48 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+
+/*
+const mode = "light"
+const theme =createTheme ({
+
+  typography: {
+    fontFamily: "Ubuntu, sans-serif",
+  },
+  ...mode("light" | "dark"),
+  palette: {
+    common: { black: "#282828", white: "#fff" },
+    background: { main: mode === "light" ? "#fff" : "#121212" },
+    primary: { main: "#009fe3", light: "#02d7f2" },
+    secondary: {
+      main: "#dcdcdc",
+      light: "#dfe803",
+      greyText: mode === "light" ? "#282828" : "#ffffff",
+    },
+    grey: { main: "#cdcdcd" },
+    error: {
+      light: "#e57373",
+      main: "#f44336",
+      dark: "#d32f2f",
+      contrastText: "#fafafa",
+    },
+    text: {
+      primary:
+        mode === "light" ? "rgba(0, 0, 0, 0.87)" : "rgba(255, 255, 255, 0.87)",
+      secondary:
+        mode === "light" ? "rgba(0, 0, 0, 0.54)" : "rgba(255, 255, 255, 0.54)",
+      disabled:
+        mode === "light" ? "rgba(0, 0, 0, 0.38)" : "rgba(255, 255, 255, 0.38)",
+      hint:
+        mode === "light" ? "rgba(0, 0, 0, 0.38)" : "rgba(255, 255, 255, 0.38)",
+    },
+    action: { disabledBackground: "#5a4b4b", disabled: "#fafafa" },
+  },
+});
+
+export default theme;
+
+*/
+const theme = createTheme ({
   typography: {
     fontFamily: "Ubuntu, sans-serif",
   },
@@ -47,3 +89,4 @@ const theme = createTheme({
 });
 
 export default theme;
+
