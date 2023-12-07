@@ -3,12 +3,15 @@ import logo from "../logo.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import LanguageSelection from "./LanguageSelection";
 import makeStyles from "@mui/styles/makeStyles";
-
+// import detectTheme from "./ThemeDetector";
 import { Grid, AppBar } from "@mui/material";
 import WebsiteHeader from "./WebsiteHeader";
 import CatalogueHeader from "./CatalogueHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+
+
+//   const mediaInDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -158,3 +161,32 @@ export default function Header() {
     </AppBar>
   );
 }
+
+
+/*
+<a
+            href="https://mapcomponents.org/"
+            style={{
+              lineHeight: 0,
+            }}
+          >
+            {detectTheme() ? "light" : "dark"}
+            <img
+              src={logo}
+              width="480"
+              height="82"
+              className="logo"
+              alt="logo"
+              style={{ height: "40px", width: "auto" }}
+            />
+            :
+            <img
+              src={"docs/static/media/logo.mapcomp_light.svg"}
+              width="480"
+              height="82"
+              className="logo"
+              alt="logo"
+              style={{ height: "40px", width: "auto" }}
+            />
+          </a>
+*/

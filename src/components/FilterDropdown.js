@@ -48,7 +48,6 @@ const FilterDropdown = (props) => {
           //color="primary"
           value={props.filterState}
           onChange={handleChange}
-          
         >
           {demoContext.tagList.map((tag) => (
             <MenuItem key={tag} value={tag}>

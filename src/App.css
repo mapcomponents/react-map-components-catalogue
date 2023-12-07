@@ -7,14 +7,6 @@ body {
   -webkit-text-size-adjust: none;
 }
 
-@media(prefers-color-scheme: dark){
-body {
-  background-color: #000;
-  background-repeat: unset;
-  background-size: cover;
-}
-}
-
 .App-logo {
   width: 225px;
   display: block;
@@ -247,7 +239,7 @@ form button:hover {
 
 @media (max-width: 900px) {
   .menu {
-    background: #fff;
+    background: #fafafa;
     position: absolute;
     left: 0;
     top: 100%;
@@ -294,4 +286,44 @@ form button:hover {
     opacity: 1;
     transition: 0.5s ease-out;
   }
+}
+
+
+@media(prefers-color-scheme: dark){
+  body {
+    background-color: #000;
+    background-repeat: unset;
+    background-size: cover;
+  }
+  
+  .makeStyles-textContainer-18{
+    background-color:#ccc !important
+  }
+
+  .topbar a{
+    color: #fafafa
+  }
+  
+  .menu li a:not(.btn) {
+    color: #fafafa;
+  
+  }
+  .css-1giabui-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root .MuiOutlinedInput-notchedOutline{
+    border: 1 ;
+    border-color: #fafafa;
+  }
+  .css-1giabui-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    display: inline-flex;
+    border: 10px;
+    border-color: #009fe3;
+  }
+
+  .css-11xbnr7-MuiInputBase-root-MuiOutlinedInput-root {
+    border: 1px solid #009fe3
+  }
+
+  .css-1o05puq-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    border: 1px solid #009fe3
+  }
+
 }
