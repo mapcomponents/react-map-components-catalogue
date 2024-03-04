@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import makeStyles from "@mui/styles/makeStyles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Grid, ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import DemoContext from "./DemoContext";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -27,6 +28,29 @@ const useStyles = makeStyles((theme) => ({
 export default function CatalogueHeader() {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
+  const [alignment, setAlignment] = useState(window.location.pathname);
+  const { componentData } = useContext(DemoContext);
+  const location = useLocation();
+
+  const handleAlignment = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
+
+  const getTypeFromUrl = (url) => {
+    console.log("URL hat sich geändert, neue URL:", location.pathname);
+    const entry = Object.values(componentData).find(
+      (entry) => entry.url === url
+    );
+    if (entry) {
+      console.log(entry.type);
+      return entry.type;
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    getTypeFromUrl();
+  }, [location.pathname]);
 
   return (
     <Grid
@@ -38,29 +62,36 @@ export default function CatalogueHeader() {
         alignItems: "center",
       }}
     >
-        <ToggleButtonGroup
-          variant="contained"
-          color="primary"
-          aria-label="contained primary button group"
-          value={window.location.pathname}
+      <ToggleButtonGroup
+        variant="contained"
+        color="primary"
+        aria-label="contained primary button group"
+        value={alignment}
+        exclusive
+        onChange={handleAlignment}
+      >
+        <ToggleButton
+          to={i18n.language + "/"}
+          className={classes.menuButton}
+          component={Link}
+          value={i18n.language + "/"}
+          selected={alignment === i18n.language + "/"}
         >
-          <ToggleButton
-            to={i18n.language + "/"}
-            className={classes.menuButton}
-            component={Link}
-            value={i18n.language + "/"}
-          >
-            Components
-          </ToggleButton>
-          <ToggleButton
-            to={i18n.language + "/list-apps"}
-            className={classes.menuButton}
-            component={Link}
-            value={i18n.language + "/list-apps"}
-          >
-            {t("sampleApplications")}
-          </ToggleButton>
-        </ToggleButtonGroup>
+          Components
+        </ToggleButton>
+        <ToggleButton
+          to={i18n.language + "/list-apps"}
+          className={classes.menuButton}
+          component={Link}
+          value={i18n.language + "/list-apps"}
+          selected={
+            alignment === i18n.language + "/list-apps" &&
+            componentData.type === "application"
+          }
+        >
+          {t("sampleApplications")}
+        </ToggleButton>
+      </ToggleButtonGroup>
     </Grid>
   );
 }
