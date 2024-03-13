@@ -35,8 +35,9 @@ export default function CatalogueHeader() {
 
   const selectedType = useMemo(() => {
     if (
-      location.pathname === "/" + i18n.language + "/" ||
-      location.pathname === "/"
+      location.pathname === "/" ||
+      location.pathname === "/" + i18n.language ||
+      location.pathname === "/" + i18n.language + "/"
     )
       return "component";
     if (location.pathname === "/" + i18n.language + "/list-apps")
