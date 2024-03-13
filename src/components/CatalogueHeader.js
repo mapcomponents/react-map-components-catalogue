@@ -34,7 +34,11 @@ export default function CatalogueHeader() {
   let match = useMatch("/:locale/component-detail/:component_id");
 
   const selectedType = useMemo(() => {
-    if (location.pathname === "/" + i18n.language + "/") return "component";
+    if (
+      location.pathname === "/" + i18n.language + "/" ||
+      location.pathname === "/"
+    )
+      return "component";
     if (location.pathname === "/" + i18n.language + "/list-apps")
       return "application";
     return type;
