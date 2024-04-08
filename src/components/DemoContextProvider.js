@@ -12,7 +12,7 @@ let demoProviderUrls = [
   "https://mapcomponents.github.io/react-map-components-apps/mc_meta.json",
   "https://mapcomponents.github.io/react-admin-demo-apps/mc_meta.json",
   "https://mapcomponents.github.io/european_wolves_app/mc_meta.json",
-  "https://github.com/mapcomponents/pwa-demo/mc_meta.json"
+  "https://raw.githubusercontent.com/mapcomponents/pwa-demo/main/mc_meta.json"
 ];
 
 const DemoContextProvider = ({ children }) => {
