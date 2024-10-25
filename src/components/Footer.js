@@ -78,7 +78,7 @@ function Footer() {
             className="disclaimer"
             style={{ margin: 0, textAlign: "center", fontWeight: 400 }}
           >
-            ©&nbsp;2022&nbsp;WhereGroup GmbH. Alle Rechte vorbehalten.
+            ©&nbsp;2024&nbsp;WhereGroup GmbH. Alle Rechte vorbehalten.
           </p>
         </div>
       </Container>
