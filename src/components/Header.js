@@ -8,7 +8,7 @@ import { Grid, AppBar } from "@mui/material";
 import WebsiteHeader from "./WebsiteHeader";
 import CatalogueHeader from "./CatalogueHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faMastodon } from "@fortawesome/free-brands-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -86,10 +86,10 @@ export default function Header() {
             </li>
             <li>
               <a
-                href="https://twitter.com/mapcomponents"
-                title="MapComponents auf twitter"
+                href="https://fosstodon.org/@mapcomponents"
+                title="MapComponents auf Mastodon"
               >
-                <FontAwesomeIcon icon={faTwitter} />
+                <FontAwesomeIcon icon={faMastodon} />
               </a>
             </li>
           </ul>
