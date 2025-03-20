@@ -87,7 +87,7 @@ export default function Header() {
             <li>
               <a
                 href="https://fosstodon.org/@mapcomponents"
-                title="MapComponents auf Mastodon - die Feinheiten mit Fediverse und Fosstodon"
+                title="MapComponents auf Mastodon"
               >
                 <FontAwesomeIcon icon={faMastodon} />
               </a>
