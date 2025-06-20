@@ -71,6 +71,9 @@
             },
             "required": ["name", "url"]
           }
+        },
+        "thumbnail": {
+          "type": "string"
         }
       },
       "required": [
@@ -81,7 +84,8 @@
         "tags",
         "category",
         "type",
-        "demos"
+        "demos",
+        "thumbnail"
       ]
     }
   }
