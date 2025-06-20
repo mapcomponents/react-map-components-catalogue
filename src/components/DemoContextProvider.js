@@ -47,11 +47,11 @@ const DemoContextProvider = ({ children }) => {
    */
 
   const applyStorybookDataToMcMeta = ({
-    componentData,
-    storybookData,
-    compId,
-    url,
-  }) => {
+                                        componentData,
+                                        storybookData,
+                                        compId,
+                                        url,
+                                      }) => {
     let catalogueDemoExists = false;
     for (var storyId in storybookData.stories) {
       let _compName = storybookData.stories[storyId].kind.split("/");
