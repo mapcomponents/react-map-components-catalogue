@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { DemoContextProviderCore } from "./DemoContext";
 
 let storybookUrls = [
-  "https://mapcomponents.github.io/react-map-components-maplibre", // MapLibre
+  "https://mapcomponents.github.io/mapcomponents/react-maplibre", // MapLibre
   "https://mapcomponents.github.io/react-map-components-maplibre-lab", // MapLibre-Lab
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
