@@ -1,0 +1,2 @@
+"use strict";(globalThis.webpackChunkmap_components_catalogue=globalThis.webpackChunkmap_components_catalogue||[]).push([[488],{488(a,e,n){new Map,new Date}}]);
+//# sourceMappingURL=488.0d222dd5.chunk.js.map
