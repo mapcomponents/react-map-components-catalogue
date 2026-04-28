@@ -13,8 +13,8 @@ jobs:
           persist-credentials: false
       - name: Install and Build 🔧
         run: | # Install packages and build the react-app files
-          yarn
-          yarn build
+          npm i
+          npm run build
           cp build/index.html build/404.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2

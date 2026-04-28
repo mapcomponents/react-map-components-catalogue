@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Button, Grid } from "@mui/material";
 import ListItemSmall from "./ListItemSmall";
 import Divider from "@mui/material/Divider";
-import Tag from "./Tag.js";
+import Tag from "./Tag";
 
 import { useTranslation } from "react-i18next";
 
