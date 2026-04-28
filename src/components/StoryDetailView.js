@@ -1,14 +1,12 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
-import { useResolvedPath, Link } from "react-router-dom";
-
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { useParams, useResolvedPath } from "react-router-dom";
 
 import theme from "../theme.js";
 
 import DemoContext from "./DemoContext";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Grid, Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import ListItemSmall from "./ListItemSmall";
 import Divider from "@mui/material/Divider";
 import Tag from "./Tag.js";
@@ -56,7 +54,7 @@ function StoryDetailView(props) {
       let componentDes =
         currentLanguage !== "en"
           ? demoContext.componentData[component_id].i18n[currentLanguage]
-              .description
+            .description
           : demoContext.componentData[component_id].description;
       setDescription(componentDes);
     }
@@ -64,7 +62,7 @@ function StoryDetailView(props) {
     component_id,
     demoContext.componentData,
     demoContext,
-    i18n.resolvedLanguage,
+    i18n.resolvedLanguage
   ]);
 
   useEffect(() => {
@@ -83,7 +81,7 @@ function StoryDetailView(props) {
     component_id,
     demoContext.componentData,
     demoContext,
-    i18n.resolvedLanguage,
+    i18n.resolvedLanguage
   ]);
 
   useEffect(() => {
@@ -95,7 +93,7 @@ function StoryDetailView(props) {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <h1 style={{ marginTop: 0 }}>{componentTitle}</h1>
         </Grid>
       </Grid>
@@ -107,17 +105,15 @@ function StoryDetailView(props) {
 
       <Grid container spacing={4} key="contentContainer">
         <Grid
-          item
-          md={8}
-          xs={12}
+          size={{ md: 8, xs: 12 }}
           style={{
             ...(mediaIsMobile
               ? {}
               : {
-                  marginBottom: "80px",
-                  paddingBottom: "20px",
-                  minHeight: "500px",
-                }),
+                marginBottom: "80px",
+                paddingBottom: "20px",
+                minHeight: "500px"
+              })
           }}
           key="content"
         >
@@ -136,7 +132,7 @@ function StoryDetailView(props) {
                 alt=""
               />
             </Grid>
-            <Grid item xs={12} key="tags">
+            <Grid size={{ xs: 12 }} key="tags">
               {componentData.tags &&
                 componentData.tags.map((el, idx) => (
                   <Tag el={el} key={idx}></Tag>
@@ -149,23 +145,20 @@ function StoryDetailView(props) {
         </Grid>
 
         <Grid
-          item
-          md={4}
-          xs={12}
+          size={{ md: 4, xs: 12 }}
           style={{ paddingTop: mediaIsMobile ? 0 : "0px" }}
           key="sidebar"
         >
           <Grid container spacing={0}>
-            <Grid item xs={12} key="demo_link">
-              <h3> </h3>
+            <Grid size={{ xs: 12 }} key="demo_link">
+              <h3></h3>
 
               <Grid container spacing={2} style={{ marginTop: "0px" }}>
                 {componentData &&
                   componentData.demos &&
                   componentData.demos.map((demo) => (
                     <Grid
-                      item
-                      xs={6}
+                      size={{ xs: 6 }}
                       style={{ marginTop: "16px", paddingTop: "0px" }}
                     >
                       <Button
@@ -176,7 +169,7 @@ function StoryDetailView(props) {
                           flexDirection: "column",
                           alignContent: "center",
                           color: theme.palette.common.white,
-                          borderRadius: "8px",
+                          borderRadius: "8px"
                         }}
                         target="_blank"
                         variant="contained"
@@ -196,8 +189,7 @@ function StoryDetailView(props) {
             </Grid>
             {componentData.components && (
               <Grid
-                item
-                xs={12}
+                size={{ xs: 12 }}
                 key="component_list"
                 style={{ marginTop: "30px" }}
               >
@@ -212,7 +204,7 @@ function StoryDetailView(props) {
               </Grid>
             )}
             {appsWhichImplement.length !== 1 && (
-              <Grid item xs={12} key="apps_list" style={{ marginTop: "30px" }}>
+              <Grid size={{xs:12}} key="apps_list" style={{ marginTop: "30px" }}>
                 <h3>{t("includedIn")}</h3>
                 <Divider
                   variant="fullWidth"

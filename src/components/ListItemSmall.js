@@ -1,21 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import theme from "../theme.js";
 
 import DemoContext from "./DemoContext";
-import makeStyles from "@mui/styles/makeStyles";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const useStyles = makeStyles((theme) => ({
-  teaserItemImage: {
-    maxWidth: "100%",
-  },
-}));
-
 function ListItemSmall({ component_id, ...props }) {
-  const classes = useStyles();
 
   const demoContext = useContext(DemoContext);
 
@@ -41,9 +33,12 @@ function ListItemSmall({ component_id, ...props }) {
         spacing={2}
         onClick={props.onClick}
       >
-        <Grid item xs={3} key="imgContainer">
+        <Grid size={{ xs: 3 }} key="imgContainer">
           <img
-            className={`${classes.teaserItemImage} cutCorners`}
+            className="cutCorners"
+            style={{
+              maxWidth: "100%"
+            }}
             src={componentData.thumbnail || "/placeholder.png"}
             onError={(ev) => {
               ev.target.src = "/placeholder.png";
@@ -51,13 +46,13 @@ function ListItemSmall({ component_id, ...props }) {
             alt=""
           />
         </Grid>
-        <Grid item xs={9} key="textContainer">
+        <Grid size={{ xs: 9 }} key="textContainer">
           <h4
             className="twoLinesOfText"
             style={{
               marginTop: "3px",
               marginBottom: "5px",
-              color: theme.palette.primary.main,
+              color: theme.palette.primary.main
             }}
           >
             {componentData.i18n?.[i18n.resolvedLanguage]?.title &&
