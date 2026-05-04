@@ -3,33 +3,15 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { useTheme } from "@mui/material/styles";
 
 const languages = {
   en: { nativeName: "English" },
   de: { nativeName: "Deutsch" },
 };
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    color: theme.palette.secondary.greyText,
-    border: "none",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: "initial",
-      color: theme.palette.primary.main,
-    },
-  },
-  selected: {
-    color: theme.palette.primary.main,
-    "&:hover": {
-      backgroundColor: "initial",
-    },
-  },
-}));
-
 const LanguageSelection = () => {
-  const classes = useStyles();
+  const theme = useTheme();
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -48,14 +30,31 @@ const LanguageSelection = () => {
     i18n.changeLanguage(code);
   };
 
-  let buttons = Object.keys(languages).map((key, index) => (
+  return Object.keys(languages).map((key, index) => (
     <div key={key} style={{display:'flex', alignContent:'center', alignItems:'center'}}>
       <div>
         {index !== 0 ? " | " : ""}
       </div>
 
       <Button
-        className={(key === resolvedLanguage ? classes.selected : classes.button) }
+        sx={
+          key === resolvedLanguage
+            ? {
+                color: theme.palette.primary.main,
+                "&:hover": {
+                  backgroundColor: "initial",
+                },
+              }
+            : {
+                color: theme.palette.secondary["greyText"],
+                border: "none",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "initial",
+                  color: theme.palette.primary.main,
+                },
+              }
+        }
         onClick={() => handleChangeLanguage(key)}
         key={key}
         variant='text'
@@ -64,8 +63,6 @@ const LanguageSelection = () => {
       </Button>
     </div>
   ));
-
-  return buttons;
 };
 
 export default LanguageSelection;
