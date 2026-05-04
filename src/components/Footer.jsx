@@ -1,39 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Paper, Container } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
 
 import theme from "../theme.js";
 
-const useStyles = makeStyles((theme) => ({
-  footer: {
-    maxWidth: "100%",
-    padding: "40px 0",
-  },
-  link: {
-    color: theme.palette.secondary.greyText,
-    textDecoration: "none",
-  },
-  logo: {
-    width: "230px",
-  },
-}));
-
 function Footer() {
-  const classes = useStyles(theme);
   // eslint-disable-next-line
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Paper
       elevation={0}
       sx={{
-        backgroundColor: theme.palette.background.main,
+        backgroundColor: theme.palette.background["main"],
         fontSize: "0.75rem",
         color: "#282828",
         fontWeight: "500",
+        maxWidth: "100%",
+        padding: "40px 0",
       }}
-      className={classes.footer}
     >
       <Container>
         <div className="container">
@@ -55,7 +40,10 @@ function Footer() {
                     : "https://wheregroup.com/en/privacypolicy/"
                 }
                 title="Datenschutz"
-                className={classes.link}
+                style={{
+                  color: theme.palette.secondary["greyText"],
+                  textDecoration: "none",
+                }}
               >
                 Datenschutz
               </a>
@@ -68,7 +56,10 @@ function Footer() {
                     : "https://wheregroup.com/en/legalnotice/"
                 }
                 title="Impressum"
-                className={classes.link}
+                style={{
+                  color: theme.palette.secondary["greyText"],
+                  textDecoration: "none",
+                }}
               >
                 Impressum
               </a>

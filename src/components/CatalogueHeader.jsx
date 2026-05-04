@@ -1,32 +1,12 @@
 import React, { useEffect, useState, useContext, useMemo } from "react";
-import makeStyles from "@mui/styles/makeStyles";
 import { Link, useLocation, useMatch } from "react-router-dom";
 import { Grid, ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@mui/material/styles";
 import DemoContext from "./DemoContext";
 
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    border: "none",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: "initial",
-      color: theme.palette.primary.main,
-    },
-  },
-  logo: {
-    height: "40px",
-    width: "auto",
-  },
-  header: {
-    padding: "10px 0",
-    backgroundColor: theme.palette.background.main, //'#1c1e21' //"#f1f1f1",
-    boxShadow: "0 4px 16px rgb(0 0 0 / 16%)",
-  },
-}));
-
 export default function CatalogueHeader() {
-  const classes = useStyles();
+  const theme = useTheme();
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [type, setType] = useState();
@@ -56,8 +36,7 @@ export default function CatalogueHeader() {
 
   return (
     <Grid
-      item
-      xs={10}
+      size={{xs: 10}}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -73,7 +52,14 @@ export default function CatalogueHeader() {
       >
         <ToggleButton
           to={i18n.language + "/"}
-          className={classes.menuButton}
+          sx={{
+            border: "none",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: "initial",
+              color: theme.palette.primary.main,
+            },
+          }}
           component={Link}
           value={i18n.language + "/"}
           selected={selectedType === "component"}
@@ -82,7 +68,14 @@ export default function CatalogueHeader() {
         </ToggleButton>
         <ToggleButton
           to={i18n.language + "/list-apps"}
-          className={classes.menuButton}
+          sx={{
+            border: "none",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: "initial",
+              color: theme.palette.primary.main,
+            },
+          }}
           component={Link}
           value={i18n.language + "/list-apps"}
           selected={selectedType === "application"}

@@ -2,8 +2,6 @@ import React from "react";
 
 import { Routes, Route } from "react-router-dom";
 
-import makeStyles from "@mui/styles/makeStyles";
-
 import { Container, Box } from "@mui/material";
 
 import Footer from "./components/Footer";
@@ -17,25 +15,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import "./App.css";
 import Header from "./components/Header";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    fontWeight: "bold",
-    "&:hover": {
-      //backgroundColor: "#a51b3b",
-    },
-  },
-  spacer: {
-    height: "46px",
-  },
-}));
 
 const Spacer = () => {
-  const classes = useStyles();
-
-  return <div className={classes.spacer}></div>;
+  return <div style={{
+    height: "46px",
+  }}></div>;
 };
 
 function App() {
@@ -46,6 +30,7 @@ function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        width: "100%"
       }}
     >
       <Header />
@@ -54,52 +39,53 @@ function App() {
         style={{
           flexGrow: 1,
           paddingTop: mediaIsMobile?"200px":"280px",
-          paddingBottom: '100px'
+          paddingBottom: '100px',
+          width:"100%"
         }}
       >
         <Routes>
           <Route
+            path={"/"}
+            element={
+              <Container>
+                <StoryTeaserList type="component"/>
+              </Container>
+            }
+          />
+          <Route
             path={"/:locale/component-detail/:component_id"}
             element={
               <Container>
-                <Spacer></Spacer>
-                <StoryDetailView></StoryDetailView>
+                <Spacer/>
+                <StoryDetailView/>
               </Container>
             }
-          ></Route>
+          />
           <Route
             path={"/:locale/demo/:component_name/:demo_id"}
             element={
               <Container>
-                <Spacer></Spacer>
-                <DemoView></DemoView>
+                <Spacer/>
+                <DemoView/>
               </Container>
             }
-          ></Route>
-          <Route
-            path={"/"}
-            element={
-              <Container>
-                <StoryTeaserList type="component"></StoryTeaserList>
-              </Container>
-            }
-          ></Route>
+          />
           <Route
             path="/:locale"
             element={
               <Container>
-                <StoryTeaserList type="component"></StoryTeaserList>
+                <StoryTeaserList type="component"/>
               </Container>
             }
-          ></Route>
+          />
           <Route
             path={"/:locale/list-apps"}
             element={
               <Container>
-                <StoryTeaserList type="application"></StoryTeaserList>
+                <StoryTeaserList type="application"/>
               </Container>
             }
-          ></Route>
+          />
           {/*<Route
             path={"/:locale/bookmarks"}
             element={
@@ -110,12 +96,12 @@ function App() {
           ></Route>*/}
         </Routes>
       </div>
-      <Footer></Footer>
+      <Footer/>
       {/*<CartDrawer
         open={cartDrawerOpen}
         setOpen={setCartDrawerOpen}
         ></CartDrawer>*/}
-      <MenuDrawer></MenuDrawer>
+      <MenuDrawer/>
     </Box>
   );
 }

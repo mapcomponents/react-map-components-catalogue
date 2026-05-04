@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import DemoContext from "./../DemoContext";
 
-import { Drawer, Grid, IconButton } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import ListItemSmall from "../ListItemSmall";
@@ -15,14 +15,14 @@ function Cart(props) {
   const { t } = useTranslation();
 
 
-
-  return(
-      <>
+  return (
+    <>
       <h1>{t("bookmark")}</h1>
-      {demoContext.cartItems.length == 0 && <h3 style={{textAlign: "center", margin: "200px 50px 200px 50px"}}>{t("empty")}</h3>}
+      {demoContext.cartItems.length == 0 &&
+        <h3 style={{ textAlign: "center", margin: "200px 50px 200px 50px" }}>{t("empty")}</h3>}
       {demoContext.cartItems.map((el) => (
         <Grid container key={"cli_" + el.id}>
-          <Grid item xs={10} key="item">
+          <Grid size={{ xs: 10 }} key="item">
             <ListItemSmall
               component_id={el}
               onClick={() => {
@@ -31,12 +31,11 @@ function Cart(props) {
             />
           </Grid>
           <Grid
-            item
-            xs={2}
+            size={{xs: 2}}
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              alignItems: "center",
+              alignItems: "center"
             }}
             key="controls"
           >
@@ -57,10 +56,10 @@ function Cart(props) {
           </Grid>
         </Grid>
       ))}
-      </>
-    
+    </>
+
   );
-                
+
 }
 
 export default Cart;    

@@ -1,29 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { Drawer, Grid, IconButton } from "@mui/material";
+import { Drawer, IconButton } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import makeStyles from "@mui/styles/makeStyles";
-
 import Cart from "./Cart";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    background: theme.palette.background.main,
-  },
-}));
 
 function CartDrawer(props) {
 
-  const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Drawer
       anchor="right"
       open={props.open}
       onClose={() => props.setOpen(!props.open)}
-      classes={{ paper: classes.paper }}
+      sx={{
+        "& .MuiDrawer-paper": {
+          background: theme.palette.background["main"],
+        },
+      }}
     >
       <div
         style={{
@@ -34,7 +31,7 @@ function CartDrawer(props) {
       >
 
       <IconButton
-          onClick={(ev) => {
+          onClick={() => {
             props.setOpen(!props.open)
           }}
           size="large"
