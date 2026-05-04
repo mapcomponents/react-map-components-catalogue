@@ -4,6 +4,8 @@ import { DemoContextProviderCore } from "./DemoContext";
 
 let storybookUrls = [
   "https://mapcomponents.github.io/react-map-components-maplibre/react-maplibre", // MapLibre
+  "https://mapcomponents.github.io/react-map-components-maplibre/three", // ThreeJs
+  "https://mapcomponents.github.io/react-map-components-maplibre/deck-gl", // Deck-gl
   "https://mapcomponents.github.io/react-map-components-maplibre-lab", // MapLibre-Lab
   //"http://" + hostname_ + ":4080", // OpenLayers
 ];
